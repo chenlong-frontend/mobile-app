@@ -78,7 +78,7 @@
             height: "100%"
           },
           textStyles: {
-            fontSrc: "_www/fonts/mui.ttf",
+            fontSrc: "_www/css/fonts/mui.ttf",
             align: "center",
             color: "#fff",
             size: "30px"
@@ -92,10 +92,13 @@
     //自定义监听图标点击事件
     var active_color = "#fff";
     drawNativeIcon.addEventListener("click", function(e) {
-      mui.alert(
-        "你点击了图标，你在此可以打开摄像头或者新窗口等自定义点击事件。",
-        "悬浮球点击事件"
-      );
+	  plus.webview.open(
+	    "html/task-create.html",
+	    "new",
+	    {},
+	    "slide-in-right",
+	    200
+	  );
     });
     // 中间凸起图标绘制及监听点击完毕
 
@@ -140,24 +143,12 @@
       if (targetPage == activePage) {
         return;
       }
-
-      if (currIndex !== 3) {
         //底部选项卡切换
         util.toggleNview(currIndex);
         // 子页面切换
         util.changeSubpage(targetPage, activePage, aniShow);
         //更新当前活跃的页面
         activePage = targetPage;
-      } else {
-        //第四个tab 打开新窗口
-        plus.webview.open(
-          "html/new-webview.html",
-          "new",
-          {},
-          "slide-in-right",
-          200
-        );
-      }
     });
   });
 })();

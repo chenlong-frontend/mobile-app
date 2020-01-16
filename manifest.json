@@ -133,7 +133,7 @@
 								"height": "24px"
 							},
 							"textStyles": {
-								"fontSrc": "_www/fonts/mui.ttf",
+								"fontSrc": "_www/css/fonts/mui.ttf",
 								"align": "center",
 								"size": "24px"
 							}
@@ -162,7 +162,7 @@
 								"height": "24px"
 							},
 							"textStyles": {
-								"fontSrc": "_www/fonts/mui.ttf",
+								"fontSrc": "_www/css/fonts/mui.ttf",
 								"align": "center",
 								"size": "24px"
 							}
@@ -191,7 +191,7 @@
 								"height": "24px"
 							},
 							"textStyles": {
-								"fontSrc": "_www/fonts/mui.ttf",
+								"fontSrc": "_www/css/fonts/mui.ttf",
 								"align": "center",
 								"size": "24px"
 							}
@@ -220,7 +220,7 @@
 								"height": "24px"
 							},
 							"textStyles": {
-								"fontSrc": "_www/fonts/mui.ttf",
+								"fontSrc": "_www/css/fonts/mui.ttf",
 								"align": "center",
 								"size": "24px"
 							}

@@ -3,8 +3,9 @@ var util = {
     ACTIVE_COLOR: "#007aff",
     NORMAL_COLOR: "#000",
     subpages: [
-      "html/tab-webview-subpage-chat.html",
-      "html/tab-webview-subpage-contact.html"
+      "html/star-task.html",
+      "html/work-templete.html",
+	  "html/user.html"
     ]
   },
   /**

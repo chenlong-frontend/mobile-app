@@ -6,36 +6,56 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
   <title>首页</title>
   <script src="js/lib/mui.min.js"></script>
-  <link href="css/mui.min.css" rel="stylesheet" />
-  <style>
-    html,
-    body {
-      background-color: #efeff4;
-    }
-
-    .title {
-      margin: 20px 15px 10px;
-      color: #6d6d72;
-      font-size: 15px;
-      padding-bottom: 51px;
-    }
-  </style>
+  <link href="css/lib/mui.min.css" rel="stylesheet" />
+  <link href="css/home/index.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="mui-content">
-    <div class="title">
-      <p>这是使用nativeObj 原生控件绘制的底部选项卡示例，当前为父页面，显示第一个tab项内容；</p>
-      <p>这里采用将第一个tab项内容放在父页面显示，因为是入口页面，会在启动中进行渲染，使首页显示速度更快</p>
-      <p>选项卡常用于App首页，为加快渲染，原生底部选项卡是在manifest.json中通过plus -> launchwebview -> subNViews 节点配置的；</p>
-      <p>选项卡图标使用字体绘制，点击可切换对应选项卡的高亮状态，开发者可自定义相应的点击事件；</p>
-      <p>本示例中，点击第二个选项卡打开一个支持下拉刷新的webview；点击第四个选项卡，打开一个新窗口。</p>
-
-      <p>中间悬浮大球图标，因涉及屏幕分辨率动态计算，目前是在首页plusReady事件中实现绘制的。该悬浮大球支持点击事件，开发者可定制实现对应的点击逻辑。</P>
-      <p>为提高性能，本示例选项卡图标全部使用字体文件绘制（推荐），实际使用中也可以使用图片绘制。</p>
+    <div class="tab">
+      <div id="segmentedControl"
+        class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
+        <a class="mui-control-item mui-active" href="#item1">我发起的</a>
+        <a class="mui-control-item" href="#item2">我待办的</a>
+      </div>
+    </div>
+    <div class="list">
+      <div id="item1" class="mui-control-content mui-active">
+        <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+          <li class="mui-table-view-cell">
+            <div class="mui-table">
+              <div class="mui-table-cell mui-col-xs-8">
+                <h4 class="mui-ellipsis">任务名称</h4>
+                <h5>任务编号：编号</h5>
+                <p class="mui-h6 mui-ellipsis">任务描述</p>
+				<p>完成</p>
+              </div>
+              <div class="mui-table-cell mui-col-xs-4 mui-text-right">
+                <span class="mui-h5">2020-01-05 12:25</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="item2" class="mui-control-content">
+       <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
+         <li class="mui-table-view-cell">
+           <div class="mui-table">
+             <div class="mui-table-cell mui-col-xs-8">
+               <h4 class="mui-ellipsis">任务名称</h4>
+               <h5>任务编号：编号</h5>
+               <p class="mui-h6 mui-ellipsis">任务描述</p>
+       		<p>完成</p>
+             </div>
+             <div class="mui-table-cell mui-col-xs-4 mui-text-right">
+               <span class="mui-h5">2020-01-05 12:25</span>
+             </div>
+           </div>
+         </li>
+       </ul>
+      </div>
     </div>
   </div>
-
   <script src="js/util/nativeTab.js"></script>
   <script src="./js/home/tab.js"></script>
   <script type="text/javascript">
