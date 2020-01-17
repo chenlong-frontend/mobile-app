@@ -1,66 +1,71 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>首页</title>
+    <script src="js/lib/mui.min.js"></script>
+    <link href="css/lib/mui.min.css" rel="stylesheet" />
+    <link href="css/home/index.css" rel="stylesheet" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-  <title>首页</title>
-  <script src="js/lib/mui.min.js"></script>
-  <link href="css/lib/mui.min.css" rel="stylesheet" />
-  <link href="css/home/index.css" rel="stylesheet" />
-</head>
-
-<body>
-  <div class="mui-content">
-    <div class="tab">
-      <div id="segmentedControl"
-        class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
-        <a class="mui-control-item mui-active" href="#item1">我发起的</a>
-        <a class="mui-control-item" href="#item2">我待办的</a>
+  <body>
+    <div class="mui-content">
+      <div class="tab">
+        <div
+          id="segmentedControl"
+          class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary"
+        >
+          <a class="mui-control-item mui-active" href="#item1">我发起的</a>
+          <a class="mui-control-item" href="#item2">我待办的</a>
+        </div>
+      </div>
+      <div class="list">
+        <div id="item1" class="mui-control-content mui-active">
+          <ul
+            class="mui-table-view mui-table-view-striped mui-table-view-condensed"
+          >
+            <li class="mui-table-view-cell">
+              <div class="mui-table">
+                <div class="mui-table-cell mui-col-xs-8">
+                  <h4 class="mui-ellipsis">任务名称</h4>
+                  <h5>任务编号：编号</h5>
+                  <p class="mui-h6 mui-ellipsis">任务描述</p>
+                  <p>完成</p>
+                </div>
+                <div class="mui-table-cell mui-col-xs-4 mui-text-right">
+                  <span class="mui-h5">2020-01-05 12:25</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="item2" class="mui-control-content">
+          <ul
+            class="mui-table-view mui-table-view-striped mui-table-view-condensed"
+          >
+            <li class="mui-table-view-cell">
+              <div class="mui-table">
+                <div class="mui-table-cell mui-col-xs-8">
+                  <h4 class="mui-ellipsis">任务名称</h4>
+                  <h5>任务编号：编号</h5>
+                  <p class="mui-h6 mui-ellipsis">任务描述</p>
+                  <p>完成</p>
+                </div>
+                <div class="mui-table-cell mui-col-xs-4 mui-text-right">
+                  <span class="mui-h5">2020-01-05 12:25</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="list">
-      <div id="item1" class="mui-control-content mui-active">
-        <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-          <li class="mui-table-view-cell">
-            <div class="mui-table">
-              <div class="mui-table-cell mui-col-xs-8">
-                <h4 class="mui-ellipsis">任务名称</h4>
-                <h5>任务编号：编号</h5>
-                <p class="mui-h6 mui-ellipsis">任务描述</p>
-				<p>完成</p>
-              </div>
-              <div class="mui-table-cell mui-col-xs-4 mui-text-right">
-                <span class="mui-h5">2020-01-05 12:25</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div id="item2" class="mui-control-content">
-       <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed">
-         <li class="mui-table-view-cell">
-           <div class="mui-table">
-             <div class="mui-table-cell mui-col-xs-8">
-               <h4 class="mui-ellipsis">任务名称</h4>
-               <h5>任务编号：编号</h5>
-               <p class="mui-h6 mui-ellipsis">任务描述</p>
-       		<p>完成</p>
-             </div>
-             <div class="mui-table-cell mui-col-xs-4 mui-text-right">
-               <span class="mui-h5">2020-01-05 12:25</span>
-             </div>
-           </div>
-         </li>
-       </ul>
-      </div>
-    </div>
-  </div>
-  <script src="js/util/nativeTab.js"></script>
-  <script src="./js/home/tab.js"></script>
-  <script type="text/javascript">
-
-  </script>
-</body>
-
+    <script src="js/util/nativeTab.js"></script>
+    <script src="./js/home/tab.js"></script>
+    <script type="text/javascript"></script>
+  </body>
 </html>
