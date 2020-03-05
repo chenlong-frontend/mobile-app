@@ -26,22 +26,28 @@
 				<form class="mui-input-group">
 					<div class="mui-input-row">
 						<label>工作名称</label>
-						<input type="text" placeholder="工作名称">
+						<input value="工作名称" type="text" name="jobName" placeholder="工作名称">
 					</div>
 					<div class="mui-input-row">
 						<label>任务编号</label>
-						<input type="text" class="mui-input-clear" placeholder="开始任务编号">
+						<input value="010101010" type="text" name="jobCode" class="mui-input-clear" placeholder="开始任务编号">
 					</div>
 					<div class="mui-input-row">
-						<label>截止时间</label>
-						<input class="btn" data-options='{}' type="text" value="选择日期时间" readonly="readonly"></input>
+						<label>结束时间</label>
+						<input  value="选择日期时间" name="deadLine" class="jq-time" data-options='{}' type="text" readonly="readonly"></input>
 					</div>
-					<div class="mui-input-row mui-checkbox">
-						<label>工作是否完成</label>
-						<input name="checkbox1" value="Item 3" type="checkbox" >
+					<div class="mui-table-view-cell">
+						<label>是否结束</label>
+						<div class="mui-switch mui-switch-blue mui-switch-mini mui-active">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+					<div class="mui-input-row">
+						<label>起初模板</label>
+						<input value="选择模板" name="startTaskTplCode" class="jq-temp" data-options='{}' type="text" readonly="readonly"></input>
 					</div>
 					<div>
-						<textarea id="textarea" rows="3" placeholder="工作描述"></textarea>
+						<textarea id="textarea" rows="3" placeholder="工作描述">我是工作描述</textarea>
 					</div>
 					<div class="mui-button-row">
 						<button type="button" class="mui-btn mui-btn-primary jq-submit" onclick="return false;">提交</button>&nbsp;&nbsp;
@@ -54,37 +60,13 @@
 	<script src="../js/lib/jquery.min.js"></script>
 	<script src="../js/lib/mui.min.js"></script>
 	<script src="../js/lib/mui.picker.min.js"></script>
+	<script src="../js/lib/mui.poppicker.min.js"></script>
 	<script src="../js/setting.js"></script>
 	<script src="../js/task/task-create.js"></script>
 	<script>
-		(function($) {
-			$.init();
-			swipeBack:true //启用右滑关闭功能
-			var btns = $('.btn');
-			btns.each(function(i, btn) {
-				btn.addEventListener('tap', function() {
-					var _self = this;
-					if(_self.picker) {
-						_self.picker.show(function (rs) {
-							result.innerText = '选择结果: ' + rs.text;
-							_self.picker.dispose();
-							_self.picker = null;
-						});
-					} else {
-						var optionsJson = this.getAttribute('data-options') || '{}';
-						var options = JSON.parse(optionsJson);
-						var id = this.getAttribute('id');
-						_self.picker = new $.DtPicker(options);
-						_self.picker.show(function(rs) {
-							console.log('选择结果: ' + rs.text)
-							_self.picker.dispose();
-							_self.picker = null;
-						});
-					}
-					
-				}, false);
-			});
+		$(function() {
+			mui.init();
 			var taskCreate = new TaskCreate()
-		})(mui);
+		});
 	</script>
 </html>
