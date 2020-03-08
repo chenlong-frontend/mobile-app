@@ -25,47 +25,37 @@
       </div>
       <div class="list">
         <div id="item1" class="mui-control-content mui-active">
-          <ul
-            class="mui-table-view mui-table-view-striped mui-table-view-condensed"
-          >
-            <li class="mui-table-view-cell">
-              <div class="mui-table">
-                <div class="mui-table-cell mui-col-xs-8">
-                  <h4 class="mui-ellipsis">任务名称</h4>
-                  <h5>任务编号：编号</h5>
-                  <p class="mui-h6 mui-ellipsis">任务描述</p>
-                  <p>完成</p>
-                </div>
-                <div class="mui-table-cell mui-col-xs-4 mui-text-right">
-                  <span class="mui-h5">2020-01-05 12:25</span>
-                </div>
-              </div>
-            </li>
-          </ul>
+
         </div>
         <div id="item2" class="mui-control-content">
           <ul
-            class="mui-table-view mui-table-view-striped mui-table-view-condensed"
-          >
-            <li class="mui-table-view-cell">
-              <div class="mui-table">
-                <div class="mui-table-cell mui-col-xs-8">
-                  <h4 class="mui-ellipsis">任务名称</h4>
-                  <h5>任务编号：编号</h5>
-                  <p class="mui-h6 mui-ellipsis">任务描述</p>
-                  <p>完成</p>
-                </div>
-                <div class="mui-table-cell mui-col-xs-4 mui-text-right">
-                  <span class="mui-h5">2020-01-05 12:25</span>
-                </div>
-              </div>
-            </li>
-          </ul>
+            class="jq-ul mui-table-view mui-table-view-striped mui-table-view-condensed"
+          ></ul>
+		  <li class="jq-li mui-table-view-cell">
+		    <div class="mui-table">
+		      <div class="mui-table-cell mui-col-xs-8">
+		        <h4 class="mui-ellipsis"><span class="jq-jobName"></span></h4>
+		        <h5>任务编号：<span class="jq-jobCode"></span></h5>
+		        <p class="mui-h6 mui-ellipsis jq-jobDes"></p>
+		        <p>完成</p>
+		      </div>
+		      <div class="mui-table-cell mui-col-xs-4 mui-text-right">
+		        <span class="mui-h5 jq-time"></span>
+		      </div>
+		    </div>
+		  </li>
         </div>
       </div>
     </div>
-    <script src="js/util/nativeTab.js"></script>
+	<script src="./js/lib/jquery.min.js"></script>
+    <script src="./js/util/nativeTab.js"></script>
     <script src="./js/home/tab.js"></script>
-    <script type="text/javascript"></script>
+    <script src="./js/home/index.js"></script>
+	<script>
+		$(function() {
+			mui.init();
+			var home = new Home()
+		});
+	</script>
   </body>
 </html>

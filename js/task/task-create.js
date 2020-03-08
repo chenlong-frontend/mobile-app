@@ -1,11 +1,14 @@
 var TaskCreate = function () {
 	this.init()
+	this.isFinished = null;
 }
 
 TaskCreate.prototype = {
 	init: function() {
-		this.el()
-		this.bindEvent()
+		this.el();
+		this.pickInit();
+		this.getTempData();
+		this.bindEvent();
 	},
 	el: function() {
 		this.$el = {}
@@ -13,6 +16,7 @@ TaskCreate.prototype = {
 		this.$el.cancel = $('.jq-cancel');
 		this.$el.time = $('.jq-time');
 		this.$el.temp = $('.jq-temp');
+		this.$el.isEnd = $('.jq-isEnd');
 	},
 	bindEvent: function() {
 		var that = this
@@ -43,25 +47,30 @@ TaskCreate.prototype = {
 			}
 		}, false);
 		this.$el.temp.get(0).addEventListener('tap', function(){
-			var userPicker = new mui.PopPicker();
-			userPicker.setData([{
-				value: 'ywj',
-				text: '董事长 叶文洁'
-			}, {
-				value: 'aaa',
-				text: '总经理 艾AA'
-			}, {
-				value: 'lj',
-				text: '罗辑'
-			}, {
-				value: 'ymt',
-				text: '云天明'
-			}]);
-			userPicker.show(function(items) {
+			that.userPicker.show(function(items) {
 				console.log(items);
 				that.$el.temp.val(items[0].text);
 			});
 		}, false);
+		this.$el.isEnd.get(0).addEventListener('toggle', function(event) {
+			this.isFinished = event.detail.isActive
+		});
+	},
+	pickInit: function() {
+		this.userPicker = new mui.PopPicker();
+	},
+	getTempData: function() {
+		var that = this;
+		mui.get(DOMAIN + '/taskTpl/list',{},function(res){
+			console.log(res);
+			var data = res.data;
+			var arr = [];
+			for(var i = 0;i < data.length;i++) {
+				arr.push({text: data[i].taskName, value: data[i].taskCode})
+			}
+			this.userPicker.setData(arr);
+			},'json'
+		);
 	},
 	submitData: function() {
 		var paramArr = $('form').serializeArray()
@@ -69,6 +78,7 @@ TaskCreate.prototype = {
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
+		param.isFinished = this.isFinished;
 		mui.ajax(DOMAIN + '/jobManager/createJob',{
 			data:param,
 			dataType:'json',//服务器返回json格式数据
