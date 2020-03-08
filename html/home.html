@@ -7,13 +7,17 @@
       content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
     />
     <title>首页</title>
-    <script src="js/lib/mui.min.js"></script>
-    <link href="css/lib/mui.min.css" rel="stylesheet" />
-    <link href="css/home/index.css" rel="stylesheet" />
+    <script src="../js/lib/mui.min.js"></script>
+    <link href="../css/lib/mui.min.css" rel="stylesheet" />
+    <link href="../css/home/index.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../css/component/fabs.css">
   </head>
 
   <body>
     <div class="mui-content">
+		<div class="fabs jq-fabs">
+			<a><span class="mui-icon mui-icon-plusempty"></span></a>
+		</div>
       <div class="tab">
         <div
           id="segmentedControl"
@@ -47,10 +51,8 @@
         </div>
       </div>
     </div>
-	<script src="./js/lib/jquery.min.js"></script>
-    <script src="./js/util/nativeTab.js"></script>
-    <script src="./js/home/tab.js"></script>
-    <script src="./js/home/index.js"></script>
+	<script src="../js/lib/jquery.min.js"></script>
+    <script src="../js/home/index.js"></script>
 	<script>
 		$(function() {
 			mui.init();

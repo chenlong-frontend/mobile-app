@@ -5,6 +5,7 @@ var Home = function () {
 Home.prototype = {
 	init: function() {
 		this.el();
+		this.bindEvent();
 		this.getMyDealData();
 		this.getMyStartData();
 	},
@@ -12,8 +13,18 @@ Home.prototype = {
 		this.$el = {};
 		this.$el.item1 = $('#item1');
 		this.$el.item2 = $('#item2');
+		this.$el.fabs = $('.jq-fabs');
 		this.$el.ul = $('.jq-ul').detach();
 		this.$el.li = $('.jq-li').detach();
+	},
+	bindEvent: function() {
+		var that = this
+		this.$el.fabs.on('click',function() {
+			mui.openWindow({
+			    url: "./task-create.html",
+			    id:'templeteCreate',
+			})
+		})
 	},
 	getMyStartData: function() {
 		this.displayMyStart([{jobCode: '12233', jobName: '任务名称',
