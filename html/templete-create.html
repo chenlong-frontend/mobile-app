@@ -38,11 +38,11 @@
 					</div>
 					<div class="mui-input-row">
 						<label>发布人</label>
-						<input value="7e8f55d4-d80f-4a7b-9434-7d2a2d7bba33" type="text" name="publisherUserId" placeholder="发布人">
+						<input value="" class="jq-publisher" name="publisherUserId" type="text"  placeholder="未知" readonly="readonly" >
 					</div>
 					<div class="mui-input-row">
 						<label>接受人</label>
-						<input value="601deffa-6932-4350-b8d0-b4273c72f4c9" type="text" name="receiverUserId" placeholder="接受人">
+						<input class="jq-receiver" name="receiverUserId" class="jq-select-user" placeholder="选择接受人" data-options='{}' type="text"></input>
 					</div>
 					<div>
 						<textarea name="taskDes" rows="3"  placeholder="工作描述">task des</textarea>
@@ -59,13 +59,15 @@
 	<script src="../js/lib/mui.min.js"></script>
 	<script src="../js/lib/mui.picker.min.js"></script>
 	<script src="../js/setting.js"></script>
+	<script src="../js/util/store.js"></script>
 	<script src="../api/index.js"></script>
 	<script src="../js/work-templete/create.js"></script>
 	<script>
 		$(function(){
-			mui.plusReady(function() {
-				new TemplelteCreate()
-			})	
+			// mui.plusReady(function() {
+			// 	new TemplelteCreate()
+			// })
+			new TemplelteCreate();
 		})
 	</script>
 </html>

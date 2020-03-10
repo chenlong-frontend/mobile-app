@@ -12,5 +12,17 @@ var API = {
 			error:function(xhr,type,errorThrown){
 			}
 		});
-	}
+	},
+	login: function(data, success) {
+		mui.get(DOMAIN + '/user/login', data, function(data){
+				success(data);
+			},'json'
+		);
+	},
+	getUsers: function(success) {
+		mui.get(DOMAIN + '/user/getUsers', function(data){
+				success(data);
+			},'json'
+		);
+	},
 }

@@ -1,17 +1,24 @@
 var TemplelteCreate = function() {
-	this.init()
+	this.init();
+	this.receiver = null;
 }
 
 TemplelteCreate.prototype = {
 	init: function() {
 		mui.init();
-		this.el()
-		this.bindEvent()
+		this.el();
+		this.pickInit();
+		this.getCache();
+		this.getUserData();
+		this.fillData();
+		this.bindEvent();
 	},
 	el: function() {
 		this.$el = {}
 		this.$el.submit = $('.jq-submit');
 		this.$el.cancel = $('.jq-cancel');
+		this.$el.publisher = $('.jq-publisher');
+		this.$el.receiver = $('.jq-receiver');
 	},
 	bindEvent: function() {
 		var that = this
@@ -21,6 +28,32 @@ TemplelteCreate.prototype = {
 		this.$el.cancel.on('click',function() {
 			mui.back()
 		})
+		this.$el.receiver.get(0).addEventListener('tap', function(){
+			that.userPicker.show(function(items) {
+				that.receiver = items[0].value;
+				that.$el.receiver.val(items[0].text);
+			});
+		}, false);
+	},
+	getCache: function() {
+		this.user = store.getItem('user');
+	},
+	getUserData: function() {
+		var that = this;
+		API.getUsers(function(res) {
+			var data = res.data;
+			var arr = [];
+			for(var i = 0;i < data.length;i++) {
+				arr.push({text: data[i].userName, value: data[i].userCode})
+			}
+			that.userPicker.setData(arr);
+		})
+	},
+	pickInit: function() {
+		this.userPicker = new mui.PopPicker();
+	},
+	fillData: function() {
+		this.$el.publisher.val(this.user.userName);
 	},
 	submitData: function() {
 		var paramArr = $('form').serializeArray();
@@ -28,16 +61,12 @@ TemplelteCreate.prototype = {
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
-		mui.ajax(DOMAIN + '/taskTpl/create',{
-			data:param,
-			dataType:'json',
-			type:'post',
-			timeout:10000,
-			headers:{'Content-Type':'application/json'},	              
-			success:function(data){
-				console.log(data)
-				mui.toast('鎻愪氦鎴愬姛') 
-			},
+		param.publisherUserId = this.user.userCode;
+		param.receiverUserId = this.receiver;
+		
+		API.taskTplCreate(param, function() {
+			console.log(data)
+			mui.toast('提交成功') 
 		})
 	}
 }
