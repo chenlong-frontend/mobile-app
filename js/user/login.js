@@ -20,10 +20,10 @@ Login.prototype = {
 		}
 		this.$el.submit.on('click', function() {
 			API.login(param, function(res) {
-				store.setItem('user', res.data);
+				store.setItem('token', res.data.token);
+				store.setItem('userCode', res.data.userCode);
 				mui.openWindow({
-					// url: 'tab.html',
-					url: './html/templete-create.html',
+					url: 'tab.html',
 					id: 'tab',
 					preload: true,
 				});

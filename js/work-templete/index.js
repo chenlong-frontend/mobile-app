@@ -27,10 +27,9 @@ TemplelteTask.prototype = {
 	},
 	getData: function() {
 		var that = this;
-		mui.get(DOMAIN + '/taskTpl/list',{},function(res){
-				that.displayData(res.data)
-			},'json'
-		);
+		API.taskTplList(function(res){
+			res && that.displayData(res.data)
+		})
 	},
 	displayData: function(data) {
 		for(var i = 0;i < data.length;i++) {

@@ -37,6 +37,7 @@ TemplelteCreate.prototype = {
 	},
 	getCache: function() {
 		this.user = store.getItem('user');
+		this.userCode = store.getItem('userCode');
 	},
 	getUserData: function() {
 		var that = this;
@@ -61,10 +62,10 @@ TemplelteCreate.prototype = {
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
-		param.publisherUserId = this.user.userCode;
+		param.publisherUserId = this.userCode;
 		param.receiverUserId = this.receiver;
 		
-		API.taskTplCreate(param, function() {
+		API.taskTplCreate(param, function(data) {
 			console.log(data)
 			mui.toast('提交成功') 
 		})
