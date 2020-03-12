@@ -36,7 +36,8 @@ TemplelteTask.prototype = {
 			var itemCopy = this.$el.item.clone();
 			itemCopy.find('.jq-item-name').text(data[i].taskName).end()
 				.find('.jq-item-code').text(data[i].taskCode).end()
-				.find('.jq-item-des').text(data[i].taskDes);
+				.find('.jq-item-des').text(data[i].taskDes).end()
+				.find('.jq-time').text(DATETOOL.dateFormat("YYYY-mm-dd HH:MM", data[i].createDate));
 			this.$el.list.append(itemCopy);
 			console.log(data[i])
 		}

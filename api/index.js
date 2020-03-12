@@ -1,5 +1,5 @@
 var API = {
-	token: localStorage.getItem('$token'),
+	token: JSON.parse(localStorage.getItem('$token')),
 	post: function(url, data, success) {
 		mui.ajax(DOMAIN + url,{
 			data:data,
@@ -7,7 +7,7 @@ var API = {
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
 			headers:{'Content-Type':'application/json',
-				"Authorization":this.token},	              
+				"token":this.token},	              
 			success:function(data){
 				success(data)
 			},
@@ -21,7 +21,7 @@ var API = {
 			dataType:'json',//服务器返回json格式数据
 			type:'get',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
-			headers:{"Authorization":this.token},	
+			headers:{"token":this.token},	
 			success:function(data){
 				success(data)
 			},
@@ -42,6 +42,6 @@ var API = {
 		this.get('/user/getUsers', {}, success);
 	},
 	taskTplList: function(success) {
-		this.get('/taskTpl/list', {}, success);
+		this.get('/taskTpl/list', {isParent:true}, success);
 	}
 }

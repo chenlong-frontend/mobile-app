@@ -1,6 +1,8 @@
 var TemplelteCreate = function() {
 	this.init();
 	this.receiver = null;
+	this.depend = null;
+	this.next = null;
 }
 
 TemplelteCreate.prototype = {
@@ -10,6 +12,7 @@ TemplelteCreate.prototype = {
 		this.pickInit();
 		this.getCache();
 		this.getUserData();
+		this.getTempList();
 		this.fillData();
 		this.bindEvent();
 	},
@@ -19,6 +22,8 @@ TemplelteCreate.prototype = {
 		this.$el.cancel = $('.jq-cancel');
 		this.$el.publisher = $('.jq-publisher');
 		this.$el.receiver = $('.jq-receiver');
+		this.$el.depend = $('.jq-depend');
+		this.$el.next = $('.jq-next');
 	},
 	bindEvent: function() {
 		var that = this
@@ -29,9 +34,24 @@ TemplelteCreate.prototype = {
 			mui.back()
 		})
 		this.$el.receiver.get(0).addEventListener('tap', function(){
+			that.userPicker.setData(that.userArr);
 			that.userPicker.show(function(items) {
 				that.receiver = items[0].value;
 				that.$el.receiver.val(items[0].text);
+			});
+		}, false);
+		this.$el.depend.get(0).addEventListener('tap', function(){
+			that.userPicker.setData(that.listArr);
+			that.userPicker.show(function(items) {
+				that.depend = items[0].value;
+				that.$el.depend.val(items[0].text);
+			});
+		}, false);
+		this.$el.next.get(0).addEventListener('tap', function(){
+			that.userPicker.setData(that.listArr);
+			that.userPicker.show(function(items) {
+				that.next = items[0].value;
+				that.$el.next.val(items[0].text);
 			});
 		}, false);
 	},
@@ -47,7 +67,18 @@ TemplelteCreate.prototype = {
 			for(var i = 0;i < data.length;i++) {
 				arr.push({text: data[i].userName, value: data[i].userCode})
 			}
-			that.userPicker.setData(arr);
+			that.userArr = arr
+		})
+	},
+	getTempList: function() {
+		var that = this;
+		API.taskTplList(function(res){
+			var data = res.data;
+			var arr = [];
+			for(var i = 0;i < data.length;i++) {
+				arr.push({text: data[i].taskName, value: data[i].taskCode})
+			}
+			that.listArr = arr
 		})
 	},
 	pickInit: function() {
@@ -64,6 +95,8 @@ TemplelteCreate.prototype = {
 		}
 		param.publisherUserId = this.userCode;
 		param.receiverUserId = this.receiver;
+		param.dependTaskCode = this.depend;
+		param.nextTaskCode = this.next;
 		
 		API.taskTplCreate(param, function(data) {
 			console.log(data)
