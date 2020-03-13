@@ -43,5 +43,11 @@ var API = {
 	},
 	taskTplList: function(success) {
 		this.get('/taskTpl/list', {isParent:true}, success);
-	}
+	},
+	getJobByStartMe: function(success) {
+		this.get('/jobManager/getJobList', {jobType:"1"}, success);
+	},
+	getJobByWaitMe: function(success) {
+		this.get('/jobManager/getJobList', {jobType:"2"}, success);
+	},
 }

@@ -14,10 +14,15 @@ Home.prototype = {
 		this.$el.item1 = $('#item1');
 		this.$el.item2 = $('#item2');
 		this.$el.fabs = $('.jq-fabs');
+		this.$el.submit = $('.jq-submit');
 		this.$el.ul = $('.jq-ul').detach();
 		this.$el.li = $('.jq-li').detach();
 	},
 	bindEvent: function() {
+		this.$el.submit.on('click',function() {
+			alert("ahaha");
+			that.submitData()
+		})
 		var that = this
 		this.$el.fabs.on('click',function() {
 			mui.openWindow({
@@ -27,12 +32,20 @@ Home.prototype = {
 		})
 	},
 	getMyStartData: function() {
-		this.displayMyStart([{jobCode: '12233', jobName: '任务名称',
-		isFinished: '完成', deadLine: '2020-01-03 22:00',jobDes: '任务描述'}]);
+		var resData;
+		var that = this
+		API.getJobByStartMe(function(res) {
+			resData = res.data;
+			that.displayMyStart(resData);
+		});
 	},
 	getMyDealData: function() {
-		this.displayMyDeal([{jobCode: '12233', jobName: '任务名称',
-		isFinished: '完成', deadLine: '2020-01-03 22:00',jobDes: '任务描述'}]);
+		var resData;
+		var that = this
+		API.getJobByWaitMe(function(res) {
+			resData = res.data;
+			that.displayMyDeal(resData);
+		});
 	},
 	displayData: function(data) {
 		var ulCopy = this.$el.ul.clone();
@@ -41,7 +54,9 @@ Home.prototype = {
 			liCopy.find('.jq-jobName').text(data[i].jobName).end()
 				.find('.jq-jobCode').text(data[i].jobCode).end()
 				.find('.jq-jobDes').text(data[i].jobDes).end()
-				.find('.jq-time').text(data[i].deadLine);
+				.find('.jq-time').text(data[i].deadLine).end()
+				.find('.jq-jobSatus').text(data[i].isFinished).end()
+				.find('.jq-taskInsCode').text(data[i].taskInsCode);
 			ulCopy.append(liCopy);
 		}
 		return ulCopy
@@ -51,5 +66,8 @@ Home.prototype = {
 	},
 	displayMyDeal: function(data) {
 		this.$el.item2.html(this.displayData(data));
+	},
+	submitData: function() {
+		alert(0)
 	}
 }

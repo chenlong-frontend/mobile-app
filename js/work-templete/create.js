@@ -84,23 +84,19 @@ TemplelteCreate.prototype = {
 	pickInit: function() {
 		this.userPicker = new mui.PopPicker();
 	},
-	fillData: function() {
-		this.$el.publisher.val(this.user.userName);
-	},
 	submitData: function() {
 		var paramArr = $('form').serializeArray();
 		var param = {}
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
-		param.publisherUserId = this.userCode;
 		param.receiverUserId = this.receiver;
 		param.dependTaskCode = this.depend;
 		param.nextTaskCode = this.next;
 		
 		API.taskTplCreate(param, function(data) {
 			console.log(data)
-			mui.toast('提交成功') 
+			mui.toast('锟结交锟缴癸拷') 
 		})
 	}
 }

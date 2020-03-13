@@ -1,6 +1,7 @@
 var TaskCreate = function () {
 	this.init()
 	this.isFinished = null;
+	this.startCode = null;
 }
 
 TaskCreate.prototype = {
@@ -38,7 +39,7 @@ TaskCreate.prototype = {
 				var optionsJson = this.getAttribute('data-options') || '{}';
 				var options = JSON.parse(optionsJson);
 				var id = this.getAttribute('id');
-				_self.picker = new mui.DtPicker(options);
+				_self.picker = new mui.DtPicker({"type":"date"});
 				_self.picker.show(function(rs) {
 					that.$el.time.val(rs.text);
 					_self.picker.dispose();
@@ -49,6 +50,7 @@ TaskCreate.prototype = {
 		this.$el.temp.get(0).addEventListener('tap', function(){
 			that.userPicker.show(function(items) {
 				console.log(items);
+				that.startCode = items[0].value;
 				that.$el.temp.val(items[0].text);
 			});
 		}, false);
@@ -60,31 +62,32 @@ TaskCreate.prototype = {
 		this.userPicker = new mui.PopPicker();
 	},
 	getTempData: function() {
-		var that = this;
-		mui.get(DOMAIN + '/taskTpl/list',{},function(res){
-			console.log(res);
+		var that = this
+		var arr=[]
+		API.taskTplList(function(res) {
 			var data = res.data;
-			var arr = [];
 			for(var i = 0;i < data.length;i++) {
 				arr.push({text: data[i].taskName, value: data[i].taskCode})
 			}
-			this.userPicker.setData(arr);
-			},'json'
-		);
+			that.userPicker.setData(arr);
+		});
 	},
 	submitData: function() {
+		var token = JSON.parse(localStorage.getItem('$token'))
 		var paramArr = $('form').serializeArray()
 		var param = {}
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
 		param.isFinished = this.isFinished;
+		param.startTaskTplCode = this.startCode;
+		alert(this.startCode);
 		mui.ajax(DOMAIN + '/jobManager/createJob',{
 			data:param,
 			dataType:'json',//服务器返回json格式数据
 			type:'post',//HTTP请求类型
 			timeout:10000,//超时时间设置为10秒；
-			headers:{'Content-Type':'application/json'},	              
+			headers:{'Content-Type':'application/json','token':token},	              
 			success:function(data){
 				console.log(data)
 				mui.toast('提交成功') 

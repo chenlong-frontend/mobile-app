@@ -39,9 +39,10 @@
 		    <div class="mui-table">
 		      <div class="mui-table-cell mui-col-xs-8">
 		        <h4 class="mui-ellipsis"><span class="jq-jobName"></span></h4>
-		        <h5>任务编号：<span class="jq-jobCode"></span></h5>
 		        <p class="mui-h6 mui-ellipsis jq-jobDes"></p>
-		        <p>完成</p>
+		        <p class="mui-h6 mui-ellipsis jq-jobSatus"></p>
+				<input class="jq-taskInsCode" id ="taskInsCode" type ="hidden"></p>
+				<button type="button" class="mui-btn mui-btn-primary jq-submit" onclick="return false;">完成</button>&nbsp;&nbsp;
 		      </div>
 		      <div class="mui-table-cell mui-col-xs-4 mui-text-right">
 		        <span class="mui-h5 jq-time"></span>
@@ -52,6 +53,8 @@
       </div>
     </div>
 	<script src="../js/lib/jquery.min.js"></script>
+	<script src="../js/setting.js"></script>
+	<script src="../api/index.js"></script>
     <script src="../js/home/index.js"></script>
 	<script>
 		$(function() {
