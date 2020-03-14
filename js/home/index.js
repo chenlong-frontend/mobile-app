@@ -73,6 +73,9 @@ Home.prototype = {
 		ulCopy.on('click', '.jq-complete', function(e) {
 			var taskInsCode = $(this).parent().parent().data("taskInsCode")
 			console.log(taskInsCode)
+			API.finshTaskIns(function(taskInsCode, req) {
+				
+			})
 		});
 		// 监听星标点击
 		ulCopy.on('click', '.jq-star', function(e) {
