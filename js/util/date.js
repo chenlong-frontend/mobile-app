@@ -19,8 +19,8 @@ var DATETOOL = {
 			};
 			return fmt;
 		} catch(e){
-			return ' '
 			console.error(e);
+			return ''
 		}
 	}
 }
