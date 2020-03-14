@@ -69,10 +69,12 @@ Home.prototype = {
 				.data('taskInsCode', data[i].taskInsCode);
 			ulCopy.append(liCopy);
 		}
+		// 监听完成点击
 		ulCopy.on('click', '.jq-complete', function(e) {
 			var taskInsCode = $(this).parent().parent().data("taskInsCode")
 			console.log(taskInsCode)
 		});
+		// 监听星标点击
 		ulCopy.on('click', '.jq-star', function(e) {
 			var taskInsCode = $(this).parent().parent().data("taskInsCode")
 			console.log(taskInsCode)
