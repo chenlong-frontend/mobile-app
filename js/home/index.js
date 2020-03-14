@@ -58,6 +58,7 @@ Home.prototype = {
 		return ulCopy
 	},
 	displaySliderData: function(data) {
+		var that = this;
 		var ulCopy = this.$el.ul.clone();
 		for(var i = 0;i < data.length;i++){
 			var liCopy = this.$el.liSlider.clone();
@@ -71,16 +72,13 @@ Home.prototype = {
 		}
 		// 监听完成点击
 		ulCopy.on('click', '.jq-complete', function(e) {
-			var taskInsCode = $(this).parent().parent().data("taskInsCode")
-			console.log(taskInsCode)
-			API.finshTaskIns(function(taskInsCode, req) {
-				
-			})
+			var taskInsCode = $(this).parent().parent().data("taskInsCode");
+			that.finshTaskIns(taskInsCode);
 		});
 		// 监听星标点击
 		ulCopy.on('click', '.jq-star', function(e) {
-			var taskInsCode = $(this).parent().parent().data("taskInsCode")
-			console.log(taskInsCode)
+			var taskInsCode = $(this).parent().parent().data("taskInsCode");
+			that.starTaskIns(taskInsCode);
 		});
 		return ulCopy
 	},
@@ -89,5 +87,11 @@ Home.prototype = {
 	},
 	displayMyDeal: function(data) {
 		this.$el.item2.html(this.displaySliderData(data));
+	},
+	finshTaskIns: function(taskInsCode) {
+		API.finshTaskIns({taskInsCode:taskInsCode});
+	},
+	starTaskIns: function(taskInsCode) {
+		API.starTaskIns({taskInsCode:taskInsCode})
 	}
 }
