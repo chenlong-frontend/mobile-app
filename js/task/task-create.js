@@ -17,7 +17,6 @@ TaskCreate.prototype = {
 		this.$el.cancel = $('.jq-cancel');
 		this.$el.time = $('.jq-time');
 		this.$el.temp = $('.jq-temp');
-		this.$el.isEnd = $('.jq-isEnd');
 	},
 	bindEvent: function() {
 		var that = this
@@ -54,9 +53,6 @@ TaskCreate.prototype = {
 				that.$el.temp.val(items[0].text);
 			});
 		}, false);
-		this.$el.isEnd.get(0).addEventListener('toggle', function(event) {
-			this.isFinished = event.detail.isActive
-		});
 	},
 	pickInit: function() {
 		this.userPicker = new mui.PopPicker();
@@ -81,17 +77,10 @@ TaskCreate.prototype = {
 		}
 		param.isFinished = this.isFinished;
 		param.startTaskTplCode = this.startCode;
-		alert(this.startCode);
-		mui.ajax(DOMAIN + '/jobManager/createJob',{
-			data:param,
-			dataType:'json',//服务器返回json格式数据
-			type:'post',//HTTP请求类型
-			timeout:10000,//超时时间设置为10秒；
-			headers:{'Content-Type':'application/json','token':token},	              
-			success:function(data){
-				console.log(data)
-				mui.toast('提交成功') 
-			},
+		
+		API.jobManagerCreateJob(param,function(data){
+			console.log(data)
+			mui.toast('提交成功') 
 		})
 	}
 }

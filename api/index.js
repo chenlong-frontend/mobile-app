@@ -50,4 +50,7 @@ var API = {
 	getJobByWaitMe: function(success) {
 		this.get('/jobManager/getJobList', {jobType:"2"}, success);
 	},
+	jobManagerCreateJob: function(data, success) {
+		this.post('/jobManager/createJob',data, success);
+	}
 }
