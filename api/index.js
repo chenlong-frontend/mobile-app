@@ -64,6 +64,10 @@ var API = {
 	getJobByWaitMe: function(success) {
 		this.get('/jobManager/getJobList', {jobType:"2"}, success);
 	},
+	//星标任务
+	getJobByStar: function(success) {
+		this.get('/jobManager/getJobList', {jobType:"3"}, success);
+	},
 	//完成某个任务节点
 	finshTaskIns: function(data, success) {
 		this.get('/jobManager/finishTaskIns', data, success);
@@ -73,4 +77,14 @@ var API = {
 	starTaskIns: function(data, success) {
 		this.get('/jobManager/addTaskInsExt', data, success);
 	},
+	// 获取任务附加信息
+	getTaskInsInfo: function(data,success) {
+		this.get('/jobManager/getTaskInsInfo',data, success)
+	},
+	jobManagerCreateJob: function(data, success) {
+		this.post('/jobManager/createJob',data, success)
+	},
+	editTaskInsInfo: function(data, success) {
+		this.get('/jobManager/editTaskInsInfo',data, success)
+	}
 }

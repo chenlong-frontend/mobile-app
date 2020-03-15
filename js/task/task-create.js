@@ -69,7 +69,6 @@ TaskCreate.prototype = {
 		});
 	},
 	submitData: function() {
-		var token = JSON.parse(localStorage.getItem('$token'))
 		var paramArr = $('form').serializeArray()
 		var param = {}
 		for(var i = 0;i < paramArr.length; i++) {

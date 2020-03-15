@@ -17,7 +17,7 @@ StarTask.prototype = {
 	getStarData: function() {
 		var resData;
 		var that = this
-		API.getJobByWaitMe(function(res) {
+		API.getJobByStar(function(res) {
 			resData = res.data;
 			that.displayStar(resData);
 		});

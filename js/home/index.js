@@ -15,6 +15,7 @@ Home.prototype = {
 		this.$el.item2 = $('#item2');
 		this.$el.fabs = $('.jq-fabs');
 		this.$el.submit = $('.jq-submit');
+		this.$el.segmented = mui('.jq-segmentedControl');
 		this.$el.ul = $('.jq-ul').detach();
 		this.$el.li = $('.jq-li').detach();
 		this.$el.liSlider = $('.jq-li-slider').detach();
@@ -26,6 +27,14 @@ Home.prototype = {
 			    url: "./task-create.html",
 			    id:'templeteCreate',
 			})
+		});
+		this.$el.segmented.on('tap', 'a', function(e) {
+			var index = $(this).data('index')
+			if(index === 1) {
+				that.$el.fabs.show();
+			} else {
+				that.$el.fabs.hide();
+			}
 		});
 	},
 	getMyStartData: function() {
@@ -72,21 +81,30 @@ Home.prototype = {
 		}
 		// 监听完成点击
 		ulCopy.on('click', '.jq-complete', function(e) {
+			e.stopPropagation();
 			var taskInsCode = $(this).parent().parent().data("taskInsCode");
 			that.finshTaskIns(taskInsCode);
 		});
 		// 监听星标点击
 		ulCopy.on('click', '.jq-star', function(e) {
+			e.stopPropagation();
 			var taskInsCode = $(this).parent().parent().data("taskInsCode");
 			that.starTaskIns(taskInsCode);
 		});
+		// 监听单个点击
+		ulCopy.on('click', 'li', function(e){
+			mui.openWindow({
+			    url: "./my-deal.html?taskInsCode=" + $(this).data('taskInsCode'),
+			    id:'myDeal',
+			})
+		})
 		return ulCopy
 	},
 	displayMyStart: function(data) {
-		this.$el.item1.html(this.displayData(data));
+		this.$el.item1.html(this.displayData(data || []));
 	},
 	displayMyDeal: function(data) {
-		this.$el.item2.html(this.displaySliderData(data));
+		this.$el.item2.html(this.displaySliderData(data || []));
 	},
 	finshTaskIns: function(taskInsCode) {
 		API.finshTaskIns({taskInsCode:taskInsCode});
