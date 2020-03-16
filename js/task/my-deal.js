@@ -14,6 +14,8 @@ MyDeal.prototype = {
 		this.$el.taskInfo = $('.jq-taskInfo');
 		this.$el.taskForm = $('.jq-form');
 		this.$el.submit = $('.jq-submit');
+		this.$el.star = $('.jq-star');
+		this.$el.complete = $('.jq-complete');
 		this.$el.inputContainer = $('.jq-inputs-container');
 		this.$el.inputItem = $('.jq-input-item').detach();
 	},
@@ -21,7 +23,13 @@ MyDeal.prototype = {
 		var that = this;
 		this.$el.submit.on('click', function() {
 			that.submitTaskData()
-		})
+		});
+		this.$el.star.on('click', function() {
+			that.starTaskIns(that.taskInsCode);
+		});
+		this.$el.complete.on('click', function() {
+			that.finshTaskIns(that.taskInsCode);
+		});
 	},
 	gettaskInsCode: function() {
 		this.taskInsCode = STRINGTOOL.getQueryVariable('taskInsCode') 
@@ -64,5 +72,11 @@ MyDeal.prototype = {
 		API.editTaskInsInfo(param, function(res){
 			console.log(res)
 		})
+	},
+	finshTaskIns: function(taskInsCode) {
+		API.finshTaskIns({taskInsCode:taskInsCode});
+	},
+	starTaskIns: function(taskInsCode) {
+		API.starTaskIns({taskInsCode:taskInsCode})
 	}
 }

@@ -8,31 +8,43 @@
 		/>
 		<title>待我处理</title>
 		<link href="../css/lib/mui.min.css" rel="stylesheet" />
+		<link href="../css/home/my-deal.css" rel="stylesheet" />
 	</head>
 	<body>
-		<form class="mui-input-group jq-taskInfo">
-			<div class="mui-input-row">
-				<label>工作名称</label>
-				<input class="jq-taskName" value="" type="text" readonly="readonly">
-			</div>
-			<div class="mui-input-row">
-				<label>工作状态</label>
-				<input class="jq-taskStatus" value="" type="text" readonly="readonly">
-			</div>
-		</form>
-		<p>请填写：</p>
-		<form class="mui-input-group jq-form">
-			<div class="jq-inputs-container">
-				<div class="mui-input-row jq-input-item">
-					<label class="jq-input-label"></label>
-					<input class="jq-input-value" value="" type="text" name="" placeholder="">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 id="title" class="mui-title">首页</h1>
+			<a class="jq-star mui-icon mui-icon-star mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group jq-taskInfo">
+				<div class="mui-input-row">
+					<label>工作名称</label>
+					<input class="jq-taskName" value="" type="text" readonly="readonly">
 				</div>
-			</div>
+				<div class="mui-input-row">
+					<label>工作状态</label>
+					<input class="jq-taskStatus" value="" type="text" readonly="readonly">
+				</div>
+			</form>
+			<p>请填写：</p>
+			<form class="mui-input-group jq-form">
+				<div class="jq-inputs-container">
+					<div class="mui-input-row jq-input-item">
+						<label class="jq-input-label"></label>
+						<input class="jq-input-value" value="" type="text" name="" placeholder="">
+					</div>
+				</div>
+			
+				<div class="mui-button-row">
+					<button type="button" class="mui-btn mui-btn-primary jq-submit">提交</button>
+				</div>
+			</form>
+		</div>
 
-			<div class="mui-button-row">
-				<button type="button" class="mui-btn mui-btn-primary jq-submit">提交</button>
-			</div>
-		</form>
+		<div class="fix-bottom">
+			<button type="button" class="jq-complete mui-btn mui-btn-primary mui-btn-block">完成任务</button>
+		</div>
 		<script src="../js/lib/mui.min.js"></script>
 		<script src="../js/lib/jquery.min.js"></script>
 		<script src="../js/setting.js"></script>
