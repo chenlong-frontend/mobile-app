@@ -74,12 +74,16 @@ TaskCreate.prototype = {
 		for(var i = 0;i < paramArr.length; i++) {
 			param[paramArr[i].name] = paramArr[i].value
 		}
-		param.isFinished = this.isFinished;
 		param.startTaskTplCode = this.startCode;
-		
-		API.jobManagerCreateJob(param,function(data){
-			console.log(data)
-			mui.toast('提交成功') 
+		var validate = [{field: 'jobName', tip: '工作名称不得为空'},{field: 'deadLine', tip: '请选择截止时间'},
+		{field: 'startTaskTplCode', tip: '请选择起初模板'}]
+		ARRAYTOOL.emptyCheck(param, validate, function (error) {
+			if(error) return
+			API.jobManagerCreateJob(param,function(data){
+				mui.toast('提交成功') 
+				mui.back()
+			})
 		})
+
 	}
 }

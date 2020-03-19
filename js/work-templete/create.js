@@ -13,7 +13,6 @@ TemplelteCreate.prototype = {
 		this.getCache();
 		this.getUserData();
 		this.getTempList();
-		this.fillData();
 		this.bindEvent();
 	},
 	el: function() {
@@ -94,9 +93,15 @@ TemplelteCreate.prototype = {
 		param.dependTaskCode = this.depend;
 		param.nextTaskCode = this.next;
 		
-		API.taskTplCreate(param, function(data) {
-			console.log(data)
-			mui.toast('�ύ�ɹ�') 
+		var validate = [{field: 'taskName', tip: '工作名称不得为空'},{field: 'taskType', tip: '任务类型不得为空'}, 
+		{field: 'dependTaskCode', tip: '请选择依赖模板'},{field: 'nextTaskCode', tip: '请选择下个模板'},
+		{field: 'receiverUserId', tip: '请选择接接受人'}]
+		ARRAYTOOL.emptyCheck(param, validate, function (error) {
+			if(error) return
+			API.taskTplCreate(param, function(data) {
+				mui.toast('提交成功');
+				mui.back()
+			})
 		})
 	}
 }

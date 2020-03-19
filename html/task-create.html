@@ -9,7 +9,8 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" type="text/css" href="../css/lib/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/lib/mui.picker.min.css" />
-		<link rel="stylesheet" type="text/css" href="../css/home/task-create.css">
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/page/task-create.css">
 	</head>
 
 	<body>
@@ -22,25 +23,31 @@
 				<form class="mui-input-group">
 					<div class="mui-input-row">
 						<label>工作名称</label>
-						<input value="工作名称" type="text" name="jobName" placeholder="工作名称">
+						<input type="text" name="jobName" placeholder="工作名称">
 					</div>
 					<div class="mui-input-row">
 						<label>截止时间</label>
-						<input  value="选择日期时间" name="deadLine" class="jq-time" data-options='{}' type="text" readonly="readonly"></input>
+						<input placeholder="选择截止时间" name="deadLine" class="jq-time" data-options='{}' type="text" readonly="readonly"></input>
 					</div>
 					<div class="mui-input-row">
 						<label>起初模板</label>
-						<input value="选择模板" name="startTaskTplCode" class="jq-temp" data-options='{}' type="text" readonly="readonly"></input>
+						<input placeholder="选择起初模板" name="startTaskTplCode" class="jq-temp" data-options='{}' type="text" readonly="readonly"></input>
 					</div>
 					<div>
-						<textarea id="textarea" rows="3" name="jobDes" placeholder="工作描述">我是工作描述</textarea>
-					</div>
-					<div class="mui-button-row">
-						<button type="button" class="mui-btn mui-btn-primary jq-submit" onclick="return false;">提交</button>&nbsp;&nbsp;
-						<button type="button" class="mui-btn mui-btn-danger" onclick="return false;">取消</button>
+						<textarea id="textarea" rows="3" name="jobDes" placeholder="工作描述"></textarea>
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="footer_bth">
+		    <div class="button">
+		        <div class="left">
+					<button type="button" class="pass jq-submit">提交</button>
+				</div>
+				<div class="right">
+					<button type="button" class="fail jq-cancel">取消</button>
+				</div>
+		    </div>
 		</div>
 	</body>
 	<script src="../js/lib/jquery.min.js"></script>
@@ -49,7 +56,7 @@
 	<script src="../js/lib/mui.poppicker.min.js"></script>
 	<script src="../js/setting.js"></script>
 	<script src="../api/index.js"></script>
-	<script src="../api/index.js"></script>
+	<script src="../js/util/array.js"></script>
 	<script src="../js/task/task-create.js"></script>
 	<script>
 		$(function() {

@@ -9,11 +9,8 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="stylesheet" href="../css/lib/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/lib/mui.picker.min.css" />
-		<style>
-			html,body {
-				background-color: #efeff4;
-			}
-		</style>
+		<link rel="stylesheet" href="../css/common.css">
+		<link rel="stylesheet" href="../css/page/templete-create.css">
 	</head>
 
 	<body>
@@ -26,11 +23,11 @@
 				<form class="mui-input-group">
 					<div class="mui-input-row">
 						<label>工作名称</label>
-						<input value="task begin" type="text" name="taskName" placeholder="工作名称">
+						<input type="text" name="taskName" placeholder="工作名称">
 					</div>
 					<div class="mui-input-row">
 						<label>任务类型</label>
-						<input value="one" type="text" name="taskType" placeholder="任务类型">
+						<input type="text" name="taskType" placeholder="任务类型">
 					</div>
 					<div class="mui-input-row">
 						<label>依赖模版</label>
@@ -42,17 +39,23 @@
 					</div>
 					<div class="mui-input-row">
 						<label>接受人</label>
-						<input class="jq-receiver" name="receiverUserId" class="jq-select-user" placeholder="选择接受人" data-options='{}' type="text"></input>
+						<input class="jq-receiver" name="receiverUserId" class="jq-select-user" placeholder="选择接受人" data-options='{}' readonly="readonly" type="text"></input>
 					</div>
 					<div>
-						<textarea name="taskDes" rows="3"  placeholder="工作描述">task des</textarea>
-					</div>
-					<div class="mui-button-row">
-						<button type="button" class="mui-btn mui-btn-primary jq-submit" onclick="return false;">提交</button>&nbsp;&nbsp;
-						<button type="button" class="mui-btn mui-btn-danger jq-cancel" onclick="return false;">取消</button>
+						<textarea name="taskDes" rows="3"  placeholder="工作描述"></textarea>
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="footer_bth">
+		    <div class="button">
+		        <div class="left">
+					<button type="button" class="pass jq-submit">提交</button>
+				</div>
+				<div class="right">
+					<button type="button" class="fail jq-cancel" onclick="return false;">取消</button>
+				</div>
+		    </div>
 		</div>
 	</body>
 	<script src="../js/lib/jquery.min.js"></script>
@@ -60,6 +63,7 @@
 	<script src="../js/lib/mui.picker.min.js"></script>
 	<script src="../js/setting.js"></script>
 	<script src="../js/util/store.js"></script>
+	<script src="../js/util/array.js"></script>
 	<script src="../api/index.js"></script>
 	<script src="../js/work-templete/create.js"></script>
 	<script>
