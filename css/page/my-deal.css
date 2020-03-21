@@ -11,3 +11,12 @@
 	height: 46px;
 	padding: 10px 0;
 }
+
+.title {
+	line-height: 40px;
+	padding: 0 15px;
+}
+
+.title .save{ 
+	float: right;
+}

@@ -33,7 +33,7 @@ MyDeal.prototype = {
 	},
 	gettaskInsCode: function() {
 		this.taskInsCode = STRINGTOOL.getQueryVariable('taskInsCode') 
-			|| '37cb9469-f51f-4727-8da0-dfc28cfc568b';
+			|| '06f60afc-e193-440a-8425-e91e95e8a0b7';
 	},
 	getTaskInsInfo: function() {
 		var that = this;

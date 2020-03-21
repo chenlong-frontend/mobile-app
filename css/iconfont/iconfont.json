@@ -1,0 +1,23 @@
+{
+  "id": "1704928",
+  "name": "muiapp",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5072112",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "8674592",
+      "name": "star",
+      "font_class": "xingxing",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    }
+  ]
+}

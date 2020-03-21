@@ -40,11 +40,10 @@ TemplelteCreate.prototype = {
 			});
 		}, false);
 		this.$el.depend.get(0).addEventListener('tap', function(){
-			that.userPicker.setData(that.listArr);
-			that.userPicker.show(function(items) {
-				that.depend = items[0].value;
-				that.$el.depend.val(items[0].text);
-			});
+			mui.openWindow({
+			    url: "./work-templete/work-templete-select.html",
+			    id:'workTempleteSelect',
+			})
 		}, false);
 		this.$el.next.get(0).addEventListener('tap', function(){
 			that.userPicker.setData(that.listArr);
@@ -53,6 +52,16 @@ TemplelteCreate.prototype = {
 				that.$el.next.val(items[0].text);
 			});
 		}, false);
+		
+		window.addEventListener('selected',function(event){
+		  //获得事件参数
+		  var selectItem = event.detail.selectItem;
+		  that.depend = selectItem.map(function(v) {
+			  return v.taskCode
+		  });
+		  console.log(JSON.stringify(that.depend))
+		  that.$el.depend.val('当前已选择 ' + selectItem.length + ' 个');
+		});
 	},
 	getCache: function() {
 		this.user = store.getItem('user');

@@ -39,7 +39,6 @@ TemplelteTask.prototype = {
 				.find('.jq-item-des').text(data[i].taskDes).end()
 				.find('.jq-time').text(DATETOOL.dateFormat("YYYY-mm-dd", data[i].createDate));
 			this.$el.list.append(itemCopy);
-			console.log(data[i])
 		}
 		this.$el.content.html(this.$el.list)
 	}
