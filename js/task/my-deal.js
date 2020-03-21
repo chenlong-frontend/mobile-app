@@ -25,7 +25,8 @@ MyDeal.prototype = {
 			that.submitTaskData()
 		});
 		this.$el.star.on('click', function() {
-			that.starTaskIns(that.taskInsCode);
+			var active = $(this).data('active');
+			!active?that.starTaskIns(that.taskInsCode):that.deleteTaskInsExt(that.taskInsCode);
 		});
 		this.$el.complete.on('click', function() {
 			that.finshTaskIns(that.taskInsCode);
@@ -48,6 +49,7 @@ MyDeal.prototype = {
 	displayTaskInfo: function(data) {
 		this.$el.taskInfo.find('.jq-taskName').val(data.taskName).end()
 			.find('.jq-taskStatus').val(data.taskStatus);
+		this.setStarStatus(data.star);
 	},
 	displayTaskData: function(data) {
 		var keys = Object.keys(data);
@@ -77,6 +79,27 @@ MyDeal.prototype = {
 		API.finshTaskIns({taskInsCode:taskInsCode});
 	},
 	starTaskIns: function(taskInsCode) {
-		API.starTaskIns({taskInsCode:taskInsCode})
+		var that = this;
+		API.starTaskIns({taskInsCode:taskInsCode}, function() {
+			that.setStarStatus(true)
+		});
+	},
+	deleteTaskInsExt: function(taskInsCode) {
+		var that = this;
+		API.deleteTaskInsExt({taskInsCode:taskInsCode}, function() {
+			that.setStarStatus(false)
+		});
+	},
+	// 设置星标状态
+	setStarStatus: function(isStar) {
+		console.log(isStar)
+		if (isStar) {
+			this.$el.star.removeClass('icon-star');
+			this.$el.star.addClass('icon-star');
+		} else {
+			this.$el.star.removeClass('icon-xingxing');
+			this.$el.star.addClass('icon-xingxing');
+		}
+		this.$el.star.data('active', isStar);
 	}
 }

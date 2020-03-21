@@ -77,6 +77,9 @@ var API = {
 	starTaskIns: function(data, success) {
 		this.get('/jobManager/addTaskInsExt', data, success);
 	},
+	deleteTaskInsExt: function(data, success) {
+		this.get('/jobManager/deleteTaskInsExt', data, success);
+	},
 	// 获取任务附加信息
 	getTaskInsInfo: function(data,success) {
 		this.get('/jobManager/getTaskInsInfo',data, success)

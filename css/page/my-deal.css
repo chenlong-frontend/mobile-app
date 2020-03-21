@@ -11,7 +11,9 @@
 	height: 46px;
 	padding: 10px 0;
 }
-
+.star {
+	color: #DF5000; 
+}
 .title {
 	line-height: 40px;
 	padding: 0 15px;

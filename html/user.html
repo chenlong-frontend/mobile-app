@@ -80,7 +80,7 @@
 				</ul>
 				
 				<ul class="mui-table-view">
-					<li class="mui-table-view-cell" style="text-align: center;">
+					<li class="mui-table-view-cell jq-logout" style="text-align: center;">
 						<a>退出登录</a>
 					</li>
 				</ul>
@@ -94,6 +94,12 @@
 				mui.init();
 				var user = store.getItem('user');
 				$('.jq-userName').text(user.userName);
+				$('.jq-logout').on('click', function() {
+					mui.openWindow({
+					    url: "../login.html",
+					    id:'login',
+					})
+				})
 			})
 		</script>
 	</body>
