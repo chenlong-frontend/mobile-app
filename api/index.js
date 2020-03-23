@@ -1,6 +1,14 @@
 var API = {
 	token: JSON.parse(localStorage.getItem('$token')),
+	logout: function() {
+		localStorage.setItem('$token', null);
+		mui.openWindow({
+		    url: "../login.html",
+		    id:'login',
+		})
+	},
 	post: function(url, data, success) {
+		var that = this;
 		mui.ajax(DOMAIN + url,{
 			data:data,
 			dataType:'json',//服务器返回json格式数据
@@ -12,6 +20,7 @@ var API = {
 				success(data)
 			},
 			error:function(xhr,type,errorThrown){
+				that.logout();
 			}
 		});
 	},
@@ -26,6 +35,7 @@ var API = {
 				success(data)
 			},
 			error:function(xhr,type,errorThrown){
+				that.logout();
 			}
 		});
 	},

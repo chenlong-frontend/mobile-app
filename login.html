@@ -72,6 +72,13 @@
 		<script src="./api/index.js"></script>
 		<script src="./js/user/login.js"></script>
 		<script>
+			if (API.token) {
+				mui.openWindow({
+					url: 'tab.html',
+					id: 'tab',
+					preload: true,
+				});
+			}
 			$(function() {
 				mui.init();
 				var login = new Login();

@@ -89,17 +89,10 @@
 		<script src="../js/lib/jquery.min.js"></script>
 		<script src="../js/lib/mui.min.js"></script>
 		<script src="../js/util/store.js"></script>
+		<script src="../js/user/user.js"></script>
 		<script>
 			$(function(){
-				mui.init();
-				var user = store.getItem('user');
-				$('.jq-userName').text(user.userName);
-				$('.jq-logout').on('click', function() {
-					mui.openWindow({
-					    url: "../login.html",
-					    id:'login',
-					})
-				})
+				var user = new User();
 			})
 		</script>
 	</body>
