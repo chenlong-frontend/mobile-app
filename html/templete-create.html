@@ -22,20 +22,20 @@
 			<div class="mui-content-padded">
 				<form class="mui-input-group">
 					<div class="mui-input-row">
-						<label>订单号</label>
-						<input type="text" name="taskName" placeholder="订单号">
+						<label>节点名称</label>
+						<input type="text" name="taskName" placeholder="节点名称">
 					</div>
 					<div class="mui-input-row">
-						<label>产品名</label>
-						<input type="text" name="taskType" placeholder="产品名">
+						<label>完成模式</label>
+						<input class="jq-taskType" type="text" name="taskType" placeholder="请选择完成模式" readonly="readonly">
 					</div>
 					<div class="mui-input-row">
 						<label>所需工序</label>
-						<input readonly="readonly" type="text" name="dependTaskCode" class="mui-input-clear jq-depend" placeholder="请选择所需工序">
+						<input readonly="readonly" type="text" name="dependTaskCodes" class="mui-input-clear jq-depend" placeholder="请选择所需工序">
 					</div>
 					<div class="mui-input-row">
-						<label>下一步工序</label>
-						<input readonly="readonly" type="text" name="nextTaskCode" class="mui-input-clear jq-next" placeholder="请选择下一步工序">
+						<label>下一节点</label>
+						<input readonly="readonly" type="text" name="nextTaskCode" class="mui-input-clear jq-next" placeholder="请选择下一节点">
 					</div>
 					<div class="mui-input-row">
 						<label>实施人</label>

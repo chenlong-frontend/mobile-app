@@ -1,7 +1,7 @@
 var TaskCreate = function () {
 	this.init()
-	this.isFinished = null;
-	this.startCode = null;
+	this.isFinished;
+	this.startCode;
 }
 
 TaskCreate.prototype = {

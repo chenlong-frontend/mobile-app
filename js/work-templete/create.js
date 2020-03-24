@@ -1,8 +1,12 @@
 var TemplelteCreate = function() {
 	this.init();
-	this.receiver = null;
-	this.depend = null;
-	this.next = null;
+	this.$data = {
+		taskType: [{value: 'depend', text: '合作完成'}, {value: 'node', text: '顺序完成'}]
+	}
+	this.receiver;
+	this.depend;
+	this.next;
+	this.taskType;
 }
 
 TemplelteCreate.prototype = {
@@ -23,6 +27,7 @@ TemplelteCreate.prototype = {
 		this.$el.receiver = $('.jq-receiver');
 		this.$el.depend = $('.jq-depend');
 		this.$el.next = $('.jq-next');
+		this.$el.taskType = $('.jq-taskType');
 	},
 	bindEvent: function() {
 		var that = this
@@ -50,6 +55,14 @@ TemplelteCreate.prototype = {
 			that.userPicker.show(function(items) {
 				that.next = items[0].value;
 				that.$el.next.val(items[0].text);
+			});
+		}, false);
+		// 选择任务类型
+		this.$el.taskType.get(0).addEventListener('tap', function(){
+			that.userPicker.setData(that.$data.taskType);
+			that.userPicker.show(function(items) {
+				that.taskType = items[0].value;
+				that.$el.taskType.val(items[0].text);
 			});
 		}, false);
 		
@@ -99,12 +112,12 @@ TemplelteCreate.prototype = {
 			param[paramArr[i].name] = paramArr[i].value
 		}
 		param.receiverUserId = this.receiver;
-		param.dependTaskCode = this.depend;
+		param.dependTaskCodes = this.depend;
 		param.nextTaskCode = this.next;
+		param.taskType = this.taskType;
 		
-		var validate = [{field: 'taskName', tip: '工作名称不得为空'},{field: 'taskType', tip: '任务类型不得为空'}, 
-		{field: 'dependTaskCode', tip: '请选择依赖模板'},{field: 'nextTaskCode', tip: '请选择下个模板'},
-		{field: 'receiverUserId', tip: '请选择接接受人'}]
+		var validate = [{field: 'taskName', tip: '节点名称不得为空'},{field: 'taskType', tip: '请选择完成模式'}, 
+		{field: 'dependTaskCodes', tip: '请选择所需工序'},{field: 'receiverUserId', tip: '请选择实施人'}]
 		ARRAYTOOL.emptyCheck(param, validate, function (error) {
 			if(error) return
 			API.taskTplCreate(param, function(data) {

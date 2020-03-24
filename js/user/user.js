@@ -23,11 +23,7 @@ User.prototype = {
 	},
 	eventBind: function() {
 		this.$el.logout.on('click', function() {
-			store.setItem('token', null);
-			mui.openWindow({
-			    url: "../login.html",
-			    id:'login',
-			})
+			API.logout();
 		})
 	}
 }

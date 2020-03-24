@@ -4,7 +4,7 @@ var API = {
 		localStorage.setItem('$token', null);
 		mui.openWindow({
 		    url: "../login.html",
-		    id:'login',
+			createNew:true
 		})
 	},
 	post: function(url, data, success) {
@@ -17,14 +17,22 @@ var API = {
 			headers:{'Content-Type':'application/json',
 				"token":this.token},	              
 			success:function(data){
-				success(data)
+				if (data.code === '0000') {
+					success(data)	
+				} else {
+					mui.toast(data.message || '请求失败') 
+				}
 			},
 			error:function(xhr,type,errorThrown){
-				that.logout();
+				if (xhr.status === 403) {
+					mui.toast('登录失效,请重新登录') 
+					that.logout();	
+				}
 			}
 		});
 	},
 	get: function(url, data, success) {
+		var that = this;
 		mui.ajax(DOMAIN + url,{
 			data:data,
 			dataType:'json',//服务器返回json格式数据
@@ -32,10 +40,16 @@ var API = {
 			timeout:10000,//超时时间设置为10秒；
 			headers:{"token":this.token},	
 			success:function(data){
-				success(data)
+				if (data.code === '0000') {
+					success(data)	
+				} else {
+					mui.toast(data.message || '请求失败') 
+				}
 			},
 			error:function(xhr,type,errorThrown){
-				that.logout();
+				if (xhr.status === 403) {
+					that.logout();	
+				}
 			}
 		});
 	},
