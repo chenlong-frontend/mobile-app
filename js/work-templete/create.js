@@ -122,6 +122,10 @@ TemplelteCreate.prototype = {
 			if(error) return
 			API.taskTplCreate(param, function(data) {
 				mui.toast('提交成功');
+				var templete = plus.webview.getWebviewById('./html/work-templete.html');
+				if (templete) {
+					mui.fire(templete,'update',{}); 	
+				}
 				mui.back()
 			})
 		})

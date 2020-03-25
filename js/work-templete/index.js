@@ -24,6 +24,9 @@ TemplelteTask.prototype = {
 			    id:'templeteCreate',
 			})
 		})
+		window.addEventListener('update',function(event){
+		  that.getData();
+		});
 	},
 	getData: function() {
 		var that = this;
@@ -32,14 +35,15 @@ TemplelteTask.prototype = {
 		})
 	},
 	displayData: function(data) {
+		var listcopy = this.$el.list.clone();
 		for(var i = 0;i < data.length;i++) {
 			var itemCopy = this.$el.item.clone();
 			itemCopy.find('.jq-item-name').text(data[i].taskName).end()
 				.find('.jq-item-code').text(data[i].taskCode).end()
 				.find('.jq-item-des').text(data[i].taskDes).end()
 				.find('.jq-time').text(DATETOOL.dateFormat("YYYY-mm-dd", data[i].createDate));
-			this.$el.list.append(itemCopy);
+			listcopy.append(itemCopy);
 		}
-		this.$el.content.html(this.$el.list)
+		this.$el.content.html(listcopy)
 	}
 }

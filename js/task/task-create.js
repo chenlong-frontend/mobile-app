@@ -77,10 +77,16 @@ TaskCreate.prototype = {
 		param.startTaskTplCode = this.startCode;
 		var validate = [{field: 'jobName', tip: '工作名称不得为空'},{field: 'deadLine', tip: '请选择截止时间'},
 		{field: 'startTaskTplCode', tip: '请选择起初模板'}]
+		var wvs=plus.webview.all();
 		ARRAYTOOL.emptyCheck(param, validate, function (error) {
 			if(error) return
 			API.jobManagerCreateJob(param,function(data){
 				mui.toast('提交成功') 
+				var home = plus.webview.getWebviewById('./html/home.html');
+				if (home) {
+					mui.fire(home,'update',{}); 	
+				}
+			
 				mui.back()
 			})
 		})

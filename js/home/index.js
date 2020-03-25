@@ -36,6 +36,10 @@ Home.prototype = {
 				that.$el.fabs.hide();
 			}
 		});
+		window.addEventListener('update',function(event){
+		  that.getMyStartData();
+		  that.getMyDealData();
+		});
 	},
 	getMyStartData: function() {
 		var resData;
