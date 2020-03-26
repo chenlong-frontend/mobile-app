@@ -1,0 +1,47 @@
+{
+  "name": "progress",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve -max_old_space_size=18096  --API=dev",
+    "dev:browser": "vue-cli-service serve --API=dev --browser",
+    "build": "vue-cli-service build --API=production",
+    "build:analyzer": "vue-cli-service build --API=production --analyzer",
+    "build:test": "vue-cli-service build --API=production --test",
+    "lint": "vue-cli-service lint",
+    "fix-memory-limit": "cross-env LIMIT=8048 increase-memory-limit"
+  },
+  "dependencies": {
+    "async-validator": "^3.1.0",
+    "axios": "^0.18.0",
+    "increase-memory-limit": "^1.0.7",
+    "lodash": "^4.17.15",
+    "vant": "^2.5.7",
+    "vue": "^2.6.10",
+    "yargs-parser": "^13.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.5",
+    "@vue/cli-service": "^3.5.3",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-lodash": "^3.3.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
+    "postcss-px2rem": "^0.3.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack-bundle-analyzer": "^3.4.1"
+  },
+  "browserslist": [
+    ">1%",
+    "last 2 versions",
+    "not ie <=8",
+    "ios >=8",
+    "Android > 4.4",
+    "Firefox>20"
+  ]
+}
