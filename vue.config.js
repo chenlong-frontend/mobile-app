@@ -30,7 +30,7 @@ let plugins = [
 if (TYPE.analyzer) plugins.push(new BundleAnalyzerPlugin())
 
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   outputDir: 'dist',
   assetsDir: 'assets',
   runtimeCompiler: false,
