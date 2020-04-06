@@ -1,0 +1,51 @@
+.my-input {
+  padding: 24rpx 0;
+  color: #333;
+  background-color: #FFF;
+  margin-left: 32rpx;
+  margin-bottom: 1PX;
+  position: relative;
+
+}
+
+.my-input::after {
+  content: '';
+  position: absolute;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  pointer-events: none;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  border: 0 solid #d6e4ef;
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom-width: 1PX;
+
+}
+
+.my-input__container {
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.my-input__title {
+  margin-right: 16rpx;
+  width: 172rpx;
+  font-size: 32rpx;
+  line-height: 1.5;
+  vertical-align: middle;
+  text-align: left;
+
+}
+
+.picker {
+  width: 100%;
+}
