@@ -11,28 +11,28 @@ class TaskCreate extends Component {
         jobName: "",
         deadLine: "",
         startTaskTplCode: "",
-        jobDes: "",
+        jobDes: ""
       },
       startTaskTpls: [
         { value: "1", text: "asdfafas" },
-        { value: "2", text: "saf" },
-      ],
+        { value: "2", text: "saf" }
+      ]
     };
     this.config = {
-      navigationBarTitleText: "任务创建",
+      navigationBarTitleText: "任务创建"
     };
   }
-  onValue = (key) => (value) => {
+  onValue = key => value => {
     var form = this.state.form;
     form[key] = value;
     this.setState({
-      form,
+      form
     });
   };
-  onTimeChange = (v) => {
+  onTimeChange = v => {
     this.onValue("deadLine")(v.detail.value);
   };
-  onJobDes = (event) => {
+  onJobDes = event => {
     this.onValue("jobDes")(event.target.value);
   };
   onSubmit(event) {

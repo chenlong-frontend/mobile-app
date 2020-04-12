@@ -1,56 +1,95 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
-import { AtGrid } from "taro-ui";
+import { AtGrid, AtButton, AtToast } from "taro-ui";
 
 class Home extends Component {
-
-  constructor () {
-    super(...arguments)
+  constructor() {
+    super(...arguments);
     this.state = {
       data: [
         {
           image:
-            "https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png",
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1127089551,1776911506&fm=26&gp=0.jpg",
           value: "任务列表",
-          url: ''
+          url: "/pages/task/list"
         },
         {
           image:
-            "https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png",
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1127089551,1776911506&fm=26&gp=0.jpg",
           value: "任务创建",
-          url: '/pages/task/create'
+          url: "/pages/task/create"
         },
         {
           image:
-            "https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png",
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1127089551,1776911506&fm=26&gp=0.jpg",
           value: "新建工单",
-          url: ''
+          url: "/pages/workTemplete/create"
         },
         {
           image:
-            "https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png",
+            "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1127089551,1776911506&fm=26&gp=0.jpg",
           value: "工单列表",
-          url: ''
-        },
-      ]
-    }
+          url: "/pages/workTemplete/list"
+        }
+      ],
+      text: "",
+      isOpened: ""
+    };
   }
 
-  onTurn = (item) => {
+  onTurn = item => {
     console.log(item);
     Taro.navigateTo({
-		  url: item.url
-		})
-  }
+      url: item.url
+    });
+  };
 
   render() {
-    const { data } = this.state
+    const { data } = this.state;
     return (
-      <View className='index'>
-        <AtGrid
-          data={data}
-          onClick={this.onTurn}
-        />
+      <View className="index">
+        <AtGrid data={data} onClick={this.onTurn} />
+        <AtToast
+          isOpened={this.state.isOpened}
+          text={this.state.text}
+        ></AtToast>
+        <AtButton
+          onClick={() => {
+            Taro.login({
+              success: res => {
+                if (res.code) {
+                  //发起网络请求
+                  Taro.request({
+                    url: "https://weixin.frontjs.top/weixin/userInfo",
+                    data: {
+                      code: res.code
+                    }
+                  })
+                    .then(r => {
+                      this.setState({
+                        isOpened: true,
+                        text: JSON.stringify(r)
+                      });
+                    })
+                    .catch(e => {
+                      this.setState({
+                        isOpened: true,
+                        text: JSON.stringify(e)
+                      });
+                    });
+                } else {
+                  this.setState({
+                    isOpened: true,
+                    text: res.errMsg
+                  });
+                  console.log("登录失败！" + res.errMsg);
+                }
+              }
+            });
+          }}
+        >
+          点击登录
+        </AtButton>
       </View>
     );
   }

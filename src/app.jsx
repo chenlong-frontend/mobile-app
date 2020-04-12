@@ -18,7 +18,7 @@ const store = configStore();
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index", "pages/task/create"],
+    pages: ["pages/index/index", "pages/task/create", "pages/task/list", "pages/workTemplete/list", "pages/workTemplete/create"],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
