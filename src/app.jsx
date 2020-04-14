@@ -18,13 +18,19 @@ const store = configStore();
 
 class App extends Component {
   config = {
-    pages: ["pages/index/index", "pages/task/create", "pages/task/list", "pages/workTemplete/list", "pages/workTemplete/create"],
+    pages: [
+      "pages/index/index",
+      "pages/task/create",
+      "pages/task/list",
+      "pages/workTemplete/list",
+      "pages/workTemplete/create"
+    ],
     window: {
       backgroundTextStyle: "light",
       navigationBarBackgroundColor: "#fff",
       navigationBarTitleText: "WeChat",
-      navigationBarTextStyle: "black",
-    },
+      navigationBarTextStyle: "black"
+    }
   };
 
   // 在 App 类中的 render() 函数没有实际作用

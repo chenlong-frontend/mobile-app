@@ -53,39 +53,55 @@ class Home extends Component {
           isOpened={this.state.isOpened}
           text={this.state.text}
         ></AtToast>
-        <AtButton
+        <AtButton openType="getUserInfo">授权信息</AtButton>
+        {/* <AtButton
           onClick={() => {
-            Taro.login({
-              success: res => {
-                if (res.code) {
-                  //发起网络请求
-                  Taro.request({
-                    url: "https://weixin.frontjs.top/weixin/userInfo",
-                    data: {
-                      code: res.code
-                    }
-                  })
-                    .then(r => {
-                      this.setState({
-                        isOpened: true,
-                        text: JSON.stringify(r)
-                      });
-                    })
-                    .catch(e => {
-                      this.setState({
-                        isOpened: true,
-                        text: JSON.stringify(e)
-                      });
-                    });
-                } else {
+            Taro.getSetting().then(res => {
+              this.setState({
+                isOpened: true,
+                text: JSON.stringify(res)
+              });
+            });
+          }}
+        ></AtButton> */}
+        <AtButton
+          onClick={async () => {
+            // 权限申请
+            const { code } = await Taro.login();
+            const {
+              encryptedData,
+              iv,
+              signature,
+              userInfo
+            } = await Taro.getUserInfo({
+              lang: "zh_CN",
+              withCredentials: true
+            });
+            if (code) {
+              //发起网络请求
+              Taro.request({
+                url: "https://weixin.frontjs.top/weixin/userInfo",
+                data: {
+                  code,
+                  encryptedData,
+                  iv,
+                  signature,
+                  userInfo
+                }
+              })
+                .then(r => {
                   this.setState({
                     isOpened: true,
-                    text: res.errMsg
+                    text: JSON.stringify(r)
                   });
-                  console.log("登录失败！" + res.errMsg);
-                }
-              }
-            });
+                })
+                .catch(e => {
+                  this.setState({
+                    isOpened: true,
+                    text: JSON.stringify(e)
+                  });
+                });
+            }
           }}
         >
           点击登录
