@@ -2,9 +2,9 @@ import Taro, { Component } from "@tarojs/taro";
 import { Provider } from "@tarojs/redux";
 import "taro-ui/dist/style/index.scss";
 
-import Index from "./pages/index";
+import Index from "./pages";
 
-import configStore from "./store";
+import store from "./store";
 
 import "./app.less";
 
@@ -14,11 +14,10 @@ import "./app.less";
 //   require('nerv-devtools')
 // }
 
-const store = configStore();
-
 class App extends Component {
   config = {
     pages: [
+      "pages/index",
       "pages/index/index",
       "pages/task/create",
       "pages/task/list",

@@ -1,8 +1,18 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
+import { connect } from '@tarojs/redux'
 import Selector from "../../component/selector";
+import {taskTypeDict} from '../../constants/dict'
+import { taskTplListAction } from '../../actions/workAction'
 
+@connect(({ work }) => ({
+  work
+}), (dispatch) => ({
+  onTaskTplList (data) {
+    dispatch(taskTplListAction(data))
+  }
+}))
 class WorkTempleteCreate extends Component {
   constructor() {
     super(...arguments);
@@ -15,15 +25,17 @@ class WorkTempleteCreate extends Component {
         receiverUserId: '',
         taskDes: ''
       },
-      taskTypeList: [
-        { value: "1", text: "asdfafas" },
-        { value: "2", text: "saf" }
-      ]
+      taskTypeList: taskTypeDict
     };
     this.config = {
       navigationBarTitleText: "工单创建"
     };
   }
+
+  componentDidMount () {
+    this.props.onTaskTplList();
+  }
+
   onTaskDes = event => {
     this.onValue("taskDes")(event.target.value);
   };
@@ -40,8 +52,10 @@ class WorkTempleteCreate extends Component {
   }
 
   render() {
+    const {work: { list }} = this.props;
     const { taskTypeList } = this.state;
     const { taskName, taskType, dependTaskCodes, nextTaskCode, receiverUserId, taskDes } = this.state.form;
+    const taskTplList = list.map(v => ({value: v.taskCode, text: v.taskName}));
     return (
       <View>
         <AtForm onSubmit={this.onSubmit.bind(this)}>
@@ -62,14 +76,14 @@ class WorkTempleteCreate extends Component {
           ></Selector>
           <Selector
             title="所需工序"
-            data={taskTypeList}
+            data={taskTplList}
             value={dependTaskCodes}
             placeholder="请选择所需工序"
             onChange={this.onValue("dependTaskCodes")}
           ></Selector>
           <Selector
             title="下一节点"
-            data={taskTypeList}
+            data={taskTplList}
             value={nextTaskCode}
             placeholder="请选择下一节点"
             onChange={this.onValue("nextTaskCode")}

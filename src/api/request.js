@@ -1,33 +1,44 @@
 import Taro from "@tarojs/taro";
+import store from '../store'
 
-const post = Taro.request({
-  url: 'https://weixin.frontjs.top/user/getUsers',
-  method: 'POST',
-  data: {
-    userName: 'tj',
-    passWord: 'tj'
-  },
-  header: {
-    'content-type': 'application/json' // 默认值
-  },
-  success: function (res) {
-    console.log(res.data)
-  }
-})
+const base = 'https://weixin.frontjs.top'
 
-const get = Taro.request({
-  url: 'https://weixin.frontjs.top/user/getUsers',
-  method: 'GET',
-  data: {
-    userName: 'tj',
-    passWord: 'tj'
-  },
-  header: {
-    'content-type': 'application/json' // 默认值
-  },
-  success: function (res) {
-    console.log(res.data)
-  }
-})
+const post =  (url,data) => {
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: base + url,
+      method: 'POST',
+      data
+    }).then(res => {
+      if (res.data && res.data.code === '0000') {
+        resolve(res.data.data)
+      } else {
+        reject(res);
+      }
+    }).catch(e => {
+      reject(e)
+    })
+  })
+}
+
+const get = (url,data) => {
+  const {login: {token}} = store.getState();
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: base + url,
+      method: 'GET',
+      headers:{"token": token},
+      data
+    }).then(res => {
+      if (res.data && res.data.code === '0000') {
+        resolve(res.data.data)
+      } else {
+        reject(res);
+      }
+    }).catch(e => {
+      reject(e)
+    })
+  })
+}
 
 export { post, get }

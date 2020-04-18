@@ -1,0 +1,1 @@
+export const taskTypeDict = [{value: 'depend', text: '合作完成'}, {value: 'node', text: '顺序完成'}];

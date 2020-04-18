@@ -6,8 +6,7 @@
     }],
     "react/jsx-filename-extension": [1, {
       "extensions": [".js", ".jsx", ".tsx"]
-    }],
-    "quotes": [0, "double"]
+    }]
   },
   "parser": "babel-eslint"
 }

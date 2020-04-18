@@ -18,6 +18,7 @@ class Selector extends Component {
         })
       : [];
     const selectItem = selectItemArr.length > 0 ? selectItemArr[0].value : "";
+    const showItem =data ? data.filter(v => v.value === value) : [];
     return (
       <Picker mode="selector" range={showData} onChange={this.onChange}>
         <View className="my-input">
@@ -25,7 +26,7 @@ class Selector extends Component {
             <Text className="my-input__title">{title}</Text>
             <View>
               <View className="picker">
-                {selectItem ? selectItem : placeholder}
+                {showItem.length > 0 ? showItem[0].text : placeholder}
               </View>
             </View>
           </View>

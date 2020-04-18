@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
-import counter from './counter'
+import login from './login'
+import user from './user'
+import work from './work'
 
 export default combineReducers({
-  counter
+  login,
+  user,
+  work
 })
