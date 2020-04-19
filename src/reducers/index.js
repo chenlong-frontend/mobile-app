@@ -2,9 +2,11 @@ import { combineReducers } from 'redux'
 import login from './login'
 import user from './user'
 import work from './work'
+import task from './task'
 
 export default combineReducers({
   login,
   user,
-  work
+  work,
+  task
 })

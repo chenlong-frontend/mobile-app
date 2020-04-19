@@ -1,16 +1,18 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View, Button } from "@tarojs/components";
 import { AtGrid } from "taro-ui";
-import { connect } from '@tarojs/redux'
-import img from '../../assets/imgs/car.svg'
-import { requestUserInfoAction } from '../../actions/userAction'
+import { connect } from "@tarojs/redux";
+import img from "../../assets/imgs/car.svg";
+import { requestUserInfoAction } from "../../actions/userAction";
 
-@connect(({ }) => ({
-}), (dispatch) => ({
-  onUserInfo (data) {
-    dispatch(requestUserInfoAction(data))
-  }
-}))
+@connect(
+  ({}) => ({}),
+  dispatch => ({
+    onUserInfo(data) {
+      dispatch(requestUserInfoAction(data));
+    }
+  })
+)
 class Home extends Component {
   constructor() {
     super(...arguments);
@@ -40,7 +42,7 @@ class Home extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.onUserInfo();
     // Taro.navigateTo({
     //   url: '/pages/workTemplete/create'
@@ -59,6 +61,15 @@ class Home extends Component {
     return (
       <View className="index">
         <AtGrid data={data} onClick={this.onTurn} />
+        <Button
+          onClick={() => {
+            Taro.requestSubscribeMessage({
+              tmplIds: ["_QRm8hkaNCftgMisIrjV1xASMGiTSRKp6hy6k8UptQs"]
+            });
+          }}
+        >
+          消息授权
+        </Button>
       </View>
     );
   }

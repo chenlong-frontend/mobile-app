@@ -1,6 +1,18 @@
 import Taro, { Component } from "@tarojs/taro";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui"
+import { connect } from '@tarojs/redux'
+import { getJobByStartMeAction, getJobByWaitMeAction } from '../../actions/taskAction'
 
+@connect(({ task:{startList, waitList} }) => ({
+  startList, waitList
+}), (dispatch) => ({
+  onTaskStart () {
+    dispatch(getJobByStartMeAction())
+  },
+  onTaskWait () {
+    dispatch(getJobByWaitMeAction())
+  }
+}))
 class List extends Component {
   constructor () {
     super(...arguments)
@@ -13,6 +25,11 @@ class List extends Component {
     };
   }
 
+  componentDidMount () {
+    this.props.onTaskStart();
+    this.props.onTaskWait();
+  }
+
   onTabChange (value) {
     this.setState({
       current: value
@@ -20,25 +37,22 @@ class List extends Component {
   }
 
   render() {
-    const {tabList} = this.state
+    const {tabList} = this.state;
+    const {startList, waitList} = this.props;
     return (
       <AtTabs current={this.state.current} tabList={tabList} onClick={this.onTabChange.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList>
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
+            {
+              startList.map(v => (<AtListItem key={v.jobCode} title={v.jobName} extraText={v.deadLine} note={v.jobDes} />))
+            }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1}>
           <AtList>
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-            <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
+            {
+              waitList.map(v => (<AtListItem key={v.jobCode} title={v.jobName} extraText={v.deadLine} note={v.jobDes} />))
+            }
           </AtList>
         </AtTabsPane>
       </AtTabs>

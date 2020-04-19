@@ -1,7 +1,23 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Picker } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
+import { connect } from '@tarojs/redux'
 import Selector from "../../component/selector";
+import { taskTplListAction } from '../../actions/workAction'
+import { createJobAction } from '../../actions/taskAction'
+
+@connect(({ work }) => ({
+  work
+}), (dispatch) => ({
+  onTaskTplList () {
+    dispatch(taskTplListAction())
+  },
+  onCreateJob (data) {
+    dispatch(createJobAction(data)).then(() => {
+      Taro.navigateBack()
+    })
+  }
+}))
 
 class TaskCreate extends Component {
   constructor() {
@@ -12,15 +28,14 @@ class TaskCreate extends Component {
         deadLine: "",
         startTaskTplCode: "",
         jobDes: ""
-      },
-      startTaskTpls: [
-        { value: "1", text: "asdfafas" },
-        { value: "2", text: "saf" }
-      ]
+      }
     };
     this.config = {
       navigationBarTitleText: "任务创建"
     };
+  }
+  componentDidMount () {
+    this.props.onTaskTplList();
   }
   onValue = key => value => {
     var form = this.state.form;
@@ -32,15 +47,15 @@ class TaskCreate extends Component {
   onTimeChange = v => {
     this.onValue("deadLine")(v.detail.value);
   };
-  onJobDes = event => {
-    this.onValue("jobDes")(event.target.value);
-  };
-  onSubmit(event) {
-    console.log(event);
+  onSubmit() {
+    const {form} = this.state
+    this.props.onCreateJob(form)
   }
   render() {
+    const {work: { list }} = this.props;
     const { jobName, deadLine, jobDes, startTaskTplCode } = this.state.form;
-    const { startTaskTpls } = this.state;
+
+    const taskTplList = list.map(v => ({value: v.taskCode, text: v.taskName}));
 
     return (
       <View>
@@ -67,14 +82,14 @@ class TaskCreate extends Component {
           </Picker>
           <Selector
             title="起初模板"
-            data={startTaskTpls}
+            data={taskTplList}
             value={startTaskTplCode}
             placeholder="选择起初模板"
             onChange={this.onValue("startTaskTplCode")}
           ></Selector>
           <AtTextarea
             value={jobDes}
-            onChange={this.onJobDes}
+            onChange={this.onValue('jobDes')}
             maxLength={200}
             placeholder="工作描述"
           />

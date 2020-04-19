@@ -4,14 +4,23 @@ import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
 import { connect } from '@tarojs/redux'
 import Selector from "../../component/selector";
 import {taskTypeDict} from '../../constants/dict'
-import { taskTplListAction } from '../../actions/workAction'
+import { taskTplListAction, taskTplCreateAction } from '../../actions/workAction'
+import { requestGetUsersAction } from '../../actions/userAction'
 
-@connect(({ work }) => ({
-  work
+@connect(({ work, user }) => ({
+  work, user
 }), (dispatch) => ({
-  onTaskTplList (data) {
-    dispatch(taskTplListAction(data))
-  }
+  onTaskTplList () {
+    dispatch(taskTplListAction())
+  },
+  onGetUsers () {
+    dispatch(requestGetUsersAction())
+  },
+  onTplCreate (data) {
+    dispatch(taskTplCreateAction(data)).then(() => {
+      Taro.navigateBack()
+    });
+  },
 }))
 class WorkTempleteCreate extends Component {
   constructor() {
@@ -34,28 +43,37 @@ class WorkTempleteCreate extends Component {
 
   componentDidMount () {
     this.props.onTaskTplList();
+    this.props.onGetUsers();
   }
-
-  onTaskDes = event => {
-    this.onValue("taskDes")(event.target.value);
-  };
+  onTypeChange = (value) => {
+    console.log(this.onValue)
+    if (value === 'depend') {
+      let form = this.state.form;
+      this.setState({form: Object.assign(form, {dependTaskCodes: undefined, nextTaskCode: undefined})})
+    }
+    this.onValue('taskType')(value);
+  }
   onValue = key => value => {
-    var form = this.state.form;
+    let form = this.state.form;
     form[key] = value;
     this.setState({
       form
     });
   };
 
-  onSubmit(event) {
-    console.log(event);
+  onSubmit() {
+    const {form} = this.state
+    form.dependTaskCodes && (form.dependTaskCodes = [form.dependTaskCodes]);
+    this.props.onTplCreate(form)
   }
 
   render() {
-    const {work: { list }} = this.props;
+    const {work: { list }, user} = this.props;
     const { taskTypeList } = this.state;
     const { taskName, taskType, dependTaskCodes, nextTaskCode, receiverUserId, taskDes } = this.state.form;
     const taskTplList = list.map(v => ({value: v.taskCode, text: v.taskName}));
+    const receiverUserList = user.list.map(v => ({value: v.userCode, text: v.userName}));
+    const isDepend = taskType === 'depend';
     return (
       <View>
         <AtForm onSubmit={this.onSubmit.bind(this)}>
@@ -65,39 +83,39 @@ class WorkTempleteCreate extends Component {
             type="text"
             placeholder="节点名称"
             value={taskName}
-            onChange={this.onValue("jobName")}
+            onChange={this.onValue("taskName")}
           />
           <Selector
             title="完成模式"
             data={taskTypeList}
             value={taskType}
             placeholder="请选择完成模式"
-            onChange={this.onValue("taskType")}
+            onChange={this.onTypeChange}
           ></Selector>
-          <Selector
+          {!isDepend && <Selector
             title="所需工序"
             data={taskTplList}
             value={dependTaskCodes}
             placeholder="请选择所需工序"
             onChange={this.onValue("dependTaskCodes")}
-          ></Selector>
-          <Selector
+          ></Selector>}
+          {!isDepend && <Selector
             title="下一节点"
             data={taskTplList}
             value={nextTaskCode}
             placeholder="请选择下一节点"
             onChange={this.onValue("nextTaskCode")}
-          ></Selector>
+          ></Selector>}
           <Selector
             title="实施人"
-            data={taskTypeList}
+            data={receiverUserList}
             value={receiverUserId}
             placeholder="请选择实施人"
             onChange={this.onValue("receiverUserId")}
           ></Selector>
           <AtTextarea
             value={taskDes}
-            onChange={this.onTaskDes}
+            onChange={this.onValue('taskDes')}
             maxLength={200}
             placeholder="节点描述"
           />

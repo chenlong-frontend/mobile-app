@@ -4,7 +4,6 @@ import {
 } from '../constants/redux'
 import {login} from '../api/auth'
 
-
 export function setToken (token) {
   return {
     type: LOGIN_SET_TOKEN,

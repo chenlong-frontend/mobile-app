@@ -1,6 +1,15 @@
 import Taro, { Component } from "@tarojs/taro";
 import { AtList, AtListItem } from "taro-ui"
+import { connect } from '@tarojs/redux'
+import { taskTplListAction } from '../../actions/workAction'
 
+@connect(({ work }) => ({
+  work
+}), (dispatch) => ({
+  onTaskTplList () {
+    dispatch(taskTplListAction())
+  }
+}))
 class List extends Component {
   constructor () {
     super(...arguments)
@@ -9,14 +18,17 @@ class List extends Component {
     };
   }
 
+  componentDidMount () {
+    this.props.onTaskTplList();
+  }
+
   render() {
+    const {work: { list }} = this.props;
     return (
       <AtList>
-        <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-        <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-        <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-        <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
-        <AtListItem title='工单名称' extraText='2020-01-02' note='描述信息' />
+        {
+          list.map(v => (<AtListItem key={v.taskCode} title={v.taskName} extraText={v.createDate} note={v.taskDes} />))
+        }
       </AtList>
     )
   }

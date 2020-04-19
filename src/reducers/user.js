@@ -1,9 +1,10 @@
 import {
-  USER_SET_INFO
+  USER_SET_INFO, USER_SET_LIST
 } from '../constants/redux'
 
 const INITIAL_STATE = {
-  user: {}
+  user: {},
+  list: []
 }
 
 export default function user(state = INITIAL_STATE, action) {
@@ -13,6 +14,11 @@ export default function user(state = INITIAL_STATE, action) {
       return {
         ...state,
         user: data
+      }
+    case USER_SET_LIST:
+      return {
+        ...state,
+        list: data
       }
     default:
       return state
