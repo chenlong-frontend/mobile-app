@@ -1,38 +1,46 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
-import { connect } from '@tarojs/redux'
+import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
-import {taskTypeDict} from '../../constants/dict'
-import { taskTplListAction, taskTplCreateAction } from '../../actions/workAction'
-import { requestGetUsersAction } from '../../actions/userAction'
+import MultiSelector from "../../component/multiSelector";
+import { taskTypeDict } from "../../constants/dict";
+import {
+  taskTplListAction,
+  taskTplCreateAction
+} from "../../actions/workAction";
+import { requestGetUsersAction } from "../../actions/userAction";
 
-@connect(({ work, user }) => ({
-  work, user
-}), (dispatch) => ({
-  onTaskTplList () {
-    dispatch(taskTplListAction())
-  },
-  onGetUsers () {
-    dispatch(requestGetUsersAction())
-  },
-  onTplCreate (data) {
-    dispatch(taskTplCreateAction(data)).then(() => {
-      Taro.navigateBack()
-    });
-  },
-}))
+@connect(
+  ({ work, user }) => ({
+    work,
+    user
+  }),
+  dispatch => ({
+    onTaskTplList() {
+      dispatch(taskTplListAction());
+    },
+    onGetUsers() {
+      dispatch(requestGetUsersAction());
+    },
+    onTplCreate(data) {
+      dispatch(taskTplCreateAction(data)).then(() => {
+        Taro.navigateBack();
+      });
+    }
+  })
+)
 class WorkTempleteCreate extends Component {
   constructor() {
     super(...arguments);
     this.state = {
       form: {
-        taskName: '',
-        taskType: '',
-        dependTaskCodes: '',
-        nextTaskCode: '',
-        receiverUserId: '',
-        taskDes: ''
+        taskName: "",
+        taskType: "",
+        dependTaskCodes: "",
+        nextTaskCode: "",
+        receiverUserId: "",
+        taskDes: ""
       },
       taskTypeList: taskTypeDict
     };
@@ -41,18 +49,23 @@ class WorkTempleteCreate extends Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.onTaskTplList();
     this.props.onGetUsers();
   }
-  onTypeChange = (value) => {
-    console.log(this.onValue)
-    if (value === 'depend') {
+  onTypeChange = value => {
+    console.log(this.onValue);
+    if (value === "depend") {
       let form = this.state.form;
-      this.setState({form: Object.assign(form, {dependTaskCodes: undefined, nextTaskCode: undefined})})
+      this.setState({
+        form: Object.assign(form, {
+          dependTaskCodes: undefined,
+          nextTaskCode: undefined
+        })
+      });
     }
-    this.onValue('taskType')(value);
-  }
+    this.onValue("taskType")(value);
+  };
   onValue = key => value => {
     let form = this.state.form;
     form[key] = value;
@@ -62,18 +75,34 @@ class WorkTempleteCreate extends Component {
   };
 
   onSubmit() {
-    const {form} = this.state
-    form.dependTaskCodes && (form.dependTaskCodes = [form.dependTaskCodes]);
-    this.props.onTplCreate(form)
+    const { form } = this.state;
+    this.props.onTplCreate(form);
   }
 
   render() {
-    const {work: { list }, user} = this.props;
+    const {
+      work: { list },
+      user
+    } = this.props;
     const { taskTypeList } = this.state;
-    const { taskName, taskType, dependTaskCodes, nextTaskCode, receiverUserId, taskDes } = this.state.form;
-    const taskTplList = list.map(v => ({value: v.taskCode, text: v.taskName}));
-    const receiverUserList = user.list.map(v => ({value: v.userCode, text: v.userName}));
-    const isDepend = taskType === 'depend';
+    const {
+      taskName,
+      taskType,
+      dependTaskCodes,
+      nextTaskCode,
+      receiverUserId,
+      taskDes
+    } = this.state.form;
+    const taskTplList = list.map(v => ({
+      value: v.taskCode,
+      text: v.taskName,
+      label: v.taskName
+    }));
+    const receiverUserList = user.list.map(v => ({
+      value: v.userCode,
+      text: v.userName
+    }));
+    const isDepend = taskType === "depend";
     return (
       <View>
         <AtForm onSubmit={this.onSubmit.bind(this)}>
@@ -92,20 +121,23 @@ class WorkTempleteCreate extends Component {
             placeholder="请选择完成模式"
             onChange={this.onTypeChange}
           ></Selector>
-          {!isDepend && <Selector
-            title="所需工序"
-            data={taskTplList}
-            value={dependTaskCodes}
-            placeholder="请选择所需工序"
-            onChange={this.onValue("dependTaskCodes")}
-          ></Selector>}
-          {!isDepend && <Selector
-            title="下一节点"
-            data={taskTplList}
-            value={nextTaskCode}
-            placeholder="请选择下一节点"
-            onChange={this.onValue("nextTaskCode")}
-          ></Selector>}
+          {!isDepend && (
+            <MultiSelector
+              title="所需工序"
+              data={taskTplList}
+              value={dependTaskCodes}
+              onChange={this.onValue("dependTaskCodes")}
+            ></MultiSelector>
+          )}
+          {!isDepend && (
+            <Selector
+              title="下一节点"
+              data={taskTplList}
+              value={nextTaskCode}
+              placeholder="请选择下一节点"
+              onChange={this.onValue("nextTaskCode")}
+            ></Selector>
+          )}
           <Selector
             title="实施人"
             data={receiverUserList}
@@ -115,14 +147,14 @@ class WorkTempleteCreate extends Component {
           ></Selector>
           <AtTextarea
             value={taskDes}
-            onChange={this.onValue('taskDes')}
+            onChange={this.onValue("taskDes")}
             maxLength={200}
             placeholder="节点描述"
           />
           <AtButton formType="submit">提交</AtButton>
         </AtForm>
       </View>
-    )
+    );
   }
 }
 

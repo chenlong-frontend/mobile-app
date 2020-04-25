@@ -1,11 +1,15 @@
 import {
-  TASK_SET_START_LIST, TASK_SET_WAIT_LIST, TASK_SET_STAR_LIST
+  TASK_SET_START_LIST,
+  TASK_SET_WAIT_LIST,
+  TASK_SET_STAR_LIST,
+  TASK_SET_INS_INFO
 } from '../constants/redux'
 
 const INITIAL_STATE = {
   startList: [],
   waitList: [],
-  starList: []
+  starList: [],
+  insInfo: {}
 }
 
 export default function task(state = INITIAL_STATE, action) {
@@ -16,17 +20,22 @@ export default function task(state = INITIAL_STATE, action) {
         ...state,
         startList: data
       }
-    case TASK_SET_WAIT_LIST:
-      return {
-        ...state,
-        waitList: data
-      }
-    case TASK_SET_STAR_LIST:
-      return {
-        ...state,
-        starList: data
-      }
-    default:
-      return state
+      case TASK_SET_WAIT_LIST:
+        return {
+          ...state,
+          waitList: data
+        }
+        case TASK_SET_STAR_LIST:
+          return {
+            ...state,
+            starList: data
+          }
+          case TASK_SET_INS_INFO:
+            return {
+              ...state,
+              insInfo: data
+            }
+            default:
+              return state
   }
 }

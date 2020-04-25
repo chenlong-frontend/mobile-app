@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Button } from "@tarojs/components";
+import { View } from "@tarojs/components";
 import { AtGrid } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import img from "../../assets/imgs/car.svg";
@@ -44,9 +44,9 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.onUserInfo();
-    // Taro.navigateTo({
-    //   url: '/pages/workTemplete/create'
-    // });
+    Taro.navigateTo({
+      url: "/pages/task/myDeal?code=25facaa7-341c-4d93-94d8-6ab34ecf87d1"
+    });
   }
 
   onTurn = item => {
@@ -61,15 +61,6 @@ class Home extends Component {
     return (
       <View className="index">
         <AtGrid data={data} onClick={this.onTurn} />
-        <Button
-          onClick={() => {
-            Taro.requestSubscribeMessage({
-              tmplIds: ["_QRm8hkaNCftgMisIrjV1xASMGiTSRKp6hy6k8UptQs"]
-            });
-          }}
-        >
-          消息授权
-        </Button>
       </View>
     );
   }

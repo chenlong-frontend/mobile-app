@@ -21,6 +21,7 @@ class App extends Component {
       "pages/index/index",
       "pages/task/create",
       "pages/task/list",
+      "pages/task/myDeal",
       "pages/workTemplete/list",
       "pages/workTemplete/create"
     ],
