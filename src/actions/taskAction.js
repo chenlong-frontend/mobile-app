@@ -8,7 +8,8 @@ import {
   getJobList,
   createJob,
   getTaskInsInfo,
-  finshTaskIns
+  finshTaskIns,
+  editTaskInsInfo
 } from '../api/task'
 
 export function setStartList(data) {
@@ -94,3 +95,14 @@ export function finshTaskInsAction(taskInsCode) {
     });
   }
 };
+
+// 完成某个任务节点
+export function editTaskInsInfoAction(taskInsCode, taskData) {
+  return async () => {
+    await editTaskInsInfo({
+      taskInsCode,
+      taskData :JSON.stringify(taskData)
+    });
+  }
+};
+

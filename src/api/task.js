@@ -22,3 +22,8 @@ export const getTaskInsInfo = (data) => {
 export const finshTaskIns = (data) => {
   return get('/jobManager/finishTaskIns', data)
 }
+
+// 编辑附加信息
+export const editTaskInsInfo = (data) => {
+  return get('/jobManager/editTaskInsInfo',data)
+}

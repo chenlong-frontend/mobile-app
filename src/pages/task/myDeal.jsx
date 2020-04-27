@@ -4,7 +4,8 @@ import { connect } from "@tarojs/redux";
 import { AtList, AtListItem, AtForm, AtInput, AtButton } from "taro-ui";
 import {
   getTaskInsInfoAction,
-  finshTaskInsAction
+  finshTaskInsAction,
+  editTaskInsInfoAction
 } from "../../actions/taskAction";
 
 @connect(
@@ -15,6 +16,9 @@ import {
     },
     onFinsh(data) {
       dispatch(finshTaskInsAction(data));
+    },
+    onEditTask(data) {
+      dispatch(editTaskInsInfoAction(data));
     }
   })
 )
