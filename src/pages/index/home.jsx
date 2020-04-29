@@ -44,9 +44,9 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.onUserInfo();
-    Taro.navigateTo({
-      url: "/pages/task/myDeal?code=25facaa7-341c-4d93-94d8-6ab34ecf87d1"
-    });
+    // Taro.navigateTo({
+    //   url: "/pages/task/myDeal?code=25facaa7-341c-4d93-94d8-6ab34ecf87d1"
+    // });
   }
 
   onTurn = item => {

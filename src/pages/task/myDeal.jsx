@@ -11,7 +11,7 @@ import {
   ({ task: { insInfo } }) => ({ insInfo }),
   dispatch => ({
     onInsInfo(data) {
-      dispatch(getTaskInsInfoAction(data));
+      return dispatch(getTaskInsInfoAction(data));
     },
     onFinsh(data) {
       dispatch(finshTaskInsAction(data));
@@ -34,7 +34,14 @@ class MyDeal extends Component {
   }
   componentWillMount() {
     const { code } = this.$router.params;
-    this.props.onInsInfo(code);
+    this.props.onInsInfo(code).then(data => {
+      console.log(data);
+      let formArr = [];
+      for (let o of Object.keys(data)) {
+        formArr.push({ label: o, value: data[o] });
+      }
+      this.setState({ formArr });
+    });
     this.setState({ code });
   }
   onValue = key => v => {
@@ -52,11 +59,12 @@ class MyDeal extends Component {
   };
   render() {
     const { formArr } = this.state;
+    const { insInfo } = this.props;
     return (
       <View>
         <AtList>
-          <AtListItem title="订单号" extraText="详细信息" />
-          <AtListItem title="订单状态" extraText="详细信息" />
+          <AtListItem title="订单号" extraText={insInfo.taskName} />
+          <AtListItem title="订单状态" extraText={insInfo.taskStatus} />
         </AtList>
         <View className="at-row">
           <View className="at-col">请填写：</View>

@@ -76,6 +76,7 @@ export function getTaskInsInfoAction(taskInsCode) {
       taskInsCode
     });
     dispatch(setInsInfo(data));
+    return data.taskData && JSON.parse(data.taskData)
   }
 };
 
