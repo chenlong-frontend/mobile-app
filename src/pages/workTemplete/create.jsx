@@ -36,7 +36,7 @@ class WorkTempleteCreate extends Component {
     this.state = {
       form: {
         taskName: "",
-        taskType: "",
+        taskType: "node",
         dependTaskCodes: "",
         nextTaskCode: "",
         receiverUserId: "",
@@ -121,7 +121,7 @@ class WorkTempleteCreate extends Component {
             placeholder="请选择完成模式"
             onChange={this.onTypeChange}
           ></Selector>
-          {!isDepend && (
+          {isDepend && (
             <MultiSelector
               title="所需工序"
               data={taskTplList}
@@ -129,7 +129,7 @@ class WorkTempleteCreate extends Component {
               onChange={this.onValue("dependTaskCodes")}
             ></MultiSelector>
           )}
-          {!isDepend && (
+          {isDepend && (
             <Selector
               title="下一节点"
               data={taskTplList}
