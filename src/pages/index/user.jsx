@@ -1,3 +1,4 @@
+import "taro-ui/dist/style/components/flex.scss";
 import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtAvatar } from "taro-ui";
@@ -16,9 +17,15 @@ class User extends Component {
     console.log(user);
     return (
       <View>
-        <AtAvatar text={user.userName} image={img}></AtAvatar>
-        <View>姓名：{user.userName}</View>
-        <View>性别：{user.sex}</View>
+        <View className="at-row">
+          <View className="at-col at-col-1 at-col--auto">
+            <AtAvatar text={user.userName} image={img}></AtAvatar>
+          </View>
+          <View className="at-col">
+            <View>姓名：{user.userName}</View>
+            <View>性别：{user.sex}</View>
+          </View>
+        </View>
         <Button
           onClick={() => {
             Taro.requestSubscribeMessage({

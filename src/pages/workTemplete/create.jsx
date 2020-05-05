@@ -35,12 +35,12 @@ class WorkTempleteCreate extends Component {
     super(...arguments);
     this.state = {
       form: {
-        taskName: "",
+        taskName: undefined,
         taskType: "node",
-        dependTaskCodes: "",
-        nextTaskCode: "",
-        receiverUserId: "",
-        taskDes: ""
+        dependTaskCodes: undefined,
+        nextTaskCode: undefined,
+        receiverUserId: undefined,
+        taskDes: undefined
       },
       taskTypeList: taskTypeDict
     };
@@ -54,16 +54,13 @@ class WorkTempleteCreate extends Component {
     this.props.onGetUsers();
   }
   onTypeChange = value => {
-    console.log(this.onValue);
-    if (value === "depend") {
-      let form = this.state.form;
-      this.setState({
-        form: Object.assign(form, {
-          dependTaskCodes: undefined,
-          nextTaskCode: undefined
-        })
-      });
-    }
+    let form = this.state.form;
+    this.setState({
+      form: Object.assign(form, {
+        dependTaskCodes: undefined,
+        nextTaskCode: undefined
+      })
+    });
     this.onValue("taskType")(value);
   };
   onValue = key => value => {

@@ -35,6 +35,9 @@ class MyDeal extends Component {
       ],
       code: ""
     };
+    this.config = {
+      navigationBarTitleText: "任务处理"
+    };
   }
   componentWillMount() {
     const { code } = this.$router.params;

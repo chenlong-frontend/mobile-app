@@ -51,18 +51,10 @@ class Auth extends Component {
     };
     this.props.onUserSet(user);
     if (this.props.login.token) {
-      this.nanavigateToIndex();
       return;
     } else {
       await this.props.onGetToken();
-      this.nanavigateToIndex();
     }
-  };
-
-  nanavigateToIndex = () => {
-    Taro.navigateTo({
-      url: "/pages/index/index"
-    });
   };
 
   onConfirm = () => {

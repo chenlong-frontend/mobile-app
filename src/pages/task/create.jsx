@@ -1,40 +1,42 @@
 import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Picker } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
-import { connect } from '@tarojs/redux'
+import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
-import { taskTplListAction } from '../../actions/workAction'
-import { createJobAction } from '../../actions/taskAction'
+import { taskTplListAction } from "../../actions/workAction";
+import { createJobAction } from "../../actions/taskAction";
 
-@connect(({ work }) => ({
-  work
-}), (dispatch) => ({
-  onTaskTplList () {
-    dispatch(taskTplListAction())
-  },
-  onCreateJob (data) {
-    dispatch(createJobAction(data)).then(() => {
-      Taro.navigateBack()
-    })
-  }
-}))
-
+@connect(
+  ({ work }) => ({
+    work
+  }),
+  dispatch => ({
+    onTaskTplList() {
+      dispatch(taskTplListAction());
+    },
+    onCreateJob(data) {
+      dispatch(createJobAction(data)).then(() => {
+        Taro.navigateBack();
+      });
+    }
+  })
+)
 class TaskCreate extends Component {
   constructor() {
     super(...arguments);
     this.state = {
       form: {
-        jobName: "",
-        deadLine: "",
-        startTaskTplCode: "",
-        jobDes: ""
+        jobName: undefined,
+        deadLine: undefined,
+        startTaskTplCode: undefined,
+        jobDes: undefined
       }
     };
     this.config = {
       navigationBarTitleText: "任务创建"
     };
   }
-  componentDidMount () {
+  componentDidMount() {
     this.props.onTaskTplList();
   }
   onValue = key => value => {
@@ -48,14 +50,19 @@ class TaskCreate extends Component {
     this.onValue("deadLine")(v.detail.value);
   };
   onSubmit() {
-    const {form} = this.state
-    this.props.onCreateJob(form)
+    const { form } = this.state;
+    this.props.onCreateJob(form);
   }
   render() {
-    const {work: { list }} = this.props;
+    const {
+      work: { list }
+    } = this.props;
     const { jobName, deadLine, jobDes, startTaskTplCode } = this.state.form;
 
-    const taskTplList = list.map(v => ({value: v.taskCode, text: v.taskName}));
+    const taskTplList = list.map(v => ({
+      value: v.taskCode,
+      text: v.taskName
+    }));
 
     return (
       <View>
@@ -89,7 +96,7 @@ class TaskCreate extends Component {
           ></Selector>
           <AtTextarea
             value={jobDes}
-            onChange={this.onValue('jobDes')}
+            onChange={this.onValue("jobDes")}
             maxLength={200}
             placeholder="工作描述"
           />

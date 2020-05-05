@@ -1,9 +1,10 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View, Swiper, SwiperItem } from "@tarojs/components";
 import { AtGrid } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import img from "../../assets/imgs/car.svg";
 import { requestUserInfoAction } from "../../actions/userAction";
+import "./style/home.less";
 
 @connect(
   ({}) => ({}),
@@ -44,13 +45,12 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.onUserInfo();
-    Taro.navigateTo({
-      url: "/pages/workTemplete/create"
-    });
+    // Taro.navigateTo({
+    //   url: "/pages/workTemplete/create"
+    // });
   }
 
   onTurn = item => {
-    console.log(item);
     Taro.navigateTo({
       url: item.url
     });
@@ -60,7 +60,31 @@ class Home extends Component {
     const { data } = this.state;
     return (
       <View className="index">
-        <AtGrid data={data} onClick={this.onTurn} />
+        <Swiper
+          className="test-h"
+          indicatorColor="#999"
+          indicatorActiveColor="#333"
+          circular
+          indicatorDots
+          autoplay
+        >
+          <SwiperItem>
+            <View className="demo-text-1">1</View>
+          </SwiperItem>
+          <SwiperItem>
+            <View className="demo-text-2">2</View>
+          </SwiperItem>
+          <SwiperItem>
+            <View className="demo-text-3">3</View>
+          </SwiperItem>
+        </Swiper>
+        <View className="title">工作台</View>
+        <AtGrid
+          data={data}
+          columnNum={4}
+          hasBorder={false}
+          onClick={this.onTurn}
+        />
       </View>
     );
   }
