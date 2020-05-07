@@ -25,7 +25,7 @@ class List extends Component {
     super(...arguments);
     this.state = {
       current: 0,
-      tabList: [{ title: "我待办的" }, { title: "我发起的" }]
+      tabList: [{ title: "我发起的" }, { title: "我待办的" }]
     };
     this.config = {
       navigationBarTitleText: "工单列表"

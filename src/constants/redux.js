@@ -8,6 +8,8 @@ export const USER_SET_LIST = 'USER_SET_LIST';
 
 // work
 export const WORK_SET_LIST = 'WORK_SET_LIST';
+export const WORK_SET_DEPEND_LIST = 'WORK_SET_DEPEND_LIST';
+export const WORK_SET_NODE_LIST = 'WORK_SET_NODE_LIST';
 
 // task
 export const TASK_SET_START_LIST = 'TASK_SET_START_LIST';

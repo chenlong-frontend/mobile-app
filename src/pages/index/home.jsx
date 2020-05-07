@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View, Swiper, SwiperItem } from "@tarojs/components";
+import { View, Swiper, SwiperItem, Image } from "@tarojs/components";
 import { AtGrid } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import img from "../../assets/imgs/car.svg";
@@ -69,13 +69,22 @@ class Home extends Component {
           autoplay
         >
           <SwiperItem>
-            <View className="demo-text-1">1</View>
+            <Image
+              style="width: 100%;"
+              src="https://weixin.frontjs.top/banner.jpg"
+            />
           </SwiperItem>
           <SwiperItem>
-            <View className="demo-text-2">2</View>
+            <Image
+              style="width: 100%;"
+              src="https://weixin.frontjs.top/banner.jpg"
+            />
           </SwiperItem>
           <SwiperItem>
-            <View className="demo-text-3">3</View>
+            <Image
+              style="width: 100%;"
+              src="https://weixin.frontjs.top/banner.jpg"
+            />
           </SwiperItem>
         </Swiper>
         <View className="title">工作台</View>

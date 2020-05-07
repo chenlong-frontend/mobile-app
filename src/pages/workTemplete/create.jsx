@@ -6,8 +6,9 @@ import Selector from "../../component/selector";
 import MultiSelector from "../../component/multiSelector";
 import { taskTypeDict } from "../../constants/dict";
 import {
-  taskTplListAction,
-  taskTplCreateAction
+  taskTplCreateAction,
+  dependListByTypeAction,
+  nodeListByTypeAction
 } from "../../actions/workAction";
 import { requestGetUsersAction } from "../../actions/userAction";
 
@@ -17,9 +18,6 @@ import { requestGetUsersAction } from "../../actions/userAction";
     user
   }),
   dispatch => ({
-    onTaskTplList() {
-      dispatch(taskTplListAction());
-    },
     onGetUsers() {
       dispatch(requestGetUsersAction());
     },
@@ -27,6 +25,12 @@ import { requestGetUsersAction } from "../../actions/userAction";
       dispatch(taskTplCreateAction(data)).then(() => {
         Taro.navigateBack();
       });
+    },
+    onDepend() {
+      dispatch(dependListByTypeAction());
+    },
+    onNode() {
+      dispatch(nodeListByTypeAction());
     }
   })
 )
@@ -36,7 +40,7 @@ class WorkTempleteCreate extends Component {
     this.state = {
       form: {
         taskName: undefined,
-        taskType: "node",
+        taskType: "depend",
         dependTaskCodes: undefined,
         nextTaskCode: undefined,
         receiverUserId: undefined,
@@ -50,8 +54,9 @@ class WorkTempleteCreate extends Component {
   }
 
   componentDidMount() {
-    this.props.onTaskTplList();
     this.props.onGetUsers();
+    this.props.onDepend();
+    this.props.onNode();
   }
   onTypeChange = value => {
     let form = this.state.form;
@@ -78,7 +83,7 @@ class WorkTempleteCreate extends Component {
 
   render() {
     const {
-      work: { list },
+      work: { dependList, nodeList },
       user
     } = this.props;
     const { taskTypeList } = this.state;
@@ -90,7 +95,12 @@ class WorkTempleteCreate extends Component {
       receiverUserId,
       taskDes
     } = this.state.form;
-    const taskTplList = list.map(v => ({
+    const dependLists = dependList.map(v => ({
+      value: v.taskCode,
+      text: v.taskName,
+      label: v.taskName
+    }));
+    const nodeLists = nodeList.map(v => ({
       value: v.taskCode,
       text: v.taskName,
       label: v.taskName
@@ -99,7 +109,7 @@ class WorkTempleteCreate extends Component {
       value: v.userCode,
       text: v.userName
     }));
-    const isDepend = taskType === "depend";
+    const isDepend = taskType === "node";
     return (
       <View>
         <AtForm onSubmit={this.onSubmit.bind(this)}>
@@ -121,7 +131,7 @@ class WorkTempleteCreate extends Component {
           {isDepend && (
             <MultiSelector
               title="所需工序"
-              data={taskTplList}
+              data={dependLists}
               value={dependTaskCodes}
               onChange={this.onValue("dependTaskCodes")}
             ></MultiSelector>
@@ -129,7 +139,7 @@ class WorkTempleteCreate extends Component {
           {isDepend && (
             <Selector
               title="下一节点"
-              data={taskTplList}
+              data={nodeLists}
               value={nextTaskCode}
               placeholder="请选择下一节点"
               onChange={this.onValue("nextTaskCode")}
