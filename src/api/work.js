@@ -4,7 +4,7 @@ import {
 } from './request';
 
 export const taskTplList = (data) => {
-  return get('/taskTpl/list', data);
+  return get('/taskTpl/listAll', data);
 }
 
 export const taskTplCreate = (data) => {

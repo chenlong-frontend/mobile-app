@@ -3,7 +3,7 @@ import { View, Text, Picker } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
-import { taskTplListAction } from "../../actions/workAction";
+import { nodeListByTypeAction } from "../../actions/workAction";
 import { createJobAction } from "../../actions/taskAction";
 
 @connect(
@@ -11,8 +11,8 @@ import { createJobAction } from "../../actions/taskAction";
     work
   }),
   dispatch => ({
-    onTaskTplList() {
-      dispatch(taskTplListAction());
+    onNode() {
+      dispatch(nodeListByTypeAction());
     },
     onCreateJob(data) {
       dispatch(createJobAction(data)).then(() => {
@@ -37,7 +37,7 @@ class TaskCreate extends Component {
     };
   }
   componentDidMount() {
-    this.props.onTaskTplList();
+    this.props.onNode();
   }
   onValue = key => value => {
     var form = this.state.form;
@@ -55,11 +55,11 @@ class TaskCreate extends Component {
   }
   render() {
     const {
-      work: { list }
+      work: { nodeList },
     } = this.props;
     const { jobName, deadLine, jobDes, startTaskTplCode } = this.state.form;
 
-    const taskTplList = list.map(v => ({
+    const taskTplList = nodeList.map(v => ({
       value: v.taskCode,
       text: v.taskName
     }));

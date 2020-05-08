@@ -15,7 +15,9 @@ import {
       return dispatch(getTaskInsInfoAction(data));
     },
     onFinsh(data) {
-      dispatch(finshTaskInsAction(data));
+      dispatch(finshTaskInsAction(data)).then(() => {
+        Taro.navigateBack();
+      });;
     },
     onEditTask(data) {
       dispatch(editTaskInsInfoAction(data));

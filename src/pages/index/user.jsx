@@ -3,7 +3,7 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtAvatar } from "taro-ui";
 import { connect } from "@tarojs/redux";
-import img from "../../assets/imgs/car.svg";
+import img from "../../assets/imgs/user.svg";
 
 @connect(
   ({ user: { user } }) => ({
