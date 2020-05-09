@@ -16,17 +16,17 @@ export default function work(state = INITIAL_STATE, action) {
     case WORK_SET_LIST:
       return {
         ...state,
-        list: data
+        list: data || []
       }
       case WORK_SET_DEPEND_LIST:
         return {
           ...state,
-          dependList: data
+          dependList: data || []
         }
         case WORK_SET_NODE_LIST:
           return {
             ...state,
-            nodeList: data
+            nodeList: data || []
           }
           default:
             return state

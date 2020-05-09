@@ -18,17 +18,17 @@ export default function task(state = INITIAL_STATE, action) {
     case TASK_SET_START_LIST:
       return {
         ...state,
-        startList: data
+        startList: data || []
       }
       case TASK_SET_WAIT_LIST:
         return {
           ...state,
-          waitList: data
+          waitList: data || []
         }
         case TASK_SET_STAR_LIST:
           return {
             ...state,
-            starList: data
+            starList: data || []
           }
           case TASK_SET_INS_INFO:
             return {

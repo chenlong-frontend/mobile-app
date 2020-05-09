@@ -6,7 +6,7 @@ class Selector extends Component {
   onChange = v => {
     const { onChange, data } = this.props;
     const key = v.detail.value;
-    onChange && onChange(data[key].value);
+    onChange && onChange(data[key] ? data[key].value : undefined);
   };
 
   render() {

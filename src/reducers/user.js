@@ -18,7 +18,7 @@ export default function user(state = INITIAL_STATE, action) {
     case USER_SET_LIST:
       return {
         ...state,
-        list: data
+        list: data || []
       }
     default:
       return state
