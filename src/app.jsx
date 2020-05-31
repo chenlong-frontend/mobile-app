@@ -17,18 +17,43 @@ import "./app.less";
 class App extends Component {
   config = {
     pages: [
-      "pages/index/index",
-      "pages/task/create",
       "pages/task/list",
+      'pages/home/home',
+      "pages/index/index",
+      "pages/index/user",
+      "pages/task/create",
       "pages/task/myDeal",
       "pages/workTemplete/list",
       "pages/workTemplete/create"
     ],
     window: {
-      backgroundTextStyle: "light",
-      navigationBarBackgroundColor: "#fff",
-      navigationBarTitleText: "WeChat",
-      navigationBarTextStyle: "black"
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: '工作流',
+      navigationBarTextStyle: 'black'
+    },
+    tabBar: {
+      custom: false,
+      color: "#9b9b9b",
+      selectedColor: "#34b0b0",
+      backgroundColor: "white",
+      borderStyle: 'white',
+      list: [{
+        pagePath: "pages/task/list",
+        iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
+        selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
+        text: "我的任务"
+      }, {
+        pagePath: "pages/workTemplete/list",
+        iconPath: "./assets/tabbar/ico_tabar_prefecture_normal.png",
+        selectedIconPath: "./assets/tabbar/ico_tabar_prefecture_pressed.png",
+        text: "所有任务"
+      }, {
+        pagePath: "pages/index/user",
+        iconPath: "./assets/tabbar/ico_tabar_mine_normal.png",
+        selectedIconPath: "./assets/tabbar/ico_tabar_mine_pressed.png",
+        text: "个人中心"
+      }]
     }
   };
 
