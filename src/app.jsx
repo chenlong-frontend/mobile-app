@@ -17,8 +17,9 @@ import "./app.less";
 class App extends Component {
   config = {
     pages: [
+      "pages/login/index",
       "pages/task/list",
-      'pages/home/home',
+      "pages/home/home",
       "pages/index/index",
       "pages/index/user",
       "pages/task/create",
@@ -27,33 +28,37 @@ class App extends Component {
       "pages/workTemplete/create"
     ],
     window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '工作流',
-      navigationBarTextStyle: 'black'
+      backgroundTextStyle: "light",
+      navigationBarBackgroundColor: "#fff",
+      navigationBarTitleText: "工作流",
+      navigationBarTextStyle: "black"
     },
     tabBar: {
       custom: false,
       color: "#9b9b9b",
       selectedColor: "#34b0b0",
       backgroundColor: "white",
-      borderStyle: 'white',
-      list: [{
-        pagePath: "pages/task/list",
-        iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
-        selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
-        text: "我的任务"
-      }, {
-        pagePath: "pages/workTemplete/list",
-        iconPath: "./assets/tabbar/ico_tabar_prefecture_normal.png",
-        selectedIconPath: "./assets/tabbar/ico_tabar_prefecture_pressed.png",
-        text: "所有任务"
-      }, {
-        pagePath: "pages/index/user",
-        iconPath: "./assets/tabbar/ico_tabar_mine_normal.png",
-        selectedIconPath: "./assets/tabbar/ico_tabar_mine_pressed.png",
-        text: "个人中心"
-      }]
+      borderStyle: "white",
+      list: [
+        {
+          pagePath: "pages/task/list",
+          iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
+          selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
+          text: "我的任务"
+        },
+        {
+          pagePath: "pages/workTemplete/list",
+          iconPath: "./assets/tabbar/ico_tabar_prefecture_normal.png",
+          selectedIconPath: "./assets/tabbar/ico_tabar_prefecture_pressed.png",
+          text: "所有任务"
+        },
+        {
+          pagePath: "pages/index/user",
+          iconPath: "./assets/tabbar/ico_tabar_mine_normal.png",
+          selectedIconPath: "./assets/tabbar/ico_tabar_mine_pressed.png",
+          text: "个人中心"
+        }
+      ]
     }
   };
 

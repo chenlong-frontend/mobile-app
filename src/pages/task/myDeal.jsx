@@ -5,7 +5,9 @@ import { AtList, AtListItem, AtForm, AtInput, AtButton } from "taro-ui";
 import {
   getTaskInsInfoAction,
   finshTaskInsAction,
-  editTaskInsInfoAction
+  editTaskInsInfoAction,
+  getJobByStartMeAction,
+  getJobByWaitMeAction
 } from "../../actions/taskAction";
 
 @connect(
@@ -16,8 +18,10 @@ import {
     },
     onFinsh(data) {
       dispatch(finshTaskInsAction(data)).then(() => {
+        dispatch(getJobByStartMeAction());
+        dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
-      });;
+      });
     },
     onEditTask(data) {
       dispatch(editTaskInsInfoAction(data));
