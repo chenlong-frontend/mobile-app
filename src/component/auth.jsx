@@ -37,7 +37,8 @@ class Auth extends Component {
       .then(() => {
         this.props.onAuthed();
       })
-      .catch(() => {
+      .catch(e => {
+        console.log(e);
         this.props.onAuthFail();
       });
   }
