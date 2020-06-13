@@ -47,7 +47,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.props.onUserInfo();
+    // this.props.onUserInfo();
   }
 
   onTurn = item => {

@@ -17,10 +17,8 @@ import "./app.less";
 class App extends Component {
   config = {
     pages: [
-      "pages/login/index",
       "pages/task/list",
-      "pages/home/home",
-      "pages/index/index",
+      "pages/login/index",
       "pages/index/user",
       "pages/task/create",
       "pages/task/myDeal",

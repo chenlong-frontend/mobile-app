@@ -24,9 +24,9 @@ export function getTokenAction() {
   return async (dispatch, getState) => {
     const state = getState();
     const {
-      token
+      openid
     } = await login(state.login.user);
-    dispatch(setToken(token));
+    dispatch(setToken(openid));
   }
 };
 

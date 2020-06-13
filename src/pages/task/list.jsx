@@ -1,10 +1,12 @@
 import Taro, { Component } from "@tarojs/taro";
+import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import {
   getJobByStartMeAction,
   getJobByWaitMeAction
 } from "../../actions/taskAction";
+import Auth from "../../component/auth";
 
 @connect(
   ({ task: { startList, waitList } }) => ({
@@ -32,10 +34,7 @@ class List extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.onTaskStart();
-    this.props.onTaskWait();
-  }
+  componentDidMount() {}
 
   onTabChange(value) {
     this.setState({
@@ -49,41 +48,55 @@ class List extends Component {
     });
   };
 
+  onAuthed = () => {
+    this.props.onTaskStart();
+    this.props.onTaskWait();
+  };
+
+  onAuthFail = () => {
+    Taro.navigateTo({
+      url: "/pages/login/index"
+    });
+  };
+
   render() {
     const { tabList } = this.state;
     const { startList, waitList } = this.props;
     return (
-      <AtTabs
-        current={this.state.current}
-        tabList={tabList}
-        onClick={this.onTabChange.bind(this)}
-      >
-        <AtTabsPane current={this.state.current} index={0}>
-          <AtList>
-            {startList.map(v => (
-              <AtListItem
-                key={v.jobCode}
-                title={v.jobName}
-                extraText={v.deadLine}
-                note={v.jobDes}
-              />
-            ))}
-          </AtList>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={1}>
-          <AtList>
-            {waitList.map(v => (
-              <AtListItem
-                onClick={this.turnPage(v.taskInsCode)}
-                key={v.jobCode}
-                title={v.jobName}
-                extraText={v.deadLine}
-                note={v.jobDes}
-              />
-            ))}
-          </AtList>
-        </AtTabsPane>
-      </AtTabs>
+      <View>
+        <AtTabs
+          current={this.state.current}
+          tabList={tabList}
+          onClick={this.onTabChange.bind(this)}
+        >
+          <AtTabsPane current={this.state.current} index={0}>
+            <AtList>
+              {startList.map(v => (
+                <AtListItem
+                  key={v.jobCode}
+                  title={v.jobName}
+                  extraText={v.deadLine}
+                  note={v.jobDes}
+                />
+              ))}
+            </AtList>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={1}>
+            <AtList>
+              {waitList.map(v => (
+                <AtListItem
+                  onClick={this.turnPage(v.taskInsCode)}
+                  key={v.jobCode}
+                  title={v.jobName}
+                  extraText={v.deadLine}
+                  note={v.jobDes}
+                />
+              ))}
+            </AtList>
+          </AtTabsPane>
+        </AtTabs>
+        <Auth onAuthed={this.onAuthed} onAuthFail={this.onAuthFail}></Auth>
+      </View>
     );
   }
 }

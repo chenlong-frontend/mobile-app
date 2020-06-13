@@ -2,19 +2,16 @@ import Taro, { Component } from "@tarojs/taro";
 import { Navigator, Button } from "@tarojs/components";
 import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui";
 import { connect } from "@tarojs/redux";
-
-import { getTokenAction, setUserAction } from "../actions/loginAction";
+import { setUserAction, getTokenAction } from "../actions/loginAction";
 
 @connect(
-  ({ login }) => ({
-    login
-  }),
+  ({}) => ({}),
   dispatch => ({
-    onGetToken() {
-      dispatch(getTokenAction());
+    onUserSet: data => {
+      return dispatch(setUserAction(data));
     },
-    onUserSet(data) {
-      dispatch(setUserAction(data));
+    onGetToken: data => {
+      return dispatch(getTokenAction(data));
     }
   })
 )
@@ -32,12 +29,18 @@ class Auth extends Component {
       this.setState({ isOpened: true });
       return;
     }
-
-    this.checkToken();
+    this.checkToken()
+      .then(() => {
+        this.props.onAuthed();
+      })
+      .catch(() => {
+        this.props.onAuthFail();
+      });
   }
 
   checkToken = async () => {
     const { code } = await Taro.login();
+    console.log(code);
     const { encryptedData, iv, signature, userInfo } = await Taro.getUserInfo({
       lang: "zh_CN",
       withCredentials: true
@@ -50,16 +53,11 @@ class Auth extends Component {
       code
     };
     this.props.onUserSet(user);
-    if (this.props.login.token) {
-      return;
-    } else {
-      await this.props.onGetToken();
-    }
+    await this.props.onGetToken();
   };
 
   onConfirm = () => {
     this.setState({ isOpened: false });
-    this.checkToken();
   };
 
   render() {
