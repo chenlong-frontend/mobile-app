@@ -5,6 +5,9 @@ import {
 import {
   register
 } from '../api/auth'
+import {
+  requestUserInfoAction
+} from './userAction'
 
 export function setToken(token) {
   return {
@@ -27,6 +30,7 @@ export function getTokenAction() {
       openid
     } = await login(state.login.user);
     dispatch(setToken(openid));
+    await dispatch(requestUserInfoAction)
   }
 };
 
