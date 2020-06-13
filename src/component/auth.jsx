@@ -23,7 +23,11 @@ class Auth extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getUserInfo();
+  }
+
+  async getUserInfo() {
     const res = await Taro.getSetting();
     if (!res.authSetting["scope.userInfo"]) {
       this.setState({ isOpened: true });
@@ -58,6 +62,7 @@ class Auth extends Component {
 
   onConfirm = () => {
     this.setState({ isOpened: false });
+    this.getUserInfo();
   };
 
   render() {
