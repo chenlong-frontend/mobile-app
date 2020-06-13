@@ -1,3 +1,4 @@
+import Taro from "@tarojs/taro";
 import {
   LOGIN_SET_TOKEN,
   LOGIN_SET_USER
@@ -35,7 +36,12 @@ export function getTokenAction() {
     console.log(openid);
     dispatch(setToken(openid));
     console.log("1111111111111111111")
-    await dispatch(requestUserInfoAction())
+    const userInfo = await dispatch(requestUserInfoAction())
+    if (!userInfo) {
+      Taro.navigateTo({
+        url: "/pages/login/index"
+      });
+    }
   }
 };
 

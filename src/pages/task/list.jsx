@@ -53,11 +53,7 @@ class List extends Component {
     this.props.onTaskWait();
   };
 
-  onAuthFail = () => {
-    Taro.navigateTo({
-      url: "/pages/login/index"
-    });
-  };
+  onAuthFail = () => {};
 
   render() {
     const { tabList } = this.state;
