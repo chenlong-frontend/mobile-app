@@ -24,11 +24,13 @@ export function setUserAction(user) {
 }
 
 export function getTokenAction() {
+  console("000000000000000000000")
   return async (dispatch, getState) => {
     const state = getState();
     const {
       openid
     } = await login(state.login.user);
+    console.log("--------------------------")
     dispatch(setToken(openid));
     await dispatch(requestUserInfoAction)
   }
@@ -36,6 +38,8 @@ export function getTokenAction() {
 
 export function registerAction(data) {
   return async () => {
+    console.log("+++++++++++++++++++++++")
+    console.log(data);
     await register(data);
   }
 }

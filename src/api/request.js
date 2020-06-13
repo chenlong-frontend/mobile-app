@@ -27,6 +27,7 @@ export const post = (url, data) => {
     token && (param.header = {
       "openid": token
     });
+    console.log("========" + token)
     Taro.request(param).then(res => {
       if (res.data && res.data.code === '0000') {
         resolve(res.data.data)
