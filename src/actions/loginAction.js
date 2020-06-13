@@ -32,6 +32,6 @@ export function getTokenAction() {
 
 export function loginAction(data) {
   return async () => {
-    // await login(data);
+    await login(data);
   }
 }

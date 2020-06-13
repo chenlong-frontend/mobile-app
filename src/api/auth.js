@@ -1,5 +1,5 @@
-import {get} from './request';
+import {post} from './request';
 
 export const login = (data) => {
-  return get('/weixin/userInfo',data);
+  return post('/user/saveUserInfo',data);
 }

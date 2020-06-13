@@ -23,9 +23,9 @@ class Login extends Component {
     super(...arguments);
     this.state = {
       form: {
-        name: undefined,
-        phone: undefined,
-        profession: undefined
+        userName: undefined,
+        telPhoneNum: undefined,
+        departMentName: undefined
       }
     };
     this.config = {
@@ -50,28 +50,28 @@ class Login extends Component {
         <view>请登记您的基本信息，信息请保持与您工作中使用的一致</view>
         <AtForm onSubmit={this.onSubmit}>
           <AtInput
-            name="name"
+            name="userName"
             title="真实姓名"
             type="text"
             placeholder="请填写真实姓名"
-            value={name}
-            onChange={this.onValue("name")}
+            value={userName}
+            onChange={this.onValue("userName")}
           />
           <AtInput
-            name="phone"
+            name="telPhoneNum"
             title="联系电话"
             type="phone"
             placeholder="请填写工作中使用的电话号码"
-            value={phone}
-            onChange={this.onValue("phone")}
+            value={telPhoneNum}
+            onChange={this.onValue("telPhoneNum")}
           />
           <AtInput
-            name="profession"
+            name="departMentName"
             title="工种"
             type="text"
             placeholder="点击选择工种"
-            value={profession}
-            onChange={this.onValue("profession")}
+            value={departMentName}
+            onChange={this.onValue("departMentName")}
           />
           <AtButton formType="submit">提交信息</AtButton>
         </AtForm>

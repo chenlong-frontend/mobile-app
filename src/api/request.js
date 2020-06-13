@@ -4,7 +4,7 @@ import {
   getTokenAction
 } from '../actions/loginAction'
 
-const base = 'https://weixin.frontjs.top'
+const base = 'http://localhost:8080'
 const TOKEN_ERROR = ['100002', '100007'];
 
 export const reLogin = async (url, data, fn) => {
