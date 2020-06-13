@@ -3,7 +3,7 @@ import {
   LOGIN_SET_USER
 } from '../constants/redux'
 import {
-  login
+  register
 } from '../api/auth'
 
 export function setToken(token) {
@@ -30,8 +30,8 @@ export function getTokenAction() {
   }
 };
 
-export function loginAction(data) {
+export function registerAction(data) {
   return async () => {
-    await login(data);
+    await register(data);
   }
 }

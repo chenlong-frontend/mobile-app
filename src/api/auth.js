@@ -1,5 +1,7 @@
-import {post} from './request';
+import {
+  post
+} from './request';
 
-export const login = (data) => {
-  return post('/user/saveUserInfo',data);
+export const register = (data) => {
+  return post('/user/saveUserInfo', data);
 }

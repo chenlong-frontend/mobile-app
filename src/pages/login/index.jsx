@@ -2,15 +2,15 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtForm, AtInput, AtButton } from "taro-ui";
 import { connect } from "@tarojs/redux";
-import { loginAction } from "../../actions/loginAction";
+import { registerAction } from "../../actions/loginAction";
 
 @connect(
   ({ user }) => ({
     user
   }),
   dispatch => ({
-    onLogin(data) {
-      dispatch(loginAction(data)).then(() => {
+    onReg(data) {
+      dispatch(registerAction(data)).then(() => {
         Taro.switchTab({
           url: "/pages/task/list"
         });
@@ -41,7 +41,7 @@ class Login extends Component {
   };
   onSubmit = () => {
     const { form } = this.state;
-    this.props.onLogin(form);
+    this.props.onReg(form);
   };
   render() {
     const { userName, telPhoneNum, departMentName } = this.state;
