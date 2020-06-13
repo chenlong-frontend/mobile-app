@@ -3,6 +3,9 @@ import {
   LOGIN_SET_USER
 } from '../constants/redux'
 import {
+  getOpenid
+} from '../api/auth'
+import {
   register
 } from '../api/auth'
 import {
@@ -24,21 +27,20 @@ export function setUserAction(user) {
 }
 
 export function getTokenAction() {
-  console("000000000000000000000")
   return async (dispatch, getState) => {
     const state = getState();
     const {
       openid
-    } = await login(state.login.user);
-    console.log("--------------------------")
+    } = await getOpenid(state.login.user);
+    console.log(openid);
     dispatch(setToken(openid));
-    await dispatch(requestUserInfoAction)
+    console.log("1111111111111111111")
+    await dispatch(requestUserInfoAction())
   }
 };
 
 export function registerAction(data) {
   return async () => {
-    console.log("+++++++++++++++++++++++")
     console.log(data);
     await register(data);
   }

@@ -32,7 +32,9 @@ export function requestGetUsersAction() {
 // 请求用户信息
 export function requestUserInfoAction() {
   return async (dispatch) => {
+    console.log("22222222222222222222")
     const data = await getUserByToken();
+    console.log(data);
     dispatch(setUserInfoAction(data));
     return data;
   }
