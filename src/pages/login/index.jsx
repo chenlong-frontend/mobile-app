@@ -44,7 +44,7 @@ class Login extends Component {
     this.props.onLogin(form);
   };
   render() {
-    const { name, phone, profession } = this.state;
+    const { userName, telPhoneNum, departMentName } = this.state;
     return (
       <View>
         <view>请登记您的基本信息，信息请保持与您工作中使用的一致</view>
