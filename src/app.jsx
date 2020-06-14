@@ -17,6 +17,7 @@ import "./app.less";
 class App extends Component {
   config = {
     pages: [
+      "pages/index/home",
       "pages/task/list",
       "pages/login/index",
       "pages/index/user",
@@ -38,6 +39,12 @@ class App extends Component {
       backgroundColor: "white",
       borderStyle: "white",
       list: [
+        {
+          pagePath: "pages/index/home",
+          iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
+          selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
+          text: "我的首页"
+        },
         {
           pagePath: "pages/task/list",
           iconPath: "./assets/tabbar/ico_tabar_home_normal.png",

@@ -6,7 +6,6 @@ import {
   getJobByStartMeAction,
   getJobByWaitMeAction
 } from "../../actions/taskAction";
-import Auth from "../../component/auth";
 
 @connect(
   ({ task: { startList, waitList } }) => ({
@@ -48,13 +47,6 @@ class List extends Component {
     });
   };
 
-  onAuthed = () => {
-    this.props.onTaskStart();
-    this.props.onTaskWait();
-  };
-
-  onAuthFail = () => {};
-
   render() {
     const { tabList } = this.state;
     const { startList, waitList } = this.props;
@@ -91,7 +83,6 @@ class List extends Component {
             </AtList>
           </AtTabsPane>
         </AtTabs>
-        <Auth onAuthed={this.onAuthed} onAuthFail={this.onAuthFail}></Auth>
       </View>
     );
   }

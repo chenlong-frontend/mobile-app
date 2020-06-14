@@ -4,9 +4,8 @@ import { AtGrid } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import { requestUserInfoAction } from "../../actions/userAction";
 import taskCreateImg from "../../assets/imgs/task-create.svg";
-import taskListImg from "../../assets/imgs/task-list.svg";
 import workCreateImg from "../../assets/imgs/work-create.svg";
-import workListImg from "../../assets/imgs/work-list.svg";
+import Auth from "../../component/auth";
 import "./style/home.less";
 
 @connect(
@@ -31,16 +30,6 @@ class Home extends Component {
           image: workCreateImg,
           value: "新建工单",
           url: "/pages/workTemplete/create"
-        },
-        {
-          image: taskListImg,
-          value: "任务列表",
-          url: "/pages/task/list"
-        },
-        {
-          image: workListImg,
-          value: "工单列表",
-          url: "/pages/workTemplete/list"
         }
       ]
     };
@@ -55,6 +44,13 @@ class Home extends Component {
       url: item.url
     });
   };
+
+  onAuthed = () => {
+    this.props.onTaskStart();
+    this.props.onTaskWait();
+  };
+
+  onAuthFail = () => {};
 
   render() {
     const { data } = this.state;
@@ -94,6 +90,7 @@ class Home extends Component {
           hasBorder={false}
           onClick={this.onTurn}
         />
+        <Auth onAuthed={this.onAuthed} onAuthFail={this.onAuthFail}></Auth>
       </View>
     );
   }
