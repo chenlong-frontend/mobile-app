@@ -76,7 +76,6 @@ class TaskCreate extends Component {
     console.log(name);
     console.log(index);
     console.log(value);
-    value = 1;
     let { form } = this.state;
     form.subTasks[index][name] = value;
     this.setState({
