@@ -1,5 +1,5 @@
 import Taro, { Component } from "@tarojs/taro";
-import { View } from "@tarojs/components";
+import { View, Picker, Text } from "@tarojs/components";
 import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
@@ -82,6 +82,9 @@ class TaskCreate extends Component {
       form
     });
   };
+  onTimeChange = (name, index) => v => {
+    this.onSubTask(name, index)(v.detail.value);
+  };
   render() {
     let {
       work: { nodeList },
@@ -153,6 +156,36 @@ class TaskCreate extends Component {
                   placeholder="请选择实施人"
                   onChange={this.onSubTask("userId", index)}
                 ></Selector>
+                <Picker
+                  mode="date"
+                  onChange={this.onTimeChange("startDate", index)}
+                >
+                  <View className="at-input">
+                    <View className="at-input__container">
+                      <Text className="at-input__title">启动时间</Text>
+                      <View>
+                        <View className="picker">
+                          {v.startDate ? v.startDate : "请选择启动时间"}
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </Picker>
+                <Picker
+                  mode="date"
+                  onChange={this.onTimeChange("endDate", index)}
+                >
+                  <View className="at-input">
+                    <View className="at-input__container">
+                      <Text className="at-input__title">结束时间</Text>
+                      <View>
+                        <View className="picker">
+                          {v.endDate ? v.endDate : "请选择结束时间"}
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                </Picker>
               </view>
             );
           })}

@@ -62,6 +62,7 @@ export function nodeListByTypeAction() {
     const data = await taskTplListByType({
       taskType: 'node'
     });
+    console.log('=======', data)
     dispatch(setNodeList(data));
   }
 };
