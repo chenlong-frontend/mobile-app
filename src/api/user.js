@@ -6,5 +6,5 @@ export const getUserByToken = (data) => {
 
 //获取用户信息
 export const getUsers = () => {
-  return get('/user/getUsers');
+  return get('/user/getAllUser');
 }

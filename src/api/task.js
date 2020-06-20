@@ -8,9 +8,10 @@ export const getJobList = (data) => {
   return get('/jobManager/getJobList', data);
 }
 
-// 创建任务
+// 创建启动器嘿嘿
 export const createJob = (data) => {
-  return post('/jobManager/createJob', data);
+  console.log(data);
+  return post('/task/createWorkTemplate', data);
 }
 
 // 获取任务附加信息
