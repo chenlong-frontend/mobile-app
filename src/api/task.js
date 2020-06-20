@@ -4,8 +4,8 @@ import {
 } from './request';
 
 // 获取任务
-export const getJobList = (data) => {
-  return get('/jobManager/getJobList', data);
+export const getJobList = () => {
+  return get('/task/getWorks');
 }
 
 // 创建启动器嘿嘿
