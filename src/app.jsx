@@ -23,6 +23,7 @@ class App extends Component {
       "pages/index/user",
       "pages/task/create",
       "pages/task/myDeal",
+      "pages/task/mydealList",
       "pages/workTemplete/list",
       "pages/workTemplete/create"
     ],
@@ -46,7 +47,7 @@ class App extends Component {
           text: "我的首页"
         },
         {
-          pagePath: "pages/workTemplete/list",
+          pagePath: "pages/task/mydealList",
           iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
           selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
           text: "我的任务"
