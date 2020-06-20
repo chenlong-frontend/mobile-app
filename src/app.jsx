@@ -46,13 +46,13 @@ class App extends Component {
           text: "我的首页"
         },
         {
-          pagePath: "pages/task/list",
+          pagePath: "pages/workTemplete/list",
           iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
           selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
           text: "我的任务"
         },
         {
-          pagePath: "pages/workTemplete/list",
+          pagePath: "pages/task/list",
           iconPath: "./assets/tabbar/ico_tabar_prefecture_normal.png",
           selectedIconPath: "./assets/tabbar/ico_tabar_prefecture_pressed.png",
           text: "所有任务"

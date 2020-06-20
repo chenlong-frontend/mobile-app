@@ -2,22 +2,15 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtTabs, AtTabsPane } from "taro-ui";
 import { connect } from "@tarojs/redux";
-import {
-  getJobByStartMeAction,
-  getJobByWaitMeAction
-} from "../../actions/taskAction";
+import { getAllTask } from "../../actions/taskAction";
 
 @connect(
-  ({ task: { startList, waitList } }) => ({
-    startList,
-    waitList
+  ({ task: { allList } }) => ({
+    allList
   }),
   dispatch => ({
-    onTaskStart() {
-      dispatch(getJobByStartMeAction());
-    },
-    onTaskWait() {
-      dispatch(getJobByWaitMeAction());
+    onAllTask() {
+      dispatch(getAllTask());
     }
   })
 )
@@ -26,14 +19,16 @@ class List extends Component {
     super(...arguments);
     this.state = {
       current: 0,
-      tabList: [{ title: "我发起的" }, { title: "我待办的" }]
+      tabList: [{ title: "全部" }, { title: "进行中" }, { title: "已结束" }]
     };
     this.config = {
-      navigationBarTitleText: "工单列表"
+      navigationBarTitleText: "所有任务"
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.onAllTask();
+  }
 
   onTabChange(value) {
     this.setState({
@@ -49,7 +44,7 @@ class List extends Component {
 
   render() {
     const { tabList } = this.state;
-    const { startList, waitList } = this.props;
+    const { allList } = this.props;
     return (
       <View>
         <AtTabs
@@ -59,7 +54,7 @@ class List extends Component {
         >
           <AtTabsPane current={this.state.current} index={0}>
             <AtList>
-              {startList.map(v => (
+              {allList.map(v => (
                 <AtListItem
                   key={v.jobCode}
                   title={v.jobName}
@@ -71,7 +66,20 @@ class List extends Component {
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
             <AtList>
-              {waitList.map(v => (
+              {allList.map(v => (
+                <AtListItem
+                  onClick={this.turnPage(v.taskInsCode)}
+                  key={v.jobCode}
+                  title={v.jobName}
+                  extraText={v.deadLine}
+                  note={v.jobDes}
+                />
+              ))}
+            </AtList>
+          </AtTabsPane>
+          <AtTabsPane current={this.state.current} index={2}>
+            <AtList>
+              {allList.map(v => (
                 <AtListItem
                   onClick={this.turnPage(v.taskInsCode)}
                   key={v.jobCode}

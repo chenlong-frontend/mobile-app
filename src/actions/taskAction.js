@@ -1,8 +1,10 @@
 import {
+
   TASK_SET_START_LIST,
   TASK_SET_WAIT_LIST,
   TASK_SET_STAR_LIST,
-  TASK_SET_INS_INFO
+  TASK_SET_INS_INFO,
+  TASK_SET_ALL_LIST
 } from '../constants/redux'
 import {
   getJobList,
@@ -11,6 +13,14 @@ import {
   finshTaskIns,
   editTaskInsInfo
 } from '../api/task'
+
+export function setAllList(data) {
+  return {
+    type: TASK_SET_ALL_LIST,
+    data
+  }
+}
+
 
 export function setStartList(data) {
   return {
@@ -39,6 +49,15 @@ export function setInsInfo(data) {
     data
   }
 }
+
+// 所有任务
+// TODO
+export function getAllTask() {
+  return async (dispatch) => {
+    const data = await getJobList();
+    dispatch(setAllList(data));
+  }
+};
 
 // 我参与过的任务状态
 export function getJobByStartMeAction() {
@@ -102,8 +121,7 @@ export function editTaskInsInfoAction(taskInsCode, taskData) {
   return async () => {
     await editTaskInsInfo({
       taskInsCode,
-      taskData :JSON.stringify(taskData)
+      taskData: JSON.stringify(taskData)
     });
   }
 };
-
