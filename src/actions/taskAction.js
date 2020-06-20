@@ -70,6 +70,7 @@ export function getJobByStartMeAction() {
 };
 
 // 需要我完成的
+// TODO
 export function getJobByWaitMeAction() {
   return async (dispatch) => {
     const data = await getJobList({
