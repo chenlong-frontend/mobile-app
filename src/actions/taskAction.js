@@ -73,7 +73,7 @@ export function getJobByStartMeAction() {
 // TODO
 export function getJobByWaitMeAction() {
   return async (dispatch) => {
-    const data = await getJobList({
+    const data = await getMyJobList({
       jobType: "2"
     });
     dispatch(setWaitList(data));

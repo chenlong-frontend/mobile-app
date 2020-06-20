@@ -8,6 +8,11 @@ export const getJobList = () => {
   return get('/task/getWorks');
 }
 
+// 获取我的任务
+export const getMyJobList = () => {
+  return get('/task/getMyWorks');
+}
+
 // 创建启动器嘿嘿
 export const createJob = (data) => {
   console.log(data);
