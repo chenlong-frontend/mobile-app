@@ -16,6 +16,7 @@ export const getMyJobList = () => {
 // 创建启动器嘿嘿
 export const createJob = (data) => {
   console.log(data);
+  console.warn(data);
   return post('/task/createWorkTemplate', data);
 }
 
@@ -26,7 +27,7 @@ export const getTaskInsInfo = (data) => {
 
 // 完成某个任务节点
 export const finshTaskIns = (data) => {
-  return get('/jobManager/finishTaskIns', data)
+  return get('/task/submitWork', data)
 }
 
 // 编辑附加信息

@@ -93,7 +93,7 @@ export function getJobByStarAction() {
 };
 
 // 获取任务附加信息
-// TODO
+// DONE
 export function getTaskInsInfoAction(workTemplateId) {
   return async (dispatch) => {
     const data = await getTaskInsInfo({
@@ -113,10 +113,10 @@ export function createJobAction(param) {
 
 // 完成某个任务节点
 // TODO
-export function finshTaskInsAction(taskInsCode) {
+export function finshTaskInsAction(workTemplateId) {
   return async () => {
     await finshTaskIns({
-      taskInsCode
+      workTemplateId
     });
   }
 };
