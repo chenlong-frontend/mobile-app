@@ -21,7 +21,7 @@ export const createJob = (data) => {
 
 // 获取任务附加信息
 export const getTaskInsInfo = (data) => {
-  return get('/jobManager/getTaskInsInfo', data)
+  return get('/task/getTaskInsInfo', data)
 }
 
 // 完成某个任务节点
