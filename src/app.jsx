@@ -48,8 +48,8 @@ class App extends Component {
         },
         {
           pagePath: "pages/task/mydealList",
-          iconPath: "./assets/tabbar/ico_tabar_home_normal.png",
-          selectedIconPath: "./assets/tabbar/ico_tabar_home_pressed.png",
+          iconPath: "./assets/tabbar/ico_tabar_task_normal.png",
+          selectedIconPath: "./assets/tabbar/ico_tabar_task_pressed.png",
           text: "我的任务"
         },
         {
