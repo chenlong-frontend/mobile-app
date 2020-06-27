@@ -70,7 +70,7 @@ class List extends Component {
             <AtList>
               {activeList.map(v => (
                 <AtListItem
-                  onClick={this.turnPage(v.taskInsCode)}
+                  onClick={this.turnPage(v.id)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}

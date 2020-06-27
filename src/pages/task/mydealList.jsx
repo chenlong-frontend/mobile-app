@@ -4,8 +4,8 @@ import { connect } from "@tarojs/redux";
 import { getJobByWaitMeAction } from "../../actions/taskAction";
 
 @connect(
-  ({ work }) => ({
-    work
+  ({ task: { waitList } }) => ({
+    waitList
   }),
   dispatch => ({
     onTaskTplList() {
@@ -26,17 +26,15 @@ class List extends Component {
   }
 
   render() {
-    const {
-      work: { list }
-    } = this.props;
+    const { waitList } = this.props;
     return (
       <AtList>
-        {list.map(v => (
+        {waitList.map(v => (
           <AtListItem
-            key={v.taskCode}
-            title={v.taskName}
-            extraText={v.createDate}
-            note={v.taskDes}
+            key={v.jobCode}
+            title={v.jobName}
+            extraText={v.deadLine}
+            note={v.jobDes}
           />
         ))}
       </AtList>

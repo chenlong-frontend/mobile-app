@@ -17,8 +17,12 @@ export const post = (url, data) => {
   const {
     login: {
       token
+    },
+    user: {
+      user
     }
   } = store.getState();
+  console.log('===', user)
   return new Promise((resolve, reject) => {
     let param = {
       url: base + url,
@@ -26,7 +30,8 @@ export const post = (url, data) => {
       data
     }
     token && (param.header = {
-      "openid": token
+      "openid": token,
+      "userId": user.userId || ''
     });
     console.log("========" + token)
     Taro.request(param).then(res => {
@@ -48,8 +53,12 @@ export const get = (url, data) => {
   const {
     login: {
       token
+    },
+    user: {
+      user
     }
   } = store.getState();
+  console.log('===', user)
   return new Promise((resolve, reject) => {
     let param = {
       url: base + url,
@@ -57,7 +66,8 @@ export const get = (url, data) => {
       data
     }
     token && (param.header = {
-      "openid": token
+      "openid": token,
+      "userId": user.userId || ''
     });
     Taro.request(param).then(res => {
       if (res.data && res.data.code === '0000') {

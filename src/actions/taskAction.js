@@ -77,6 +77,7 @@ export function getJobByWaitMeAction() {
     const data = await getMyJobList({
       jobType: "2"
     });
+    console.log(data)
     dispatch(setWaitList(data));
   }
 };
