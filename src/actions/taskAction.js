@@ -11,6 +11,7 @@ import {
   createJob,
   getTaskInsInfo,
   finshTaskIns,
+  getMyJobList,
   editTaskInsInfo
 } from '../api/task'
 
@@ -51,7 +52,7 @@ export function setInsInfo(data) {
 }
 
 // 所有任务
-// TODO
+// done
 export function getAllTask() {
   return async (dispatch) => {
     const data = await getJobList();
@@ -70,7 +71,7 @@ export function getJobByStartMeAction() {
 };
 
 // 需要我完成的
-// TODO
+// done
 export function getJobByWaitMeAction() {
   return async (dispatch) => {
     const data = await getMyJobList({
