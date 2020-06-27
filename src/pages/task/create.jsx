@@ -103,8 +103,8 @@ class TaskCreate extends Component {
       text: v.userName
     }));
     return (
-      <View>
-        <AtForm onSubmit={this.onSubmit.bind(this)}>
+      <View className="container">
+        <AtForm>
           <AtInput
             name="value"
             title="任务名称"
@@ -189,8 +189,16 @@ class TaskCreate extends Component {
               </view>
             );
           })}
-          <AtButton formType="submit">提交</AtButton>
         </AtForm>
+        <View className="footer-submit">
+          <AtButton
+            onClick={this.onSubmit.bind(this)}
+            type="primary"
+            formType="submit"
+          >
+            提交
+          </AtButton>
+        </View>
       </View>
     );
   }

@@ -45,6 +45,8 @@ class List extends Component {
   render() {
     const { tabList } = this.state;
     const { allList } = this.props;
+    const activeList = allList.filter(v => v.jobStatus === "active");
+    const completeList = allList.filter(v => v.jobStatus !== "active");
     return (
       <View>
         <AtTabs
@@ -66,7 +68,7 @@ class List extends Component {
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={1}>
             <AtList>
-              {allList.map(v => (
+              {activeList.map(v => (
                 <AtListItem
                   onClick={this.turnPage(v.taskInsCode)}
                   key={v.jobCode}
@@ -79,9 +81,8 @@ class List extends Component {
           </AtTabsPane>
           <AtTabsPane current={this.state.current} index={2}>
             <AtList>
-              {allList.map(v => (
+              {completeList.map(v => (
                 <AtListItem
-                  onClick={this.turnPage(v.taskInsCode)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}

@@ -46,8 +46,8 @@ class Home extends Component {
   };
 
   onAuthed = () => {
-    this.props.onTaskStart();
-    this.props.onTaskWait();
+    // this.props.onTaskStart();
+    // this.props.onTaskWait();
   };
 
   onAuthFail = () => {};
@@ -55,7 +55,7 @@ class Home extends Component {
   render() {
     const { data } = this.state;
     return (
-      <View className="index">
+      <View className="container">
         <Swiper
           className="test-h"
           indicatorColor="#999"
