@@ -24,13 +24,18 @@ class List extends Component {
   componentDidMount() {
     this.props.onTaskTplList();
   }
-
+  turnPage = code => () => {
+    Taro.navigateTo({
+      url: `/pages/task/myDeal?code=${code}`
+    });
+  };
   render() {
     const { waitList } = this.props;
     return (
       <AtList>
         {waitList.map(v => (
           <AtListItem
+            onClick={this.turnPage(v.id)}
             key={v.jobCode}
             title={v.jobName}
             extraText={v.deadLine}

@@ -36,12 +36,6 @@ class List extends Component {
     });
   }
 
-  turnPage = code => () => {
-    Taro.navigateTo({
-      url: `/pages/task/myDeal?code=${code}`
-    });
-  };
-
   render() {
     const { tabList } = this.state;
     const { allList } = this.props;
@@ -70,7 +64,6 @@ class List extends Component {
             <AtList>
               {activeList.map(v => (
                 <AtListItem
-                  onClick={this.turnPage(v.id)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}
