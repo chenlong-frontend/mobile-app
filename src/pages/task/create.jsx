@@ -73,11 +73,12 @@ class TaskCreate extends Component {
     });
   }
   onSubTask = (name, index) => value => {
-    console.log(name);
-    console.log(index);
-    console.log(value);
     let { form } = this.state;
     form.subTasks[index][name] = value;
+    if (name === "taskTemplateId") {
+      const res = this.props.work.nodeList.find(v => v.taskCode === value);
+      form.subTasks[index].taskTemplateName = res.taskName;
+    }
     this.setState({
       form
     });
