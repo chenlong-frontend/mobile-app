@@ -58,7 +58,7 @@ class TaskCreate extends Component {
   onAdd() {
     let { form } = this.state;
     form.subTasks.push({
-      startTaskTplCode: undefined,
+      taskTemplateId: undefined,
       userId: undefined
     });
     this.setState({
@@ -145,9 +145,9 @@ class TaskCreate extends Component {
                 <Selector
                   title={"任务" + (index + 1)}
                   data={taskTplList}
-                  value={v.startTaskTplCode}
+                  value={v.taskTemplateId}
                   placeholder="选择子任务"
-                  onChange={this.onSubTask("startTaskTplCode", index)}
+                  onChange={this.onSubTask("taskTemplateId", index)}
                 ></Selector>
                 <Selector
                   title="负责人"
