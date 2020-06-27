@@ -94,10 +94,10 @@ export function getJobByStarAction() {
 
 // 获取任务附加信息
 // TODO
-export function getTaskInsInfoAction(taskInsCode) {
+export function getTaskInsInfoAction(workTemplateId) {
   return async (dispatch) => {
     const data = await getTaskInsInfo({
-      taskInsCode
+      workTemplateId
     });
     dispatch(setInsInfo(data));
     return data.taskData && JSON.parse(data.taskData)
