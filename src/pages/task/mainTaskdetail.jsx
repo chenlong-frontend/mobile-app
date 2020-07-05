@@ -30,7 +30,6 @@ class MainTaskdetail extends Component {
   };
   render() {
     const { workTemplateVo, taskDetailDatas } = this.props.mainTskInfo;
-    console.log(workTemplateVo, taskDetailDatas);
     return (
       <View className="container">
         <AtList>
@@ -42,6 +41,7 @@ class MainTaskdetail extends Component {
         <View>
           <View className="main-task-title">子任务(流程任务)</View>
           {taskDetailDatas.map(insInfo => {
+            console.log(insInfo);
             return (
               <View key={insInfo.taskInsCode} className="main-task-item">
                 <AtListItem title="任务流程" extraText={insInfo.taskFlow} />
@@ -50,10 +50,10 @@ class MainTaskdetail extends Component {
                 <AtListItem title="负责人" extraText={insInfo.taskManager} />
                 <AtListItem title="所属主任务" extraText={insInfo.belongs} />
                 <AtButton
-                  onClick={this.turnPage(insInfo.taskInsCode)}
+                  onClick={this.turnPage(insInfo.taskDetailCode)}
                   type="primary"
                 >
-                  查看详情操作
+                  查看详情/操作
                 </AtButton>
               </View>
             );
