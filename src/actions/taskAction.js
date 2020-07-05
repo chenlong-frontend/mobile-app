@@ -14,6 +14,7 @@ import {
   finshTaskIns,
   getMyJobList,
   getWorkDetailByWorkId,
+  getTaskInsInfoDetailById,
 } from '../api/task'
 
 export function setAllList(data) {
@@ -106,29 +107,26 @@ export function finshTaskInsAction(workTemplateId) {
 };
 
 // 查询主任务详情
-// TODO
 export function getMainTaskAction(workTemplateId) {
   return async (dispatch) => {
     console.log('workTemplateId', workTemplateId)
     const data = await getWorkDetailByWorkId({
           workTemplateId
         });
-    }
-    console.log("tttttttttttttttttttttttttttttt")
-    console.log(data);
     dispatch(setMainTask(data));
     return data
+        }
 };
 
 // 请求子任务详情
-// TODO
-export function getTaskInsInfoDetailByIdAciton(workTemplateId) {
+export function getTaskInsInfoDetailByIdAciton(taskDetailCode) {
   return async (dispatch) => {
-    // const data = await getTaskInsInfoDetailById({
-    //   workTemplateId
-    // });
-    // dispatch(setInsInfo(data));
-    // return data.taskData && JSON.parse(data.taskData)
+    console.log(taskDetailCode + "-------------------")
+     const data = await getTaskInsInfoDetailById({
+       taskDetailCode
+     });
+     dispatch(setInsInfo(data));
+     return data.taskData && JSON.parse(data.taskData)
   }
 };
 

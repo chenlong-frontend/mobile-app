@@ -33,3 +33,10 @@ export const finshTaskIns = (data) => {
 export const getWorkDetailByWorkId = (data) => {
   return get('/task/getWorkDetailByWorkId', data)
 }
+
+export const getTaskInsInfoDetailById = (data) => {
+  console.log("0000000000000000000000000")
+  return get('/task/getTaskInsInfoDetailById', data)
+}
+
+
