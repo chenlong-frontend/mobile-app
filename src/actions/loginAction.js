@@ -35,7 +35,6 @@ export function getTokenAction() {
     } = await getOpenid(state.login.user);
     console.log(openid);
     dispatch(setToken(openid));
-    console.log("1111111111111111111")
     const userInfo = await dispatch(requestUserInfoAction())
     if (!userInfo) {
       Taro.navigateTo({

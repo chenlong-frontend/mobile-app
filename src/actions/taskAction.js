@@ -13,6 +13,7 @@ import {
   getTaskInsInfo,
   finshTaskIns,
   getMyJobList,
+  getWorkDetailByWorkId,
 } from '../api/task'
 
 export function setAllList(data) {
@@ -106,33 +107,17 @@ export function finshTaskInsAction(workTemplateId) {
 
 // 查询主任务详情
 // TODO
-export function getMainTaskAction(taskCode) {
+export function getMainTaskAction(workTemplateId) {
   return async (dispatch) => {
-    console.log('taskCode', taskCode)
-    const res = {
-      "workTemplateVo": {
-        "id": "3e958109-ad65-418b-995e-c38e1a53e068",
-        "jobName": "tst",
-        "jobDesc": "test",
-        "subTasks": null,
-        "startDate": "2019-09-09",
-        "endDate": "2019-09-09",
-        "jobStatus": null
-      },
-      "taskDetailDatas": [{
-        "taskInsCode": '1111111',
-        "taskFlow": null,
-        "workName": null,
-        "submitTime": "2020-06-27",
-        "updateTime": "2020-06-27",
-        "taskManager": "tianjian",
-        "belongs": "tst",
-        "taskStatus": "finish"
-      }]
+    console.log('workTemplateId', workTemplateId)
+    const data = await getWorkDetailByWorkId({
+          workTemplateId
+        });
     }
-    dispatch(setMainTask(res));
-    return res
-  }
+    console.log("tttttttttttttttttttttttttttttt")
+    console.log(data);
+    dispatch(setMainTask(data));
+    return data
 };
 
 // 请求子任务详情

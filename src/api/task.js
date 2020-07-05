@@ -29,3 +29,7 @@ export const getTaskInsInfo = (data) => {
 export const finshTaskIns = (data) => {
   return get('/task/submitWork', data)
 }
+
+export const getWorkDetailByWorkId = (data) => {
+  return get('/task/getWorkDetailByWorkId', data)
+}
