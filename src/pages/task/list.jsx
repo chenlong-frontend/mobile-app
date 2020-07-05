@@ -29,7 +29,11 @@ class List extends Component {
   componentDidMount() {
     this.props.onAllTask();
   }
-
+  turnPage = code => () => {
+    Taro.navigateTo({
+      url: `/pages/task/mainTaskdetail?code=${code}`
+    });
+  };
   onTabChange(value) {
     this.setState({
       current: value
@@ -52,6 +56,7 @@ class List extends Component {
             <AtList>
               {allList.map(v => (
                 <AtListItem
+                  onClick={this.turnPage(v.id)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}
@@ -64,6 +69,7 @@ class List extends Component {
             <AtList>
               {activeList.map(v => (
                 <AtListItem
+                  onClick={this.turnPage(v.id)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}
@@ -76,6 +82,7 @@ class List extends Component {
             <AtList>
               {completeList.map(v => (
                 <AtListItem
+                  onClick={this.turnPage(v.id)}
                   key={v.jobCode}
                   title={v.jobName}
                   extraText={v.deadLine}

@@ -4,7 +4,8 @@ import {
   TASK_SET_WAIT_LIST,
   TASK_SET_STAR_LIST,
   TASK_SET_INS_INFO,
-  TASK_SET_ALL_LIST
+  TASK_SET_ALL_LIST,
+  TASK_SET_MAIN_TASK_INFO
 } from '../constants/redux'
 import {
   getJobList,
@@ -12,12 +13,18 @@ import {
   getTaskInsInfo,
   finshTaskIns,
   getMyJobList,
-  editTaskInsInfo
 } from '../api/task'
 
 export function setAllList(data) {
   return {
     type: TASK_SET_ALL_LIST,
+    data
+  }
+}
+
+export function setMainTask(data) {
+  return {
+    type: TASK_SET_MAIN_TASK_INFO,
     data
   }
 }
@@ -52,7 +59,6 @@ export function setInsInfo(data) {
 }
 
 // 所有任务
-// done
 export function getAllTask() {
   return async (dispatch) => {
     const data = await getJobList();
@@ -60,18 +66,7 @@ export function getAllTask() {
   }
 };
 
-// 我参与过的任务状态
-export function getJobByStartMeAction() {
-  return async (dispatch) => {
-    const data = await getJobList({
-      jobType: "1"
-    });
-    dispatch(setStartList(data));
-  }
-};
-
 // 需要我完成的
-// done
 export function getJobByWaitMeAction() {
   return async (dispatch) => {
     const data = await getMyJobList({
@@ -82,18 +77,7 @@ export function getJobByWaitMeAction() {
   }
 };
 
-// 星标任务
-export function getJobByStarAction() {
-  return async (dispatch) => {
-    const data = await getJobList({
-      jobType: "3"
-    });
-    dispatch(setStarList(data));
-  }
-};
-
-// 获取任务附加信息
-// DONE
+// 获取子任务信息
 export function getTaskInsInfoAction(workTemplateId) {
   return async (dispatch) => {
     const data = await getTaskInsInfo({
@@ -112,7 +96,6 @@ export function createJobAction(param) {
 };
 
 // 完成某个任务节点
-// TODO
 export function finshTaskInsAction(workTemplateId) {
   return async () => {
     await finshTaskIns({
@@ -121,12 +104,63 @@ export function finshTaskInsAction(workTemplateId) {
   }
 };
 
-// 完成某个任务节点
-export function editTaskInsInfoAction(taskInsCode, taskData) {
+// 查询主任务详情
+// TODO
+export function getMainTaskAction(taskCode) {
+  return async (dispatch) => {
+    console.log('taskCode', taskCode)
+    const res = {
+      "workTemplateVo": {
+        "id": "3e958109-ad65-418b-995e-c38e1a53e068",
+        "jobName": "tst",
+        "jobDesc": "test",
+        "subTasks": null,
+        "startDate": "2019-09-09",
+        "endDate": "2019-09-09",
+        "jobStatus": null
+      },
+      "taskDetailDatas": [{
+        "taskInsCode": '1111111',
+        "taskFlow": null,
+        "workName": null,
+        "submitTime": "2020-06-27",
+        "updateTime": "2020-06-27",
+        "taskManager": "tianjian",
+        "belongs": "tst",
+        "taskStatus": "finish"
+      }]
+    }
+    dispatch(setMainTask(res));
+    return res
+  }
+};
+
+// 请求子任务详情
+// TODO
+export function getTaskInsInfoDetailByIdAciton(workTemplateId) {
+  return async (dispatch) => {
+    // const data = await getTaskInsInfoDetailById({
+    //   workTemplateId
+    // });
+    // dispatch(setInsInfo(data));
+    // return data.taskData && JSON.parse(data.taskData)
+  }
+};
+
+// 通过
+// TODO
+export function passTaskAction(code) {
   return async () => {
-    await editTaskInsInfo({
-      taskInsCode,
-      taskData: JSON.stringify(taskData)
-    });
+    console.log(code)
+
+  }
+};
+
+// 驳回
+// TODO
+export function rejectTaskAction(code) {
+  return async () => {
+    console.log(code)
+
   }
 };
