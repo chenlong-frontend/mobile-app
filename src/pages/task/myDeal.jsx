@@ -5,7 +5,7 @@ import { AtList, AtListItem, AtButton } from "taro-ui";
 import {
   getTaskInsInfoAction,
   finshTaskInsAction,
-  getAllTask
+  getJobByWaitMeAction
 } from "../../actions/taskAction";
 
 @connect(
@@ -16,7 +16,7 @@ import {
     },
     onFinsh(data) {
       dispatch(finshTaskInsAction(data)).then(() => {
-        dispatch(getAllTask());
+        dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
     }
