@@ -6,7 +6,9 @@ import {
   getTaskInsInfoDetailByIdAciton,
   getMainTaskAction,
   passTaskAction,
-  rejectTaskAction
+  rejectTaskAction,
+  getAllTask, 
+  getJobByWaitMeAction
 } from "../../actions/taskAction";
 
 @connect(
@@ -18,12 +20,16 @@ import {
     onPassTask(code, id) {
       dispatch(passTaskAction(code)).then(() => {
         dispatch(getMainTaskAction(id));
+        dispatch(getAllTask())
+        dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
     },
     onRejectTask(code, id) {
       dispatch(rejectTaskAction(code)).then(() => {
         dispatch(getMainTaskAction(id));
+        dispatch(getAllTask())
+        dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
     }
@@ -51,7 +57,6 @@ class SubTaskDetail extends Component {
         workTemplateVo: { id }
       }
     } = this.props;
-    this.props.onPassTask(this.state.code, id);
     if (insInfo.taskStatus === "active") {
       this.props.onPassTask(this.state.code, id);
     }

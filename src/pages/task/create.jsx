@@ -4,7 +4,7 @@ import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
 import { nodeListByTypeAction } from "../../actions/workAction";
-import { createJobAction } from "../../actions/taskAction";
+import { createJobAction, getAllTask, getJobByWaitMeAction } from "../../actions/taskAction";
 import { requestGetUsersAction } from "../../actions/userAction";
 
 @connect(
@@ -21,6 +21,8 @@ import { requestGetUsersAction } from "../../actions/userAction";
     },
     onCreateJob(data) {
       dispatch(createJobAction(data)).then(() => {
+        dispatch(getAllTask())
+        dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
     }
