@@ -15,6 +15,8 @@ import {
   getMyJobList,
   getWorkDetailByWorkId,
   getTaskInsInfoDetailById,
+  rejectWork,
+  bossSubmitWork,
 } from '../api/task'
 
 export function setAllList(data) {
@@ -121,7 +123,6 @@ export function getMainTaskAction(workTemplateId) {
 // 请求子任务详情
 export function getTaskInsInfoDetailByIdAciton(taskDetailCode) {
   return async (dispatch) => {
-    console.log(taskDetailCode + "-------------------")
      const data = await getTaskInsInfoDetailById({
        taskDetailCode
      });
@@ -131,19 +132,21 @@ export function getTaskInsInfoDetailByIdAciton(taskDetailCode) {
 };
 
 // 通过
-// TODO
-export function passTaskAction(code) {
+export function passTaskAction(workDetailCode) {
   return async () => {
-    console.log(code)
-
+    await bossSubmitWork({
+      workDetailCode
+    });
   }
 };
 
 // 驳回
 // TODO
-export function rejectTaskAction(code) {
+export function rejectTaskAction(workDetailCode) {
+  //TODO 数组的序号
   return async () => {
-    console.log(code)
-
+    rejectWork({
+      workDetailCode
+    })
   }
 };

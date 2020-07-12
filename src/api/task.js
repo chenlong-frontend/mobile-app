@@ -35,8 +35,15 @@ export const getWorkDetailByWorkId = (data) => {
 }
 
 export const getTaskInsInfoDetailById = (data) => {
-  console.log("0000000000000000000000000")
   return get('/task/getTaskInsInfoDetailById', data)
+}
+
+export const rejectWork = (data) => {
+  return get('/task/rejectWork', data)
+}
+
+export const bossSubmitWork = (data) => {
+  return get('/task/bossSubmitWork', data)
 }
 
 
