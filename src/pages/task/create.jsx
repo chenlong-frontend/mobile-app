@@ -116,18 +116,6 @@ class TaskCreate extends Component {
             value={jobName}
             onChange={this.onValue("jobName")}
           />
-          {/* <Picker mode="date" onChange={this.onTimeChange}>
-            <View className="at-input">
-              <View className="at-input__container">
-                <Text className="at-input__title">截止时间</Text>
-                <View>
-                  <View className="picker">
-                    {deadLine ? deadLine : "请选择时间"}
-                  </View>
-                </View>
-              </View>
-            </View>
-          </Picker> */}
           <AtTextarea
             value={jobDes}
             onChange={this.onValue("jobDes")}

@@ -19,13 +19,12 @@ class App extends Component {
     pages: [
       "pages/index/home",
       "pages/task/list",
-      "pages/login/index",
       "pages/index/user",
+      "pages/login/index",
       "pages/task/create",
       "pages/task/myDeal",
       "pages/task/mainTaskdetail",
       "pages/task/subTaskDetail",
-      "pages/task/mydealList",
       "pages/workTemplete/list",
       "pages/workTemplete/create"
     ],
@@ -49,16 +48,10 @@ class App extends Component {
           text: "我的首页"
         },
         {
-          pagePath: "pages/task/mydealList",
-          iconPath: "./assets/tabbar/ico_tabar_task_normal.png",
-          selectedIconPath: "./assets/tabbar/ico_tabar_task_pressed.png",
-          text: "我的任务"
-        },
-        {
           pagePath: "pages/task/list",
           iconPath: "./assets/tabbar/ico_tabar_prefecture_normal.png",
           selectedIconPath: "./assets/tabbar/ico_tabar_prefecture_pressed.png",
-          text: "所有任务"
+          text: "任务列表"
         },
         {
           pagePath: "pages/index/user",

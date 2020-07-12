@@ -1,7 +1,9 @@
 import Taro, { Component } from "@tarojs/taro";
 import { AtList, AtListItem } from "taro-ui";
 import { connect } from "@tarojs/redux";
-import { getJobByWaitMeAction } from "../../actions/taskAction";
+import MyListItem from '../../../component/list/myListItem'
+import { getJobByWaitMeAction } from "../../../actions/taskAction";
+import { View } from "@tarojs/components";
 
 @connect(
   ({ task: { waitList } }) => ({
@@ -32,17 +34,11 @@ class List extends Component {
   render() {
     const { waitList } = this.props;
     return (
-      <AtList>
+      <View>
         {waitList.map(v => (
-          <AtListItem
-            onClick={this.turnPage(v.id)}
-            key={v.jobCode}
-            title={v.jobName}
-            extraText={v.deadLine}
-            note={v.jobDes}
-          />
-        ))}
-      </AtList>
+            <MyListItem data={v} key={v.jobCode} onClick={this.turnPage(v.id)}></MyListItem>
+          ))}
+      </View>
     );
   }
 }
