@@ -1,6 +1,8 @@
 import Taro from "@tarojs/taro";
 import store from "../store";
-import { getTokenAction } from "../actions/loginAction";
+import {
+  getTokenAction
+} from "../actions/loginAction";
 
 // const base = 'http://localhost:8080'
 const base = "https://weixin.frontjs.top";
@@ -13,8 +15,12 @@ export const reLogin = async (url, data, fn) => {
 
 export const post = (url, data) => {
   const {
-    login: { token },
-    user: { user }
+    login: {
+      token
+    },
+    user: {
+      user
+    }
   } = store.getState();
   console.log("===", user);
   return new Promise((resolve, reject) => {
@@ -26,7 +32,7 @@ export const post = (url, data) => {
     token &&
       (param.header = {
         openid: token,
-        userId: user.userId || ""
+        userId: (user && user.userId) || ""
       });
     console.log("========" + token);
     Taro.request(param)
@@ -48,8 +54,12 @@ export const post = (url, data) => {
 
 export const get = (url, data) => {
   const {
-    login: { token },
-    user: { user }
+    login: {
+      token
+    },
+    user: {
+      user
+    }
   } = store.getState();
   console.log("===", user);
   return new Promise((resolve, reject) => {
@@ -61,7 +71,7 @@ export const get = (url, data) => {
     token &&
       (param.header = {
         openid: token,
-        userId: user.userId || ""
+        userId: (user && user.userId) || ""
       });
     Taro.request(param)
       .then(res => {

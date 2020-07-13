@@ -4,8 +4,13 @@ import { AtForm, AtInput, AtButton, AtTextarea } from "taro-ui";
 import { connect } from "@tarojs/redux";
 import Selector from "../../component/selector";
 import { nodeListByTypeAction } from "../../actions/workAction";
-import { createJobAction, getAllTask, getJobByWaitMeAction } from "../../actions/taskAction";
+import {
+  createJobAction,
+  getAllTask,
+  getJobByWaitMeAction
+} from "../../actions/taskAction";
 import { requestGetUsersAction } from "../../actions/userAction";
+import "./create.less";
 
 @connect(
   ({ work, user }) => ({
@@ -21,7 +26,7 @@ import { requestGetUsersAction } from "../../actions/userAction";
     },
     onCreateJob(data) {
       dispatch(createJobAction(data)).then(() => {
-        dispatch(getAllTask())
+        dispatch(getAllTask());
         dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
@@ -130,56 +135,58 @@ class TaskCreate extends Component {
               <AtButton onClick={this.onRemove.bind(this)}>撤销</AtButton>
             </View>
           </View>
-          {subTasks.map((v, index) => {
-            return (
-              <view key={index}>
-                <Selector
-                  title={"任务" + (index + 1)}
-                  data={taskTplList}
-                  value={v.taskTemplateId}
-                  placeholder="选择子任务"
-                  onChange={this.onSubTask("taskTemplateId", index)}
-                ></Selector>
-                <Selector
-                  title="负责人"
-                  data={userList}
-                  value={v.userId}
-                  placeholder="请选择实施人"
-                  onChange={this.onSubTask("userId", index)}
-                ></Selector>
-                <Picker
-                  mode="date"
-                  onChange={this.onTimeChange("startDate", index)}
-                >
-                  <View className="at-input">
-                    <View className="at-input__container">
-                      <Text className="at-input__title">启动时间</Text>
-                      <View>
-                        <View className="picker">
-                          {v.startDate ? v.startDate : "请选择启动时间"}
+          <View className="create-sub-task">
+            {subTasks.map((v, index) => {
+              return (
+                <view key={index}>
+                  <Selector
+                    title={"任务" + (index + 1)}
+                    data={taskTplList}
+                    value={v.taskTemplateId}
+                    placeholder="选择子任务"
+                    onChange={this.onSubTask("taskTemplateId", index)}
+                  ></Selector>
+                  <Selector
+                    title="负责人"
+                    data={userList}
+                    value={v.userId}
+                    placeholder="请选择实施人"
+                    onChange={this.onSubTask("userId", index)}
+                  ></Selector>
+                  <Picker
+                    mode="date"
+                    onChange={this.onTimeChange("startDate", index)}
+                  >
+                    <View className="at-input">
+                      <View className="at-input__container">
+                        <Text className="at-input__title">启动时间</Text>
+                        <View>
+                          <View className="picker">
+                            {v.startDate ? v.startDate : "请选择启动时间"}
+                          </View>
                         </View>
                       </View>
                     </View>
-                  </View>
-                </Picker>
-                <Picker
-                  mode="date"
-                  onChange={this.onTimeChange("endDate", index)}
-                >
-                  <View className="at-input">
-                    <View className="at-input__container">
-                      <Text className="at-input__title">结束时间</Text>
-                      <View>
-                        <View className="picker">
-                          {v.endDate ? v.endDate : "请选择结束时间"}
+                  </Picker>
+                  <Picker
+                    mode="date"
+                    onChange={this.onTimeChange("endDate", index)}
+                  >
+                    <View className="at-input">
+                      <View className="at-input__container">
+                        <Text className="at-input__title">结束时间</Text>
+                        <View>
+                          <View className="picker">
+                            {v.endDate ? v.endDate : "请选择结束时间"}
+                          </View>
                         </View>
                       </View>
                     </View>
-                  </View>
-                </Picker>
-              </view>
-            );
-          })}
+                  </Picker>
+                </view>
+              );
+            })}
+          </View>
         </AtForm>
         <View className="footer-submit">
           <AtButton
