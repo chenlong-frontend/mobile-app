@@ -31,9 +31,9 @@ class MainTaskdetail extends Component {
   render() {
     const { workTemplateVo, taskDetailDatas } = this.props.mainTskInfo;
     const sortedList = taskDetailDatas.sort((a, b) => {
-      return a - b > 0;
+      return a.orderNum - b.orderNum;
     });
-    console.log(sortedList);
+    console.log("sortedList", sortedList);
     return (
       <View className="container">
         <AtList>
