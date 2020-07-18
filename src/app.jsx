@@ -18,6 +18,7 @@ class App extends Component {
   config = {
     pages: [
       "pages/index/home",
+      "pages/setting/userList",
       "pages/task/create",
       "pages/task/list",
       "pages/index/user",
