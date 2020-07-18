@@ -26,6 +26,11 @@ class User extends Component {
       url: "/pages/setting/userList"
     });
   };
+  onTurnWorkTemp = () => {
+    Taro.navigateTo({
+      url: "/pages/workTemplete/list"
+    });
+  };
   render() {
     const { user } = this.props;
     console.log(user);
@@ -61,7 +66,11 @@ class User extends Component {
             title="人员管理"
             arrow="right"
           />
-          <AtListItem title="任务流程模板管理" arrow="right" />
+          <AtListItem
+            onClick={this.onTurnWorkTemp}
+            title="任务流程模板管理"
+            arrow="right"
+          />
         </AtList>
       </View>
     );
