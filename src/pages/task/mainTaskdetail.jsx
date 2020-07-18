@@ -30,6 +30,10 @@ class MainTaskdetail extends Component {
   };
   render() {
     const { workTemplateVo, taskDetailDatas } = this.props.mainTskInfo;
+    const sortedList = taskDetailDatas.sort((a, b) => {
+      return a - b > 0;
+    });
+    console.log(sortedList);
     return (
       <View className="container">
         <AtList>
@@ -40,8 +44,7 @@ class MainTaskdetail extends Component {
         </AtList>
         <View>
           <View className="main-task-title">子任务(流程任务)</View>
-          {taskDetailDatas.map(insInfo => {
-            console.log(insInfo);
+          {sortedList.map(insInfo => {
             return (
               <View key={insInfo.taskInsCode} className="main-task-item">
                 <AtListItem title="任务流程" extraText={insInfo.taskFlow} />

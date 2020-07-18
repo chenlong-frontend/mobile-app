@@ -7,7 +7,7 @@ import {
   getMainTaskAction,
   passTaskAction,
   rejectTaskAction,
-  getAllTask, 
+  getAllTask,
   getJobByWaitMeAction
 } from "../../actions/taskAction";
 
@@ -20,7 +20,7 @@ import {
     onPassTask(code, id) {
       dispatch(passTaskAction(code)).then(() => {
         dispatch(getMainTaskAction(id));
-        dispatch(getAllTask())
+        dispatch(getAllTask());
         dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
@@ -28,7 +28,7 @@ import {
     onRejectTask(code, id) {
       dispatch(rejectTaskAction(code)).then(() => {
         dispatch(getMainTaskAction(id));
-        dispatch(getAllTask())
+        dispatch(getAllTask());
         dispatch(getJobByWaitMeAction());
         Taro.navigateBack();
       });
@@ -76,15 +76,17 @@ class SubTaskDetail extends Component {
           <AtListItem title="负责人" extraText={insInfo.taskManager} />
           <AtListItem title="所属主任务" extraText={insInfo.belongs} />
         </AtList>
-        <View className="footer-submit">
-          <AtButton
-            onClick={this.onSubmit}
-            type={isActive ? "primary" : "secondary"}
-            formType="submit"
-          >
-            {isActive ? "通过" : "驳回"}
-          </AtButton>
-        </View>
+        {insInfo.taskStatus !== "wait" && (
+          <View className="footer-submit">
+            <AtButton
+              onClick={this.onSubmit}
+              type={isActive ? "primary" : "secondary"}
+              formType="submit"
+            >
+              {isActive ? "通过" : "驳回"}
+            </AtButton>
+          </View>
+        )}
       </View>
     );
   }
