@@ -3,6 +3,7 @@ import { View } from "@tarojs/components";
 import { connect } from "@tarojs/redux";
 import { getMainTaskAction } from "../../actions/taskAction";
 import { AtList, AtListItem, AtButton } from "taro-ui";
+import Cell from '../../component/list/cell'
 import "./mainTaskdetail.less";
 @connect(
   ({ task: { mainTskInfo } }) => ({ mainTskInfo }),
@@ -36,9 +37,9 @@ class MainTaskdetail extends Component {
     console.log("sortedList", sortedList);
     return (
       <View className="container">
+        <Cell title="任务名称" content={workTemplateVo.jobName}></Cell>
+        <Cell title="任务描述" content={workTemplateVo.jobDesc}></Cell>
         <AtList>
-          <AtListItem title="任务名称" extraText={workTemplateVo.jobName} />
-          <AtListItem title="任务描述" extraText={workTemplateVo.jobDesc} />
           <AtListItem title="开始时间" extraText={workTemplateVo.startDate} />
           <AtListItem title="结束时间" extraText={workTemplateVo.endDate} />
         </AtList>

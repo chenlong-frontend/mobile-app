@@ -71,8 +71,8 @@ class SubTaskDetail extends Component {
       <View className="container">
         <AtList>
           <AtListItem title="任务流程" extraText={insInfo.taskFlow} />
-          <AtListItem title="提交时间" extraText={insInfo.submitTime} />
-          <AtListItem title="更新时间" extraText={insInfo.updateTime} />
+          <AtListItem title="开始时间" extraText={insInfo.submitTime} />
+          <AtListItem title="结束时间" extraText={insInfo.updateTime} />
           <AtListItem title="负责人" extraText={insInfo.taskManager} />
           <AtListItem title="所属主任务" extraText={insInfo.belongs} />
         </AtList>

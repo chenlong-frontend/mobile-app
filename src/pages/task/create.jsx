@@ -106,9 +106,10 @@ class TaskCreate extends Component {
       value: v.taskCode,
       text: v.taskName
     }));
+
     const userList = user.list.map(v => ({
       value: v.userCode,
-      text: v.userName
+      text: `${v.userName}(${v.departMentName})`
     }));
     return (
       <View className="container">
@@ -127,6 +128,9 @@ class TaskCreate extends Component {
             maxLength={200}
             placeholder="任务描述"
           />
+          <View className="subtask-title">
+            <Text>子任务创建:</Text>
+          </View>
           <View className="at-row">
             <View className="at-col">
               <AtButton onClick={this.onAdd.bind(this)}>新增</AtButton>
@@ -138,7 +142,7 @@ class TaskCreate extends Component {
           <View className="create-sub-task">
             {subTasks.map((v, index) => {
               return (
-                <view key={index}>
+                <View key={index} className="subtask-item">
                   <Selector
                     title={"任务" + (index + 1)}
                     data={taskTplList}
@@ -183,7 +187,7 @@ class TaskCreate extends Component {
                       </View>
                     </View>
                   </Picker>
-                </view>
+                </View>
               );
             })}
           </View>
