@@ -75,6 +75,7 @@ class SubTaskDetail extends Component {
           <AtListItem title="结束时间" extraText={insInfo.updateTime} />
           <AtListItem title="负责人" extraText={insInfo.taskManager} />
           <AtListItem title="所属主任务" extraText={insInfo.belongs} />
+          <AtListItem title="任务状态" extraText={insInfo.taskStatus === "active" ? "进行中" : "完成"} />
         </AtList>
         {insInfo.taskStatus !== "wait" && (
           <View className="footer-submit">

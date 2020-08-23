@@ -39,10 +39,10 @@ class ListItem extends Component {
               </View>
               <View className="at-col">
                 <View>
-                  <Text className="info-time">提交：2020-5-30 22:18:00</Text>
+                  <Text className="info-time">提交：{data.startDate}</Text>
                 </View>
                 <View>
-                  <Text className="info-time">更新：2020-5-30 22:18:00</Text>
+                  <Text className="info-time">更新：{data.updateTime}</Text>
                 </View>
               </View>
             </View>

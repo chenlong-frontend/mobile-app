@@ -39,10 +39,9 @@ class MainTaskdetail extends Component {
       <View className="container">
         <Cell title="任务名称" content={workTemplateVo.jobName}></Cell>
         <Cell title="任务描述" content={workTemplateVo.jobDesc}></Cell>
-        <AtList>
-          <AtListItem title="开始时间" extraText={workTemplateVo.startDate} />
-          <AtListItem title="结束时间" extraText={workTemplateVo.endDate} />
-        </AtList>
+        <Cell title="新建时间" content={workTemplateVo.createTime}></Cell>
+        <Cell title="开始时间" content={workTemplateVo.startDate}></Cell>
+        <Cell title="更新时间" content={workTemplateVo.updateTime}></Cell>
         <View>
           <View className="main-task-title">子任务(流程任务)</View>
           {sortedList.map(insInfo => {
