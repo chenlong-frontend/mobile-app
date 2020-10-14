@@ -7,7 +7,8 @@ import {
 const INITIAL_STATE = {
   list: [],
   dependList: [],
-  nodeList: []
+  nodeList: [],
+  metaList: []
 }
 
 export default function work(state = INITIAL_STATE, action) {
@@ -18,17 +19,17 @@ export default function work(state = INITIAL_STATE, action) {
         ...state,
         list: data || []
       }
-      case WORK_SET_DEPEND_LIST:
-        return {
-          ...state,
-          dependList: data || []
-        }
-        case WORK_SET_NODE_LIST:
-          return {
-            ...state,
-            nodeList: data || []
-          }
-          default:
-            return state
+    case WORK_SET_DEPEND_LIST:
+      return {
+        ...state,
+        dependList: data || []
+      }
+    case WORK_SET_NODE_LIST:
+      return {
+        ...state,
+        nodeList: data || []
+      }
+    default:
+      return state
   }
 }

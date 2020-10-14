@@ -28,7 +28,7 @@ class List extends Component {
   }
   turnPage  = () => {
     Taro.navigateTo({
-      url: '/pages/workTemplete/create'
+      url: "/pages/workTemplete/metaCreate"
     });
   };
   render() {

@@ -21,16 +21,11 @@ class User extends Component {
   componentDidMount() {
     this.props.onUserInfo();
   }
-  onTurnUser = () => {
+  turnPage = (url) => () => {
     Taro.navigateTo({
-      url: "/pages/setting/userList"
+      url
     });
-  };
-  onTurnWorkTemp = () => {
-    Taro.navigateTo({
-      url: "/pages/workTemplete/list"
-    });
-  };
+  }
   render() {
     const { user } = this.props;
     console.log(user);
@@ -62,12 +57,17 @@ class User extends Component {
         </View>
         <AtList>
           <AtListItem
-            onClick={this.onTurnUser}
+            onClick={this.turnPage("/pages/setting/userList")}
             title="人员管理"
             arrow="right"
           />
           <AtListItem
-            onClick={this.onTurnWorkTemp}
+            onClick={this.turnPage("/pages/workTemplete/list")}
+            title="元数据管理"
+            arrow="right"
+          />
+          <AtListItem
+            onClick={this.turnPage("/pages/workTemplete/metaList")}
             title="任务流程模板管理"
             arrow="right"
           />

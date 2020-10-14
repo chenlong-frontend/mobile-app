@@ -26,7 +26,9 @@ class App extends Component {
       "pages/task/mainTaskdetail",
       "pages/task/subTaskDetail",
       "pages/workTemplete/list",
-      "pages/workTemplete/create"
+      "pages/workTemplete/create",
+      "pages/workTemplete/metaCreate",
+      "pages/workTemplete/metaList"
     ],
     window: {
       backgroundTextStyle: "light",
