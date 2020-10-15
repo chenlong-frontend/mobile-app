@@ -7,8 +7,7 @@ import {
 const INITIAL_STATE = {
   list: [],
   dependList: [],
-  nodeList: [],
-  metaList: []
+  nodeList: []
 }
 
 export default function work(state = INITIAL_STATE, action) {

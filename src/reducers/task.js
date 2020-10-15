@@ -4,7 +4,8 @@ import {
   TASK_SET_STAR_LIST,
   TASK_SET_INS_INFO,
   TASK_SET_ALL_LIST,
-  TASK_SET_MAIN_TASK_INFO
+  TASK_SET_MAIN_TASK_INFO,
+  TASK_SET_META_INFO
 } from '../constants/redux'
 
 const INITIAL_STATE = {
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   starList: [],
   insInfo: {},
   allList: [],
+  metaList: [],
   mainTskInfo: {
     workTemplateVo: {},
     taskDetailDatas: []
@@ -52,6 +54,11 @@ export default function task(state = INITIAL_STATE, action) {
                   ...state,
                   mainTskInfo: data
                 }
+                case TASK_SET_META_INFO:
+                  return {
+                    ...state,
+                    metaList: data
+                  }
 
                 default:
                   return state

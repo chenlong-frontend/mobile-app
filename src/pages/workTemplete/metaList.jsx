@@ -2,16 +2,16 @@ import Taro, { Component } from "@tarojs/taro";
 import { View } from "@tarojs/components";
 import { AtList, AtListItem, AtFab, AtIcon } from "taro-ui";
 import { connect } from "@tarojs/redux";
-import { taskTplListAction } from "../../actions/workAction";
+import { getMetaInfo } from "../../actions/taskAction";
 import './list.less'
 
 @connect(
-  ({ work }) => ({
-    work
+  ({ task }) => ({
+    task
   }),
   dispatch => ({
     onTaskTplList() {
-      dispatch(taskTplListAction());
+      dispatch(getMetaInfo());
     }
   })
 )
@@ -33,22 +33,28 @@ class List extends Component {
   };
   render() {
     const {
-      work: { list }
+      task: { metaList }
     } = this.props;
-    console.log(list);
+    console.log(metaList);
     return (
       <View>
-        <AtList>
-          {list.map(v => (
-            <AtListItem
-              iconInfo={{ size: 25, color: "#FF4949", value: "bookmark" }}
-              key={v.taskCode}
-              title={v.taskName}
-              extraText={v.createDate}
-              note={v.taskDes}
-            />
-          ))}
-        </AtList>
+        {metaList.map((v, key) => (
+          <View key={key}>
+            <View style={{padding: '15px'}}>{v.taskTemplateType}</View>
+            <AtList>
+              {v.taskTemplateTypeMetaDetails.map((item, index) => (
+                <AtListItem
+                  iconInfo={{ size: 25, color: "#FF4949", value: "bookmark" }}
+                  key={index}
+                  title={item.metaName}
+                  extraText={item.metaType}
+                  note={item.isRequired}
+                />
+              ))}
+            </AtList>
+          </View>
+        ))}
+
         <View className="list-fab">
           <AtFab onClick={this.turnPage}>
             <AtIcon value='add' size='25' color='#FFF'></AtIcon>

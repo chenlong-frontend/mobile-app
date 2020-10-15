@@ -5,7 +5,8 @@ import {
   TASK_SET_STAR_LIST,
   TASK_SET_INS_INFO,
   TASK_SET_ALL_LIST,
-  TASK_SET_MAIN_TASK_INFO
+  TASK_SET_MAIN_TASK_INFO,
+  TASK_SET_META_INFO
 } from '../constants/redux'
 import {
   getJobList,
@@ -17,6 +18,7 @@ import {
   getTaskInsInfoDetailById,
   rejectWork,
   bossSubmitWork,
+  getAllMetaInfo
 } from '../api/task'
 
 export function setAllList(data) {
@@ -61,6 +63,21 @@ export function setInsInfo(data) {
     data
   }
 }
+
+export function setMetaInfo(data) {
+  return {
+    type: TASK_SET_META_INFO,
+    data
+  }
+}
+
+// 元数据
+export function getMetaInfo() {
+  return async (dispatch) => {
+    const data = await getAllMetaInfo();
+    dispatch(setMetaInfo(data));
+  }
+};
 
 // 所有任务
 export function getAllTask() {

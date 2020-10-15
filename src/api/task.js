@@ -13,7 +13,7 @@ export const getMyJobList = () => {
   return get('/task/getMyWorks');
 }
 
-// 创建启动器嘿嘿
+// 创建启动器
 export const createJob = (data) => {
   console.log(data);
   console.warn(data);
@@ -46,4 +46,7 @@ export const bossSubmitWork = (data) => {
   return get('/task/bossSubmitWork', data)
 }
 
-
+// 获取元数据列表
+export const getAllMetaInfo = () => {
+  return get('/task/getAllTaskTemplateTypeMetaInfo')
+}

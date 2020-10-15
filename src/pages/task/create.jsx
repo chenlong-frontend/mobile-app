@@ -39,7 +39,7 @@ class TaskCreate extends Component {
     this.state = {
       form: {
         jobName: undefined,
-        jobDes: undefined,
+        jobDesc: undefined,
         subTasks: []
       }
     };
@@ -98,7 +98,7 @@ class TaskCreate extends Component {
       work: { nodeList },
       user
     } = this.props;
-    const { jobName, jobDes, subTasks } = this.state.form;
+    const { jobName, jobDesc, subTasks } = this.state.form;
     user = user || [];
     nodeList = nodeList || [];
 
@@ -123,8 +123,8 @@ class TaskCreate extends Component {
             onChange={this.onValue("jobName")}
           />
           <AtTextarea
-            value={jobDes}
-            onChange={this.onValue("jobDes")}
+            value={jobDesc}
+            onChange={this.onValue("jobDesc")}
             maxLength={200}
             placeholder="任务描述"
           />
