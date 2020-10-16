@@ -16,6 +16,7 @@ import "./app.less";
 class App extends Component {
   config = {
     pages: [
+      "pages/workTemplete/metaCreate",
       "pages/index/home",
       "pages/setting/userList",
       "pages/task/create",
@@ -27,7 +28,6 @@ class App extends Component {
       "pages/task/subTaskDetail",
       "pages/workTemplete/list",
       "pages/workTemplete/create",
-      "pages/workTemplete/metaCreate",
       "pages/workTemplete/metaList"
     ],
     window: {
