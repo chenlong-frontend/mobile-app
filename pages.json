@@ -2,23 +2,39 @@
 	"easycom": {
 		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uView-index"
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
 			}
 		},
 		{
-			"path": "pages/center/index",
+			"path": "pages/task/index",
 			"style": {
-				"navigationBarTitleText": "uView-center"
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/user/Improve-information",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uView",
+		"navigationBarTitleText": "工厂工作流",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -28,15 +44,20 @@
 	    "borderStyle": "black",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
-	        "pagePath": "pages/index/index",
-	        "iconPath": "static/index.png",
-	        "selectedIconPath": "static/index-selected.png",
-	        "text": "首页"
+	        "pagePath": "pages/task/index",
+	        "iconPath": "./static/tabbar/ico_tabar_home_normal.png",
+	        "selectedIconPath": "./static/tabbar/ico_tabar_home_pressed.png",
+	        "text": "我的首页"
 	    }, {
-	        "pagePath": "pages/center/index",
-	        "iconPath": "static/center.png",
-	        "selectedIconPath": "static/center-selected.png",
-	        "text": "我"
+	        "pagePath": "pages/home/index",
+	        "iconPath": "./static/tabbar/ico_tabar_prefecture_normal.png",
+	        "selectedIconPath": "./static/tabbar/ico_tabar_prefecture_pressed.png",
+	        "text": "任务列表"
+	    }, {
+	        "pagePath": "pages/user/index",
+	        "iconPath": "./static/tabbar/ico_tabar_mine_normal.png",
+	        "selectedIconPath": "./static/tabbar/ico_tabar_mine_pressed.png",
+	        "text": "个人中心"
 	    }]
 	}
 }
