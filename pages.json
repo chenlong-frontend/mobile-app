@@ -18,7 +18,56 @@
 			}
 		},
 		{
-			"path": "pages/user/Improve-information",
+			"path": "pages/task/deal-task",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/task/sub-detail",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},	
+		{
+			"path": "pages/task/detail",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},		
+		{
+			"path": "pages/task/templete-list",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},	
+		{
+			"path": "pages/task/meta-list",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/user/user-list",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+			{
+				"path": "pages/task/create",
+				"style": {
+					"navigationStyle": "custom" ,
+					"navigationBarTextStyle": "white"
+				}
+			},
+		{
+			"path": "pages/user/improve-information",
 			"style": {
 				"navigationStyle": "custom" ,
 				"navigationBarTextStyle": "white"
@@ -44,12 +93,12 @@
 	    "borderStyle": "black",
 	    "backgroundColor": "#ffffff",
 	    "list": [{
-	        "pagePath": "pages/task/index",
+	        "pagePath": "pages/home/index",
 	        "iconPath": "./static/tabbar/ico_tabar_home_normal.png",
 	        "selectedIconPath": "./static/tabbar/ico_tabar_home_pressed.png",
 	        "text": "我的首页"
 	    }, {
-	        "pagePath": "pages/home/index",
+	        "pagePath": "pages/task/index",
 	        "iconPath": "./static/tabbar/ico_tabar_prefecture_normal.png",
 	        "selectedIconPath": "./static/tabbar/ico_tabar_prefecture_pressed.png",
 	        "text": "任务列表"

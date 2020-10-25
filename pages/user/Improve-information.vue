@@ -64,16 +64,18 @@
 		},
 		onReady() {
 			this.$refs.form.setRules(this.rules);
-		},
+		}, 
 		methods: {
 			submit (){
-							this.$refs.form.validate(valid => {
-								if (valid) {
-									console.log('验证通过');
-								} else {
-									console.log('验证失败', valid);
-								}
+				this.$refs.form.validate(valid => {
+					if (valid) {
+						this.$u.api.register(this.form).then(() => {
+							uni.switchTab({
+								url: '/pages/home/index'
 							});
+						})
+					}
+				});
 			}
 		}
 	}

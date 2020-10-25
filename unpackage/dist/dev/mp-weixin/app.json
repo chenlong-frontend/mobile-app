@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/task/index",
+    "pages/task/deal-task",
+    "pages/task/sub-detail",
+    "pages/task/detail",
+    "pages/task/templete-list",
+    "pages/task/meta-list",
+    "pages/user/user-list",
+    "pages/task/create",
+    "pages/user/improve-information",
+    "pages/user/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "工厂工作流",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#909399",
+    "selectedColor": "#303133",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "./static/tabbar/ico_tabar_home_normal.png",
+        "selectedIconPath": "./static/tabbar/ico_tabar_home_pressed.png",
+        "text": "我的首页"
+      },
+      {
+        "pagePath": "pages/task/index",
+        "iconPath": "./static/tabbar/ico_tabar_prefecture_normal.png",
+        "selectedIconPath": "./static/tabbar/ico_tabar_prefecture_pressed.png",
+        "text": "任务列表"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "./static/tabbar/ico_tabar_mine_normal.png",
+        "selectedIconPath": "./static/tabbar/ico_tabar_mine_pressed.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

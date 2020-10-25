@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-
+		<auth></auth>
 	</view>
 </template>
 
@@ -8,7 +8,7 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+
 			}
 		},
 		onLoad() {

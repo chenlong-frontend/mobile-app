@@ -7,7 +7,6 @@ import uView from 'uview-ui'
 import httpInterceptor from './api/http.interceptor.js'
 // http接口API抽离，免于写url或者一些固定的参数
 import httpApi from './api/http.api.js'
-
 let vuexStore = require('./store/$u.mixin.js')
 
 Vue.config.productionTip = false
@@ -22,7 +21,7 @@ const updateManager = uni.getUpdateManager();
 
 updateManager.onCheckForUpdate(function (res) {
   // 请求完新版本信息的回调
-  console.log(res.hasUpdate,'hasUpdate');
+  // console.log(res.hasUpdate,'hasUpdate');
 });
 
 updateManager.onUpdateReady(function (res) {
@@ -45,6 +44,7 @@ updateManager.onUpdateFailed(function (res) {
 
 
 const app = new Vue({
+	store,
     ...App
 })
 Vue.use(httpInterceptor, app)

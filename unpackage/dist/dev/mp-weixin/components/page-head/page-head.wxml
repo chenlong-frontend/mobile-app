@@ -1,0 +1,1 @@
+<view><u-navbar vue-id="07822278-1" is-back="{{isBack}}" custom-back="{{customBack}}" border-bottom="{{false}}" title="{{title}}" background="{{background}}" bind:__l="__l"></u-navbar></view>
