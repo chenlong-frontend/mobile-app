@@ -34,7 +34,7 @@
 		   ></u-cell-item>
 		   <u-cell-item
 		     icon="grid-fill"
-		     @click="toPage('/pages/task/meta-list')"
+		     @click="toPage('/pages/meta/meta-list')"
 		     :icon-style="{color:'#00CC99'}"
 		     title="元数据管理"
 		   ></u-cell-item>

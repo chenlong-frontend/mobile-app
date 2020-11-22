@@ -159,5 +159,6 @@
 		bottom: 0;
 		padding: 20rpx;
 		z-index: 9999;
+		background-color: #FFFFFF;
 	}
 </style>

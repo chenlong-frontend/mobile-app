@@ -17,9 +17,11 @@ const install = (Vue, vm) => {
 	let rejectWork = (data) => vm.$u.get('/task/rejectWork', data)
 	let getTaskInsInfo = (data) => vm.$u.get('/task/getTaskInsInfo', data)
 	let finshTaskIns = (data) => vm.$u.get('/task/finshTaskIns', data)
+	let createTaskTemplateTypeMeta = (data) => vm.$u.post('/task/createTaskTemplateTypeMeta', data)
+	let createTaskTemplate = (data) => vm.$u.post('/task/createTaskTemplate', data)
 	
 	vm.$u.api = {wxlogin,register,getUserByToken,getJobList,createJob,taskTplListByType,getUsers,getMyJobList,getAllMetaInfo,taskTplList,
-	getWorkDetailByWorkId,getTaskInsInfoDetailById,bossSubmitWork,rejectWork,getTaskInsInfo,finshTaskIns};
+	getWorkDetailByWorkId,getTaskInsInfoDetailById,bossSubmitWork,rejectWork,getTaskInsInfo,finshTaskIns,createTaskTemplateTypeMeta, createTaskTemplate};
 }
 
 export default {

@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "u-tabs": "/uview-ui/components/u-tabs/u-tabs",
+    "u-card": "/uview-ui/components/u-card/u-card",
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col",
+    "uni-fab": "/components/uni-fab/uni-fab"
+  },
+  "component": true
+}

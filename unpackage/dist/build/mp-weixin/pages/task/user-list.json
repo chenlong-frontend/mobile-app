@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "u-card": "/uview-ui/components/u-card/u-card",
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col"
+  },
+  "component": true
+}

@@ -11,6 +11,34 @@
 			}
 		},
 		{
+			"path": "pages/task/templete-create",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/task/templete-list",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},	
+		{
+			"path": "pages/meta/meta-list",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/meta/create",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/task/index",
 			"style": {
 				"navigationStyle": "custom" ,
@@ -38,20 +66,6 @@
 				"navigationBarTextStyle": "white"
 			}
 		},		
-		{
-			"path": "pages/task/templete-list",
-			"style": {
-				"navigationStyle": "custom" ,
-				"navigationBarTextStyle": "white"
-			}
-		},	
-		{
-			"path": "pages/task/meta-list",
-			"style": {
-				"navigationStyle": "custom" ,
-				"navigationBarTextStyle": "white"
-			}
-		},
 		{
 			"path": "pages/user/user-list",
 			"style": {

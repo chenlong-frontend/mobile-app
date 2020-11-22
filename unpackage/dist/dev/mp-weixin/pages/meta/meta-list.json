@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "page-head": "/components/page-head/page-head",
+    "u-collapse": "/uview-ui/components/u-collapse/u-collapse",
+    "u-collapse-item": "/uview-ui/components/u-collapse-item/u-collapse-item",
+    "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
+    "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
+    "uni-fab": "/components/uni-fab/uni-fab"
+  }
+}
