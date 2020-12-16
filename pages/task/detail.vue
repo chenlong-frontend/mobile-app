@@ -20,7 +20,14 @@
 				<u-cell-item title="负责人" :arrow="false" :value="insInfo.taskManager"></u-cell-item>
 				<u-cell-item title="所属主任务" :arrow="false" :value="insInfo.belongs"></u-cell-item>
 			</u-cell-group>
-			<u-button type="primary" @click="this.toPage('/pages/task/sub-detail?code=' + insInfo.taskDetailCode+ '&id=' + workTemplateVo.id)">查看详情/操作</u-button>
+			<u-row gutter="4">
+				<u-col span="7">
+					<u-button type="primary" @click="this.toPage('/pages/task/sub-detail?code=' + insInfo.taskDetailCode+ '&id=' + workTemplateVo.id)">查看详情/审核</u-button>
+				</u-col>
+				<u-col span="5">
+					<u-button type="warning" @click="this.toPage('/pages/task/sub-task-edit?code=' + insInfo.taskDetailCode)">编辑</u-button>
+				</u-col>
+			</u-row>
 		</view>
 	</view>
 </template>

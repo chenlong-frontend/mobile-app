@@ -1,6 +1,6 @@
 <template>
 	<view class="content">
-		<auth></auth>
+
 	</view>
 </template>
 
@@ -12,10 +12,16 @@
 			}
 		},
 		onLoad() {
-
+			this.login()
 		},
 		methods: {
-
+			async login () {
+				const userInfo = await this.$u.api.getUserByToken()
+				if (!userInfo) {
+				  return
+				}
+				this.$u.vuex('user', userInfo)
+			 },
 		}
 	}
 </script>

@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/home/index",
+    "pages/task/sub-task-edit",
     "pages/task/templete-create",
     "pages/task/templete-list",
     "pages/meta/meta-list",
@@ -47,5 +49,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap35.json"
 }

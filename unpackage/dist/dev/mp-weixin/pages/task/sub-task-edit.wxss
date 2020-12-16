@@ -3,10 +3,20 @@
  * 下方引入的为uView UI的集成样式文件，为scss预处理器，其中包含了一些"u-"开头的自定义变量
  * uView自定义的css类名和scss变量，均以"u-"开头，不会造成冲突，请放心使用 
  */
-page.data-v-e95e60f8 {
+page.data-v-168ad498 {
   background: #f2f2f2;
 }
-.auth.data-v-e95e60f8 {
-  padding: 50rpx 20%;
+.bottom.data-v-168ad498 {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 20rpx;
+  z-index: 9999;
+}
+.form.data-v-168ad498 {
+  padding-bottom: 50rpx;
+  margin: 20px 0;
+  background: #FFFFFF;
+  padding: 0 20rpx 0 40rpx;
 }
 

@@ -5,6 +5,8 @@
     "page-head": "/components/page-head/page-head",
     "u-cell-group": "/uview-ui/components/u-cell-group/u-cell-group",
     "u-cell-item": "/uview-ui/components/u-cell-item/u-cell-item",
+    "u-row": "/uview-ui/components/u-row/u-row",
+    "u-col": "/uview-ui/components/u-col/u-col",
     "u-button": "/uview-ui/components/u-button/u-button"
   }
 }

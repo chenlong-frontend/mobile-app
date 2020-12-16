@@ -4,7 +4,21 @@
 	},
 	"pages": [
 		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
 			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom" ,
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/task/sub-task-edit",
 			"style": {
 				"navigationStyle": "custom" ,
 				"navigationBarTextStyle": "white"

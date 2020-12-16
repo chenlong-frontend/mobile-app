@@ -1,6 +1,7 @@
 import md5Libs from "uview-ui/libs/function/md5";
 
 const install = (Vue, vm) => {
+	let login = (data) => vm.$u.post('/user/userLogin', data)
 	let wxlogin = (data) => vm.$u.get('/user/getOpenid', data)
 	let getUserByToken = (data) => vm.$u.get('/user/getUserByToken')
 	let register = (data) => vm.$u.post('/user/saveUserInfo', data)
@@ -19,9 +20,30 @@ const install = (Vue, vm) => {
 	let finshTaskIns = (data) => vm.$u.get('/task/finshTaskIns', data)
 	let createTaskTemplateTypeMeta = (data) => vm.$u.post('/task/createTaskTemplateTypeMeta', data)
 	let createTaskTemplate = (data) => vm.$u.post('/task/createTaskTemplate', data)
+	let getMetaById = (taskDetailCode) => vm.$u.get('/task/getMetaById', {taskDetailCode})
+	let editTaskData = ({data,taskInsDataCode}) => vm.$u.post('/task/editTaskData', {data,taskInsDataCode})
 	
-	vm.$u.api = {wxlogin,register,getUserByToken,getJobList,createJob,taskTplListByType,getUsers,getMyJobList,getAllMetaInfo,taskTplList,
-	getWorkDetailByWorkId,getTaskInsInfoDetailById,bossSubmitWork,rejectWork,getTaskInsInfo,finshTaskIns,createTaskTemplateTypeMeta, createTaskTemplate};
+	vm.$u.api = {
+		login,
+		wxlogin,
+		register,
+		getUserByToken,
+		getJobList,
+		createJob,
+		taskTplListByType,
+		getUsers,getMyJobList,
+		getAllMetaInfo,taskTplList,
+		getWorkDetailByWorkId,
+		getTaskInsInfoDetailById,
+		bossSubmitWork,
+		rejectWork,
+		getTaskInsInfo,
+		finshTaskIns,
+		createTaskTemplateTypeMeta,
+		createTaskTemplate,
+		getMetaById,
+		editTaskData
+	};
 }
 
 export default {

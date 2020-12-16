@@ -9,8 +9,7 @@ const install = (Vue, vm) => {
 	});
 	// 请求拦截，配置Token等参数
 	Vue.prototype.$u.http.interceptor.request = (config) => {
-		vm.$store.state.token && (config.header.openid = vm.$store.state.token);
-		vm.$store.state.user && (config.header.userId = vm.$store.state.user.userId);
+		config.header.token = vm.$store.state.token
 		return config; 
 	}
 	// 响应拦截，判断状态码是否通过

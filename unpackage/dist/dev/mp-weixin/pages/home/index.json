@@ -1,7 +1,5 @@
 {
   "navigationStyle": "custom",
   "navigationBarTextStyle": "white",
-  "usingComponents": {
-    "auth": "/components/auth/auth"
-  }
+  "usingComponents": {}
 }

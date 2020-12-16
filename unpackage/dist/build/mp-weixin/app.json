@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/task/sub-task-edit",
+    "pages/task/templete-create",
+    "pages/task/templete-list",
+    "pages/meta/meta-list",
     "pages/meta/create",
     "pages/task/index",
     "pages/task/deal-task",
     "pages/task/sub-detail",
     "pages/task/detail",
-    "pages/task/templete-list",
-    "pages/meta/meta-list",
     "pages/user/user-list",
     "pages/task/create",
     "pages/user/improve-information",
