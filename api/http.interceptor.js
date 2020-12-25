@@ -3,6 +3,8 @@ import code from './http.code.js'
 const install = (Vue, vm) => {
 	const baseUrl = 'https://weixin.frontjs.top'
 	Vue.prototype.$u.baseUrl = baseUrl
+	Vue.prototype.$u.assetsUrl = 'http://img.frontjs.top/'
+
 	Vue.prototype.$u.http.setConfig({
 		baseUrl: baseUrl,
 		header: {}
@@ -12,6 +14,7 @@ const install = (Vue, vm) => {
 		config.header.token = vm.$store.state.token
 		return config; 
 	}
+		console.log(Vue.prototype.$u.http.interceptor)
 	// 响应拦截，判断状态码是否通过
 	Vue.prototype.$u.http.interceptor.response = (res) => {
 		if(res.code === "0000") {
@@ -22,15 +25,16 @@ const install = (Vue, vm) => {
 				title: res.message || code[res.code] || '请求失败',
 				duration: 2000
 			});
-			if (res.code === "100002" ||  res.code === "100007") {
+			if (res.statusCode === 401) {
 				vm.$u.vuex('token', '')
 				uni.reLaunch({
-					url: '/pages/home/index'
+					url: '/pages/login/login'
 				});	
 			}
 			return false
 		};
 	}
+
 }
 
 export default {

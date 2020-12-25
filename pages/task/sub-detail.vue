@@ -13,6 +13,12 @@
 			</u-cell-group>
 		</view>
 		
+		<view style="padding-bottom: 50rpx;">
+			<u-cell-group>
+				<u-cell-item v-for="item in metas" :title="item[0]" :arrow="false" :value="item[1]"></u-cell-item>
+			</u-cell-group>
+		</view>
+		
 		<view class="bottom">
 			<u-button @click="submit" type="success">{{isActive ? "通过" : "驳回"}}</u-button>
 		</view>
@@ -25,7 +31,8 @@
 			return {
 				code: null,
 				id: null,
-				insInfo: {}
+				insInfo: {},
+				metas: []
 			}
 		},
 		computed:{
@@ -45,6 +52,7 @@
 			getData () {
 				this.$u.api.getTaskInsInfoDetailById({taskDetailCode: this.code}).then(insInfo => {
 					this.insInfo = insInfo
+					this.metas = Object.entries(insInfo.data)
 				})
 			},
 			toPage(url) {

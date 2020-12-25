@@ -6,7 +6,8 @@
 			<u-form>
 				<u-form-item v-for="item of metas" :required="item.isRequired === '1'" :key="item.metaName" label-width="150" :label="item.metaName">
 					<u-input v-if="item.metaType === 'date'" v-model="form[item.metaName]" @click="onTimeShow(item.metaName)" :disabled="true" placeholder="请选择启动时间" />
-					<u-input v-else v-model="form[item.metaName]" />
+					<u-upload v-if="item.metaType === 'img'" :file-list="img[item.metaName]" :index="item.metaName" @on-success="imgupload" :auto-upload="true" :max-size="2 * 1024 * 1024" :header="header" max-count="1" :action="action" ></u-upload>
+					<u-input v-if="item.metaType !== 'img' && item.metaType !== 'date'" v-model="form[item.metaName]" />
 				</u-form-item>
 			</u-form>
 		</view>
@@ -23,18 +24,32 @@
 	export default {
 		data() {
 			return {
-				code: null,
+				id: null,
 				timeShow: false,
 				form: {},
 				metas: [],
-				metaName: null
+				metaName: null,
+				img: {}
+			}
+		},
+		computed:{
+			action() {
+				return this.$u.baseUrl + '/img/saveImage'
+			},
+			header() {
+				return {
+					token: this.$store.state.token
+				}
 			}
 		},
 		onLoad(param) {
-			this.code = param.code
+			this.id = param.id
 			this.getData()
 		},
 		methods: {
+			imgupload (data, index, lists, name) {
+				this.form[name] = data.data
+			},
 			submit () {
 				for (let key in this.form) {
 					for (let it of this.metas) {
@@ -48,21 +63,23 @@
 						}
 					}
 				}
-				this.$u.api.editTaskData({data: this.form,taskInsDataCode:this.code}).then(() => {
+				this.$u.api.editTaskData({data: this.form,taskInsDataCode:this.id}).then(() => {
 					uni.navigateBack();
 				})
 			},
 			onTimeSelect (e) {
-				if (typeof this.form[this.metaName] === 'undefined') return
 				this.form[this.metaName] = `${e.year}-${e.month}-${e.day}`
 			},
 			getData () {
-				this.$u.api.getMetaById(this.code).then(data => {
+				this.$u.api.getMetaById(this.id).then(data => {
 					if (!data) return
-					const metas = data.taskTemplateTypeMetaVo.taskTemplateTypeMetaDetails
+					const metas = data.taskTemplateTypeMetaDetails
+					const value = data.data ? JSON.parse(data.data) : {}
 					for (let it of metas) {
-						this.form[it.metaName] = null
-						
+						this.form[it.metaName] = value[it.metaName]
+						if (it.metaType === 'img') {
+							this.img[it.metaName] = [{url: this.$u.assetsUrl + value[it.metaName]}]
+						}
 					}
 					this.metas = metas
 				})

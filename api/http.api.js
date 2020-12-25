@@ -20,7 +20,7 @@ const install = (Vue, vm) => {
 	let finshTaskIns = (data) => vm.$u.get('/task/finshTaskIns', data)
 	let createTaskTemplateTypeMeta = (data) => vm.$u.post('/task/createTaskTemplateTypeMeta', data)
 	let createTaskTemplate = (data) => vm.$u.post('/task/createTaskTemplate', data)
-	let getMetaById = (taskDetailCode) => vm.$u.get('/task/getMetaById', {taskDetailCode})
+	let getMetaById = (taskInsDataCode) => vm.$u.get('/task/getMetaById', {taskInsDataCode})
 	let editTaskData = ({data,taskInsDataCode}) => vm.$u.post('/task/editTaskData', {data,taskInsDataCode})
 	
 	vm.$u.api = {

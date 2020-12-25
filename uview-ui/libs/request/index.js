@@ -69,6 +69,9 @@ class Request {
 						// 		title: response.errMsg
 						// 	});
 						// }
+						if (this.interceptor.response && typeof this.interceptor.response === 'function') {
+							this.interceptor.response(response)
+						}
 						reject(response)
 					}
 				}

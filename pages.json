@@ -4,14 +4,14 @@
 	},
 	"pages": [
 		{
-			"path": "pages/login/login",
+			"path": "pages/home/index",
 			"style": {
 				"navigationStyle": "custom" ,
 				"navigationBarTextStyle": "white"
 			}
 		},
 		{
-			"path": "pages/home/index",
+			"path": "pages/login/login",
 			"style": {
 				"navigationStyle": "custom" ,
 				"navigationBarTextStyle": "white"
